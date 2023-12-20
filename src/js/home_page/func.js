@@ -1,10 +1,9 @@
 export async function renderCategoryList(fetch) {
-  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="all categories">All categories</li>`;
-  return (allCategoryMarkup += fetch.data
+  return await fetch.data
     .map(({ list_name }) => {
       return `<li class="category__home-item" data-category="${list_name}">${list_name}</li>`;
     })
-    .join(''));
+    .join('');
 }
 
 export async function renderBooksItems(data) {
@@ -13,13 +12,32 @@ export async function renderBooksItems(data) {
       return `
     <div class="item-books__home">
     <h3 class="js-book-category">${list_name}</h3>
-    <ul class='list-books__home'>${await makeListOfBooks(books)}</ul>
+    <ul class='list-books__home'>${await ShowLessData(books)}</ul>
     <button class="button see-more" data-js="${list_name}" aria-label="See more">See more</button>
     </div>
     `;
     }),
   );
 }
+function addMediaWidth() {
+  const screenSize = window.screen.width;
+
+  if (screenSize < 768) {
+    return 'mobile';
+  } else if (screenSize < 1200) {
+    return 'tablet';
+  } else {
+    return 'desktop';
+  }
+}
+
+export const ShowLessData = async function (data) {
+  if (addMediaWidth() === 'mobile') {
+    return makeListOfBooks(data.slice(0, 1));
+  } else if (addMediaWidth() === 'tablet') {
+    return makeListOfBooks(data.slice(0, 3));
+  } else return makeListOfBooks(data);
+};
 
 export async function makeCategoryPage(category, data) {
   const titleWords = category.split(' ');

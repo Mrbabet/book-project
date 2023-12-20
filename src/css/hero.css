@@ -33,7 +33,7 @@
   font-weight: 700;
   line-height: 24px;
 }
-.block__books-colortitle {
+.books-colortitle {
   letter-spacing: -0.04em;
   text-align: left;
   color: #4f2ee8;
@@ -43,7 +43,7 @@
   font-weight: 700;
   line-height: 38px;
 }
-.block__books-title {
+.books-title {
   letter-spacing: -0.04em;
   color: #111;
   font-family: DM Sans;

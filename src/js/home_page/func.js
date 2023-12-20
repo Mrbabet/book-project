@@ -1,9 +1,10 @@
 export async function renderCategoryList(fetch) {
-  return await fetch.data
+  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="all categories">All categories</li>`;
+  return (allCategoryMarkup += fetch.data
     .map(({ list_name }) => {
       return `<li class="category__home-item" data-category="${list_name}">${list_name}</li>`;
     })
-    .join('');
+    .join(''));
 }
 
 export async function renderBooksItems(data) {

@@ -4,21 +4,20 @@ import { makeCategoryPage } from './func';
 import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
+import { getBookByID, getCategoryList, getOneCategory, getTopBooks } from './fetch';
 
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
 
-const bookApi = new BooksAPI();
+init();
 
-onFirstload();
-
-async function onFirstload() {
+async function init() {
   try {
-    const categoryApi = await bookApi.getCategoryList();
+    const categoryApi = await getCategoryList();
     refCategory.insertAdjacentHTML('beforeend', await renderCategoryList(categoryApi));
   } catch (error) {}
   try {
-    const resp = await bookApi.getTopBooks();
+    const resp = await getTopBooks();
     refBooks.insertAdjacentHTML(
       'afterbegin',
       '<h2 class="block__books-title">Best Sellers<span class="block__books-colortitle"> Books</span></h2>',
@@ -38,7 +37,7 @@ async function onCategoryClick(el) {
 
     if (el.target.dataset.category === `all categories`) {
       try {
-        const resp = await bookApi.getTopBooks();
+        const resp = await getTopBooks();
         refBooks.insertAdjacentHTML(
           'afterbegin',
           '<h2 class="block__books-title">Best Sellers<span class="block__books-colortitle"> Books</span></h2>',
@@ -49,7 +48,7 @@ async function onCategoryClick(el) {
       return;
     } else {
       try {
-        const data = await (await bookApi.getOneCategory(el.target.dataset.category)).data;
+        const data = await (await getOneCategory(el.target.dataset.category)).data;
         refBooks.insertAdjacentHTML(
           'beforeend',
           await makeCategoryPage(el.target.dataset.category, data),

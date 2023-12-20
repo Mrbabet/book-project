@@ -13,12 +13,14 @@
 .category__home-item {
   letter-spacing: -0.02em;
   color: #1119;
-  cursor: pointer;
+
   font-family: DM Sans;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  pointer-events: all;
+  cursor: pointer;
 }
 .js-current-category {
   letter-spacing: -0.02em;

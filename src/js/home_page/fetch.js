@@ -1,10 +1,16 @@
 import axios from 'axios';
 
-export class BooksAPI {
-  #BASE_URL = 'https://books-backend.p.goit.global/books/';
+const BASE_URL = 'https://books-backend.p.goit.global/books/';
 
-  getTopBooks = () => axios.get(`${this.#BASE_URL}top-books`);
-  getCategoryList = () => axios.get(`${this.#BASE_URL}category-list`);
-  getOneCategory = category => axios.get(`${this.#BASE_URL}category?category=${category}`);
-  getBookByID = id => axios.get(`${this.#BASE_URL}${id}`);
-}
+export const getTopBooks = function () {
+  return axios.get(`${BASE_URL}top-books`);
+};
+export const getCategoryList = function () {
+  return axios.get(`${BASE_URL}category-list`);
+};
+export const getOneCategory = function (category) {
+  return axios.get(`${BASE_URL}category?category=${category}`);
+};
+export const getBookByID = function (id) {
+  return axios.get(`${BASE_URL}${id}`);
+};

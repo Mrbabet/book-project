@@ -22,14 +22,16 @@ export async function renderBooksItems(data) {
 }
 
 export async function makeCategoryPage(category, data) {
-  const title = category.split(' ');
+  const titleWords = category.split(' ');
+  const halfIndex = Math.ceil(titleWords / 2);
+  const firstHalf = titleWords.slice(0, halfIndex).join('');
+  const lastHalf = titleWords.slice(halfIndex).join('');
+
   return `
-  <h2 class="block__books-title"
->${title.splice(0, title.length / 2).join(' ')} <span class="block__books-colortitle">${title
-    .splice(title.length / 2, title.length)
-    .join(' ')}</span></h2>
-        <ul class="block__books-list">${await makeListOfBooks(data)}</ul>
-        <button class="button all-categories__btn" data-js="All Categories" aria-label="All categories">All Categories</button>`;
+  <h2 class="block__books-title">${firstHalf} <span class="block__books-colortitle">${lastHalf}</span></h2>
+  <ul class="block__books-list">${await makeListOfBooks(data)}</ul>
+  <button class="button all-categories__btn" data-js="All Categories" aria-label="All categories">All Categories</button>
+`;
 }
 
 export async function makeListOfBooks(data) {
@@ -52,7 +54,6 @@ export async function makeListOfBooks(data) {
 }
 
 export async function currentCategoryToggle(value) {
-  console.log(value);
   const currentCategoryElement = document.querySelector('.js-current-category');
   if (currentCategoryElement) {
     currentCategoryElement.classList.remove('js-current-category');

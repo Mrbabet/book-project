@@ -1,10 +1,8 @@
-import axios from 'axios';
-import { BooksAPI } from './fetch';
-import { makeCategoryPage } from './func';
+import { ShowLessData, makeCategoryPage } from './func';
 import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
-import { getBookByID, getCategoryList, getOneCategory, getTopBooks } from './fetch';
+import { getCategoryList, getOneCategory, getTopBooks } from './fetch';
 
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
@@ -23,6 +21,8 @@ async function init() {
       '<h2 class="block__books-title">Best Sellers<span class="block__books-colortitle"> Books</span></h2>',
     );
     refBooks.insertAdjacentHTML('beforeend', (await renderBooksItems(resp.data)).join(''));
+
+    ShowLessData(resp.data);
     return resp.data;
   } catch (error) {}
 }

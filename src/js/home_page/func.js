@@ -1,9 +1,10 @@
 export async function renderCategoryList(fetch) {
-  return await fetch.data
+  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="all categories">All Categories</li>`;
+  return (allCategoryMarkup += fetch.data
     .map(({ list_name }) => {
       return `<li class="category__home-item" data-category="${list_name}">${list_name}</li>`;
     })
-    .join('');
+    .join(''));
 }
 
 export async function renderBooksItems(data) {
@@ -41,13 +42,13 @@ export const ShowLessData = async function (data) {
 
 export async function makeCategoryPage(category, data) {
   const titleWords = category.split(' ');
-  const halfIndex = Math.ceil(titleWords / 2);
-  const firstHalf = titleWords.slice(0, halfIndex).join('');
-  const lastHalf = titleWords.slice(halfIndex).join('');
+  const halfIndex = Math.ceil(titleWords.length / 2);
+  const firstHalf = titleWords.slice(0, halfIndex).join(' ');
+  const lastHalf = titleWords.slice(halfIndex).join(' ');
 
   return `
-  <h2 class="block__books-title">${firstHalf} <span class="block__books-colortitle">${lastHalf}</span></h2>
-  <ul class="block__books-list">${await makeListOfBooks(data)}</ul>
+  <h2 class="books-title">${firstHalf} <span class="books-colortitle">${lastHalf}</span></h2>
+  <ul class="books-list">${await makeListOfBooks(data)}</ul>
   <button class="button all-categories__btn" data-js="All Categories" aria-label="All categories">All Categories</button>
 `;
 }
@@ -55,7 +56,7 @@ export async function makeCategoryPage(category, data) {
 export async function makeListOfBooks(data) {
   return data
     .map(({ author, book_image, title, description, _id }) => {
-      return `<li class="books__itm" id=${_id} >
+      return `<li class="books__item" id=${_id} >
     <div class="books__wrapper">
     <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
     <div class="books__overlay">

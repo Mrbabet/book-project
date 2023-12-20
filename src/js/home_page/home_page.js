@@ -1,4 +1,4 @@
-import { ShowLessData, makeCategoryPage } from './func';
+import { ShowLessData, makeCategoryPage, makeListOfBooks } from './func';
 import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
@@ -18,43 +18,63 @@ async function init() {
     const resp = await getTopBooks();
     refBooks.insertAdjacentHTML(
       'afterbegin',
-      '<h2 class="block__books-title">Best Sellers<span class="block__books-colortitle"> Books</span></h2>',
+      '<h2 class="books-title">Best Sellers<span class="books-colortitle"> Books</span></h2>',
     );
     refBooks.insertAdjacentHTML('beforeend', (await renderBooksItems(resp.data)).join(''));
-
-    ShowLessData(resp.data);
-    return resp.data;
   } catch (error) {}
 }
 
-refCategory.addEventListener('click', onCategoryClick);
+const onCategoryClick = async function (e) {
+  e.preventDefault();
 
-async function onCategoryClick(el) {
-  el.preventDefault();
-
-  if (el.target.classList.contains('category__home-item')) {
+  if (e.target.classList.contains('category__home-item')) {
     refBooks.innerHTML = '';
 
-    if (el.target.dataset.category === `all categories`) {
+    if (e.target.dataset.category === `all categories`) {
       try {
         const resp = await getTopBooks();
         refBooks.insertAdjacentHTML(
           'afterbegin',
-          '<h2 class="block__books-title">Best Sellers<span class="block__books-colortitle"> Books</span></h2>',
+          '<h2 class="books-title">Best Sellers<span class="books-colortitle"> Books</span></h2>',
         );
         refBooks.insertAdjacentHTML('beforeend', (await renderBooksItems(resp.data)).join(''));
-        currentCategoryToggle(el.target.dataset.category);
+        currentCategoryToggle(e.target.dataset.category);
       } catch (error) {}
       return;
     } else {
       try {
-        const data = await (await getOneCategory(el.target.dataset.category)).data;
+        const { data } = await getOneCategory(e.target.dataset.category);
         refBooks.insertAdjacentHTML(
           'beforeend',
-          await makeCategoryPage(el.target.dataset.category, data),
+          await makeCategoryPage(e.target.dataset.category, data),
         );
-        currentCategoryToggle(el.target.dataset.category);
+        currentCategoryToggle(e.target.dataset.category);
       } catch (error) {}
     }
   }
-}
+};
+const onSeeMoreClick = async function (e) {
+  e.preventDefault();
+  console.log(e.target);
+  const refsSeeMoreBtn = e.target.classList.contains('see-more');
+  const refsAllCategoriesBtn = e.target.classList.contains('all-categories__btn');
+  console.log(refsAllCategoriesBtn);
+  if (refsSeeMoreBtn) {
+    const clickedCategory = e.target.dataset.js;
+    refBooks.innerHTML = '';
+    try {
+      const { data } = await getOneCategory(clickedCategory);
+      refBooks.insertAdjacentHTML('beforeend', await makeCategoryPage(clickedCategory, data));
+      currentCategoryToggle(clickedCategory);
+    } catch (error) {}
+  } else if (refsAllCategoriesBtn) {
+    refBooks.innerHTML = '';
+    try {
+      const resp = await getTopBooks();
+      refBooks.insertAdjacentHTML('beforeend', await renderBooksItems(resp.data));
+    } catch (error) {}
+  }
+};
+
+refCategory.addEventListener('click', onCategoryClick);
+refBooks.addEventListener('click', onSeeMoreClick);

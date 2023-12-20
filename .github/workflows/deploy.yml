@@ -1,24 +1,31 @@
-name: Build and deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main # Change this to your main branch
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Install and Build 🔧
-        run: |
-          npm ci
-          npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          branch: main
-          folder: dist
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages # Change this to the branch you want to deploy to
+          folder: dist # Change this to the output folder of your Parcel build

@@ -1,5 +1,6 @@
-import Swiper from 'swiper';
+ import Swiper from 'swiper';
 import 'swiper/swiper.css';
+
 import { supporters } from './fundation_api';
 
 const supportersWrapper = document.querySelector('.suporters-wrapper');

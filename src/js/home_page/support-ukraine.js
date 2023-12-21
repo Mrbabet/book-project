@@ -1,8 +1,9 @@
 import Swiper from 'swiper';
-
+import 'swiper/swiper.css';
 import { supporters } from './fundation_api';
 
-const supportersContainer = document.querySelector('.suporters-container');
+const supportersWrapper = document.querySelector('.suporters-wrapper');
+const supportersBtn = document.querySelector('.suporters-button');
 
 const swiperOptions = {
   direction: 'vertical',
@@ -38,4 +39,16 @@ const markup = supporters
   )
   .join('');
 
-supportersContainer.innerHTML = markup;
+supportersWrapper.innerHTML = markup;
+
+function onBtnClick() {
+  swiper.slideNext();
+  if (swiper.isBeginning || swiper.isEnd) {
+    rotateBtn();
+  }
+}
+
+function rotateBtn() {
+  refs.btn.classList.toggle('supporters__btn--up');
+}
+supportersBtn.addEventListener('click', onBtnClick);

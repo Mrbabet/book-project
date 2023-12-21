@@ -58,9 +58,8 @@ const onSeeMoreClick = async function (e) {
   console.log(e.target);
   const refsSeeMoreBtn = e.target.classList.contains('see-more');
   const refsAllCategoriesBtn = e.target.classList.contains('all-categories__btn');
-  console.log(refsAllCategoriesBtn);
+  const clickedCategory = e.target.dataset.js;
   if (refsSeeMoreBtn) {
-    const clickedCategory = e.target.dataset.js;
     refBooks.innerHTML = '';
     try {
       const { data } = await getOneCategory(clickedCategory);
@@ -72,6 +71,7 @@ const onSeeMoreClick = async function (e) {
     try {
       const resp = await getTopBooks();
       refBooks.insertAdjacentHTML('beforeend', await renderBooksItems(resp.data));
+      currentCategoryToggle(clickedCategory);
     } catch (error) {}
   }
 };

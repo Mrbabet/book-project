@@ -1,5 +1,5 @@
 export async function renderCategoryList(fetch) {
-  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="all categories">All Categories</li>`;
+  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="All Categories">All Categories</li>`;
   return (allCategoryMarkup += fetch.data
     .map(({ list_name }) => {
       return `<li class="category__home-item" data-category="${list_name}">${list_name}</li>`;
@@ -77,7 +77,6 @@ export async function currentCategoryToggle(value) {
   if (currentCategoryElement) {
     currentCategoryElement.classList.remove('js-current-category');
   }
-
   const newCategoryElement = document.querySelector(`li[data-category="${value}"]`);
   if (newCategoryElement) {
     newCategoryElement.classList.add('js-current-category');

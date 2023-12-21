@@ -63,12 +63,28 @@
 :-webkit-scrollbar-track {
   background-color: #0000;
 }
-.suporters-container {
-  width: 335px;
+.supporters {
+  width: 100%;
   max-height: 352px;
   background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, #4f2ee8 18.03%, #fff 100%);
   border-radius: 16px;
   flex-direction: column;
   padding: 24px 40px 20px;
   display: flex;
+  margin-block: 40px;
+}
+.supporters__item {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+}
+.swiper {
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  list-style: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
 }

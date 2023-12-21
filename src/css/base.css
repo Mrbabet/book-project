@@ -1,3 +1,14 @@
+:root {
+  --main-text-color-light-theme: #111;
+  --main-text-color-dark-theme: #fff;
+  --secondary-text-color: #b4afaf;
+  --accent-color: #4f2ee8;
+  --secondary-accent-color: #eac645;
+  --main-bg-color: #f6f6f6;
+  --main-bg-color-dark-theme: #202024;
+  --timing-function: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -8,7 +19,7 @@ img {
   width: 100%;
 }
 body {
-  font-size: DM Sans;
+  font-family: 'DM Sans', sans-serif;
 }
 .container {
   width: 100%;

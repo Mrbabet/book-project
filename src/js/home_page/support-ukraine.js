@@ -1,4 +1,4 @@
- import Swiper from 'swiper';
+import Swiper from 'swiper';
 import 'swiper/swiper.css';
 
 import { supporters } from './fundation_api';
@@ -34,7 +34,7 @@ const markup = supporters
         <a href = "${el.url}" title = "${
         el.title
       }" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fundation">
-      <img src ="" class="supporters__img" alt = "${el.title} logo"/>
+      <img src ="${el.img}" class="supporters__img" alt = "${el.title} logo"/>
       </a>
       </div>`,
   )

@@ -30,7 +30,7 @@ const onCategoryClick = async function (e) {
   if (e.target.classList.contains('category__home-item')) {
     refBooks.innerHTML = '';
 
-    if (e.target.dataset.category === `all categories`) {
+    if (e.target.dataset.category === `All Categories`) {
       try {
         const resp = await getTopBooks();
         refBooks.insertAdjacentHTML(

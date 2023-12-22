@@ -9,21 +9,9 @@
   border-radius: 0px 0px 8px 8px;
   border: 1.5px solid #111;
   background: #fff;
+  width: 100%;
 }
-
-
-    display: inline-flex;
-    height: 64px;
-    padding: 18px 20px;
-    align-Items: flex-start;
-    gap: 143.999px;
-    flex-Shrink: 0;
-    border-Radius: 0px 0px 8px 8px;
-    border: 1.5px solid #111;
-    background: #FFF;
-    width: 100%;
-    } 
-    
+ 
 
 .btn-burger {
   display: flex;
@@ -41,11 +29,6 @@
 }
 
 .container-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-
     display: flex;
     justify-content: center;
     align-Items: center;
@@ -102,9 +85,7 @@ input:checked + .theme-toggler::before {
 
 input {
   display: none;
-}
-=======
-    
+
     width: 42px;
     height: 24px;
     border-radius: 200px;
@@ -138,9 +119,6 @@ input:checked + .theme-toggler::before{
     transform: translateX(18px);
 }
 
-input {
-    display: none;
-}
 
 .menu {
     display: none;
@@ -262,4 +240,4 @@ input {
         margin-right: 76px;
     }
 }
->>>>>>> Stashed changes
+

@@ -23,9 +23,6 @@ const swiperOptions = {
 };
 const swiper = new Swiper('.swiper', swiperOptions);
 
-supporters.map((el, index) => {
-  console.log(el.img);
-});
 
 const markup = supporters
   .map(

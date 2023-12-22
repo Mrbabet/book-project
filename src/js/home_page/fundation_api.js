@@ -2,7 +2,7 @@ export const supporters = [
   {
     title: 'Save the Children',
     url: 'https://www.savethechildren.net/what-we-do/emergencies/ukraine-crisis',
-    img: '../../images/fond-1.png',
+    img: "./fond-1.png",
   },
   {
     title: 'Project HOPE',

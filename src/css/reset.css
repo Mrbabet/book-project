@@ -1,25 +1,22 @@
-:root {
-    --black: #111111;
-    --black1: #202024;
-    --violet: #4F2EE8;
-    --yellow: #EAC645;
-    --white: #FFFFFF;
-    
-}
-
 /* Resetowanie domyślnych styli */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Resetowanie dla elementów blokowych */
 body,
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p,
-ul, ol,
+ul,
+ol,
 li,
 blockquote,
 pre,
@@ -27,8 +24,8 @@ figure,
 hr,
 dl,
 dd {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Resetowanie dla elementów zagnieżdżonych */
@@ -37,8 +34,8 @@ iframe,
 embed,
 object,
 video {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Resetowanie dla formularzy i ich elementów */
@@ -51,15 +48,15 @@ textarea,
 select,
 optgroup,
 option {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    appearance: none;
-    border: none;
-    outline: none;
-    border-radius: 0;
-    background: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  appearance: none;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 /* Resetowanie dla elementów semantycznych */
@@ -75,10 +72,10 @@ menu,
 nav,
 section,
 summary {
-    display: block;
+  display: block;
 }
 
 /* Resetowanie dla elementu HTML */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }

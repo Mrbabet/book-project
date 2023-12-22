@@ -1,6 +1,5 @@
 import Swiper from 'swiper';
 import 'swiper/swiper.css';
-
 import { supporters } from './fundation_api';
 
 const supportersWrapper = document.querySelector('.suporters-wrapper');
@@ -24,6 +23,10 @@ const swiperOptions = {
 };
 const swiper = new Swiper('.swiper', swiperOptions);
 
+supporters.map((el, index) => {
+  console.log(el.img);
+});
+
 const markup = supporters
   .map(
     (el, index) =>
@@ -34,7 +37,9 @@ const markup = supporters
         <a href = "${el.url}" title = "${
         el.title
       }" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fundation">
-      <img src ="${el.img}" class="supporters__img" alt = "${el.title} logo"/>
+        <img src ="${el.img}" srcset="${el.img} 1x" class="supporters__img" alt = "${
+        el.title
+      } logo" />
       </a>
       </div>`,
   )
@@ -50,6 +55,6 @@ function onBtnClick() {
 }
 
 function rotateBtn() {
-  refs.btn.classList.toggle('supporters__btn--up');
+  supportersBtn.classList.toggle('supporters__btn--up');
 }
 supportersBtn.addEventListener('click', onBtnClick);

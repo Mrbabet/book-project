@@ -42,6 +42,6 @@ export const supporters = [
   {
     title: 'Serhiy Prytula Charity Foundation',
     url: 'https://prytulafoundation.org/en',
-    img: '../../images/fond-9.svg',
+    img: '../../images/fond-9.png',
   },
 ];

@@ -67,7 +67,7 @@
   width: 100%;
   object-fit: cover;
 }
-.books__overlay {
+/* .books__overlay {
   height: 20%;
   width: 100%;
   background: #eac645;
@@ -87,7 +87,7 @@
 }
 .books__item :hover .books__overlay {
   top: 78%;
-}
+} */
 .books-title {
   letter-spacing: -0.04em;
   color: #111;
@@ -185,6 +185,9 @@
   transition: transform 0.5s ease-in-out;
   display: flex;
   transform: rotateX(0);
+}
+.supporters__btn--up {
+  transform: rotateX(180deg);
 }
 
 .see-more {

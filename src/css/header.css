@@ -1,4 +1,5 @@
 .header-bar {
+
   display: inline-flex;
   height: 64px;
   padding: 18px 20px;
@@ -8,7 +9,9 @@
   border-radius: 0px 0px 8px 8px;
   border: 1.5px solid #111;
   background: #fff;
+  width: 100%;
 }
+ 
 
 .btn-burger {
   display: flex;
@@ -26,10 +29,12 @@
 }
 
 .container-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
+    display: flex;
+    justify-content: center;
+    align-Items: center;
+    gap: 14px;
+    margin-left: auto;
+
 }
 .container-logo {
   display: flex;
@@ -48,6 +53,7 @@
 }
 
 .theme-toggler {
+
   width: 42px;
   height: 24px;
   border-radius: 200px;
@@ -79,4 +85,159 @@ input:checked + .theme-toggler::before {
 
 input {
   display: none;
+
+    width: 42px;
+    height: 24px;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+    background-image: linear-gradient(180deg, #4F2EE8 0%, #DCDCDC 100%);
+    box-Shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.10) inset;
 }
+
+.theme-toggler::before {
+    position: absolute;
+    content: '';
+    background-color: #FFF;
+    width: 18px;
+    height: 18px;
+    border-radius: 200px;
+    margin: 3px;
+    transition: 0.2s;
+    
+    
+     
+}
+input:checked + .theme-toggler {
+    background-image: linear-gradient(180deg, #4F2EE8 0%, #686868 100%);
+    box-Shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.10) inset;
+    
+}
+
+input:checked + .theme-toggler::before{
+    transform: translateX(18px);
+}
+
+
+.menu {
+    display: none;
+    align-Items: center;
+    gap: 16px;
+}
+
+.button-container {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .header-bar {
+        width: 100%;
+        height: 72px;
+        align-items: normal;
+        gap: 0px;
+     }
+
+     .burger-icon {
+        display: none;
+     }
+     
+     .menu {
+        display: inline-flex;
+        align-Items: center;
+        gap: 16px;
+     }
+
+     .button-home {
+        display: flex;
+        padding: 8px 16px;
+        align-Items: flex-start;
+        gap: 10px;
+        border-Radius: 36px;
+        background: #EAC645 ;
+        width: 72px;
+        height: 34px;
+     }
+
+     .home-p {
+        color: #111;
+        font-Family: DM Sans;
+        font-Size: 14px;
+        font-Style: normal;
+        font-Weight: 700;
+        line-Height: 18px ;
+        letter-Spacing: -0.56px;
+        text-Transform: uppercase ;
+        margin: 0;
+     }
+
+     .button-shopping-list {
+        display: flex;
+        justify-Content: center;
+        align-Items: center;
+        gap: 4px ;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin-right: 101px;
+        
+     }
+
+     .shopping-p {
+        color: #111;
+        font-Family: DM Sans;
+        font-Size: 14px;
+        font-Style: normal;
+        font-Weight: 500,;
+        line-Height: 18px ;
+        letter-Spacing: -0.56px;
+        text-Transform: uppercase ;
+        margin: 0px;
+     }
+
+    .sign-up {
+        width: 184px;
+        height: 48px;
+        flex-Shrink: 0;
+        border-Radius: 18px;
+        border: 1.5px solid #111;
+        background: #4F2EE8;
+        cursor: pointer;
+        display: inline-flex;
+        justify-Content: center;
+        align-Items: center;
+        gap: 90px;
+    }
+    
+    .sign-up-p {
+        color: #FFF;
+        font-Family: DM Sans;
+        font-Size: 14px;
+        font-Style: normal;
+        font-Weight: 500;
+        line-Height:18px;
+        letter-Spacing: -0.56px;
+        
+    }
+    .sign-up-icon {
+        margin: 0;
+    }
+
+    .button-container {
+        width: 184px;
+        height: 48px;
+        flex-Shrink: 0;
+        display: unset;
+    }
+
+    .container-logo {
+        margin-right: 40px;
+    }
+}
+
+@media screen and (min-width: 1140px) {
+    .container-logo {
+        margin-right: 76px;
+    }
+}
+

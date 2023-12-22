@@ -1,25 +1,62 @@
 <header id="header">
-  <div class="header-bar">
-    <div class="container-logo">
-      <a class="logo" href="./">
-        <img src="./images/logox1.jpg" srcset="./images/logox2.jpg 2x" alt=""
-      /></a>
+      
+      <div class="header-bar">
+        <div class="container-logo">
+        <a class="logo" href="./">
+            <img src="./images/logox1.jpg" srcset="./images/logox2.jpg 2x" alt=""></a>
+        </a>
+        <a class="logo" href="./">
+            <img src="./images/Bookshelfx1.jpg" src="./images/Bookshelfx2.jpg 2x" alt="">
+        </a>
+        </div>
+        <div class="menu">
+            <button class="button-home"
+            type="button"
+            aria-expanded="false"
+            aria-controls="tablet-home">
+                <p class="home-p">Home</p>
+            </button>
+           <button class="button-shopping-list"
+            type="button"
+            aria-expanded="false"
+            aria-controls="tablet-shopping">
+            <p class="shopping-p">shopping list</p>
+            <svg  width="20px" height="20px">
+                <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
+            </svg>
+           </button>
 
-      <a class="logo" href="./">
-        <img src="./images/Bookshelfx1.jpg" src="./images/Bookshelfx2.jpg 2x" alt="" />
-      </a>
-    </div>
-    <div class="container-btn">
-      <div class="switcher">
-        <input type="checkbox" id="check" />
-        <label for="check" class="theme-toggler"></label>
+        </div>
+        <div class="container-btn">
+            
+              <div class="switcher">
+                  <input type="checkbox" id="check">
+                  <label for="check" class="theme-toggler"></label>
+              </div>                
+                <button
+                class="btn-burger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mobile-menu">
+
+                <svg  class="burger-icon" width="28" height="28">
+                    <use xlink:href="./icons/symbol-defs.svg#icon-align-left"></use>
+                </svg>
+                </button>
+                <div class="button-container">
+                    <button class="sign-up"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="sign-up-button">
+                      <p class="sign-up-p">Sign up</p>
+                      <svg class="sign-up-icon" width="20px" height="20px">
+                        <use xlink:href="./icons/symbol-defs.svg#icon-arrow-narrow-right"></use>
+                      </svg>
+                    </button>
+                    </div>   
+        </div>
+
       </div>
-
-      <button class="btn-burger" type="button" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="burger-icon" width="28" height="28">
-          <use xlink:href="./icons/symbol-defs.svg#icon-align-left"></use>
-        </svg>
-      </button>
     </div>
   </div>
 </header>

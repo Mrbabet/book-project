@@ -1,4 +1,4 @@
-import { ShowLessData, makeCategoryPage, makeListOfBooks } from './func';
+import { makeCategoryPage} from './func';
 import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
@@ -69,8 +69,12 @@ const onSeeMoreClick = async function (e) {
   } else if (refsAllCategoriesBtn) {
     refBooks.innerHTML = '';
     try {
+      refBooks.insertAdjacentHTML(
+        'afterbegin',
+        '<h2 class="books-title">Best Sellers<span class="books-colortitle"> Books</span></h2>',
+      );
       const resp = await getTopBooks();
-      refBooks.insertAdjacentHTML('beforeend', await renderBooksItems(resp.data));
+      refBooks.insertAdjacentHTML('beforeend', (await renderBooksItems(resp.data)).join(''));
       currentCategoryToggle(clickedCategory);
     } catch (error) {}
   }

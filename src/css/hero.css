@@ -70,7 +70,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 20%;
   width: 100%;
   background: #eac645;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -84,7 +84,7 @@
   line-height: 18px;
 }
 .books__wrapper:hover .books__overlay {
-  transform: translateY(-50px);
+  transform: translateY(-100%);
 }
 .books__wrapper {
   display: block;

@@ -24,10 +24,11 @@ async function init() {
   } catch (error) {}
 }
 
+
 const onCategoryClick = async function (e) {
   e.preventDefault();
 
-  if (e.target.classList.contains('category__home-item')) {
+  if (e.target.classList.contains('category-item')) {
     refBooks.innerHTML = '';
 
     if (e.target.dataset.category === `All Categories`) {

@@ -1,8 +1,8 @@
 export async function renderCategoryList(fetch) {
-  let allCategoryMarkup = `<li class="category__home-item js-current-category" data-category="All Categories">All Categories</li>`;
+  let allCategoryMarkup = `<li class="category-item js-current-category" data-category="All Categories">All Categories</li>`;
   return (allCategoryMarkup += fetch.data
     .map(({ list_name }) => {
-      return `<li class="category__home-item" data-category="${list_name}">${list_name}</li>`;
+      return `<li class="category-item" data-category="${list_name}">${list_name}</li>`;
     })
     .join(''));
 }
@@ -11,9 +11,9 @@ export async function renderBooksItems(data) {
   return await Promise.all(
     data.map(async ({ list_name, books }) => {
       return `
-    <div class="item-books__home">
+    <div class="book-category-container">
     <h3 class="js-book-category">${list_name}</h3>
-    <ul class='list-books__home'>${await ShowLessData(books)}</ul>
+    <ul class='books-list'>${await ShowLessData(books)}</ul>
     <button class="button see-more" data-js="${list_name}" aria-label="See more">See more</button>
     </div>
     `;
@@ -22,13 +22,16 @@ export async function renderBooksItems(data) {
 }
 function addMediaWidth() {
   const screenSize = window.screen.width;
+  console.log(screenSize)
 
   if (screenSize < 768) {
     return 'mobile';
-  } else if (screenSize < 1200) {
+  } else if (screenSize < 1280) {
     return 'tablet';
-  } else {
+  } else if( screenSize <1440) {
     return 'desktop';
+  } else{
+    return 'desktopXl'
   }
 }
 
@@ -37,7 +40,11 @@ export const ShowLessData = async function (data) {
     return makeListOfBooks(data.slice(0, 1));
   } else if (addMediaWidth() === 'tablet') {
     return makeListOfBooks(data.slice(0, 3));
-  } else return makeListOfBooks(data);
+  } else if(addMediaWidth()=== 'desktop') 
+  return makeListOfBooks(data.slice(0,4));
+  else{
+    return makeListOfBooks(data)
+  }
 };
 
 export async function makeCategoryPage(category, data) {
@@ -55,8 +62,7 @@ export async function makeCategoryPage(category, data) {
 
 export async function makeListOfBooks(data) {
   return data
-    .map(({ author, book_image, title, description, _id }) =>
-     `
+    .map(({ author, book_image, title, description, _id }) => `
     <li class="books__item" id=${_id}>
       <div class="books__wrapper">
         <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />

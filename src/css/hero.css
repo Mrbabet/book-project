@@ -8,12 +8,12 @@
 :-webkit-scrollbar-track {
   background-color: #0000;
 }
-
+.hero {
+  margin-top: 40px;
+}
 .container__home {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 40px;
 }
 
 .category-list {
@@ -261,6 +261,7 @@
 @media screen and (min-width: 1280px) {
   .container__home {
     display: grid;
+    column-gap: 40px;
     grid-template-columns: 358px 1fr;
   }
   .books-container {

@@ -20,8 +20,15 @@ img {
 }
 body {
   font-family: 'DM Sans', sans-serif;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color-light-theme);
 }
-.container {
+body.dark-mode {
+  background-color: var(--main-bg-color-dark-theme);
+  color: var(--main-text-color-dark-theme);
+}
+
+ .container {
   width: 100%;
   max-width: 375px;
   margin: 0 auto;

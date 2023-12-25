@@ -1,5 +1,5 @@
-.header-bar {
 
+.header-bar {
   display: inline-flex;
   height: 64px;
   padding: 18px 20px;
@@ -8,10 +8,9 @@
   flex-shrink: 0;
   border-radius: 0px 0px 8px 8px;
   border: 1.5px solid #111;
-  background: #fff;
   width: 100%;
 }
- 
+
 
 .btn-burger {
   display: flex;
@@ -42,11 +41,12 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  
+
 }
 
 .switcher {
   width: 100%;
-  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,8 +84,7 @@ input:checked + .theme-toggler::before {
 }
 
 input {
-  display: none;
-
+    display: none;
     width: 42px;
     height: 24px;
     border-radius: 200px;
@@ -184,7 +183,6 @@ input:checked + .theme-toggler::before{
      }
 
      .shopping-p {
-        color: #111;
         font-Family: DM Sans;
         font-Size: 14px;
         font-Style: normal;
@@ -241,3 +239,28 @@ input:checked + .theme-toggler::before{
     }
 }
 
+.logo.dark-mode {
+    display: none; 
+  }
+   
+  body.dark-mode .logo.dark-mode {
+    display: block;
+  }
+   
+  body:not(.dark-mode) .logo.light-mode {
+    display: block;
+  }
+  
+  .logo.light-mode {
+    display: none; 
+  }
+
+  body.dark-mode .button-shopping-list {
+    color: #fff;
+    fill: #fff;
+  }
+
+  body.dark-mode .burger-icon {
+    stroke: #fff;
+    fill: #fff; 
+  }

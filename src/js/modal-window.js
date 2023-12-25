@@ -5,31 +5,28 @@ const bookIMG =  document.getElementById('bookImage')
 const bookTitle = document.getElementById('bookTitle')
 const bookAuthor =  document.getElementById('bookAuthor')
 const bookDescription = document.getElementById('bookDescription')
+const linkAmazon = document.querySelector('.link-amazon');
+const linkBook = document.querySelector('.link-apple');
+const linkBookShop = document.querySelector('.link-book-shop');
 
 
 // Funkcja inicjująca modal z danymi książki
 export async function initModal(bookId) {
-
   const {data: book} = await getBookByID(bookId)
-  
-  bookIMG.src.value = book.book_image;
+
+ 
+  bookIMG.attributes.src.value = book.book_image;
   bookTitle.textContent = book.title;
   bookAuthor.textContent = `Autor: ${book.author}`;
   bookDescription.textContent = book.description;
+  
+  linkAmazon.attributes.href.value = book.buy_links[0].url;
+  linkAmazon.innerHTML = book.buy_links[0].name
+  linkBook.attributes.href.value = book.buy_links[1].url;
+  linkBook.innerHTML = book.buy_links[1].name
+  linkBookShop.attributes.href.value = book.buy_links[4].url;
+  linkBookShop.innerHTML = book.buy_links[4].name
 
-  const buyLinksContainer = document.getElementById('buyLinks');
-  buyLinksContainer.innerHTML = '';
-  book.buy_links.forEach(link => {
-    if (link.name === 'Amazon' || link.name ==='Apple Books' || link.name ==='Barnes and Noble') {
-      const a = document.createElement('a');
-      a.href = link.url;
-      a.textContent = link.name;
-      a.target = '_blank';
-      buyLinksContainer.appendChild(a);
-      
-    }
-   
-  });
 
   // Obsługa przycisku dodawania do listy zakupów
   const toggleButton = document.getElementById('toggleShoppingList');

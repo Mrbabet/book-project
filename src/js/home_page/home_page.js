@@ -3,6 +3,8 @@ import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
 import { getCategoryList, getOneCategory, getTopBooks } from './fetch';
+import { initModal, showModal } from '../modal-window';
+
 
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
@@ -56,7 +58,13 @@ const onCategoryClick = async function (e) {
 };
 const onSeeMoreClick = async function (e) {
   e.preventDefault();
-  console.log(e.target);
+
+  const currentEl = e.target.closest('.books__item')
+  if (currentEl) {
+    const bookId = currentEl.attributes.id.value
+    initModal(bookId)    
+    showModal()
+  }
   const refsSeeMoreBtn = e.target.classList.contains('see-more');
   const refsAllCategoriesBtn = e.target.classList.contains('all-categories__btn');
   const clickedCategory = e.target.dataset.js;

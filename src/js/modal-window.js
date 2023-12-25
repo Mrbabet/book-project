@@ -1,51 +1,53 @@
-import axios from 'axios';
+import { getBookByID} from "./home_page/fetch";
 
-// Definicja klasy BooksAPI
-class BooksAPI {
-  #BASE_URL = 'https://books-backend.p.goit.global/books/';
 
-  getTopBooks = () => axios.get(`${this.#BASE_URL}top-books`);
-  getBookByID = id => axios.get(`${this.#BASE_URL}${id}`);
-} 
+const bookIMG =  document.getElementById('bookImage')
+const bookTitle = document.getElementById('bookTitle')
+const bookAuthor =  document.getElementById('bookAuthor')
+const bookDescription = document.getElementById('bookDescription')
 
-// Utworzenie instancji klasy BooksAPI
-const api = new BooksAPI();
 
 // Funkcja inicjująca modal z danymi książki
-function initModal(bookData) {
-  document.getElementById('bookImage').src = bookData.book_image;
-  document.getElementById('bookTitle').textContent = bookData.title;
-  document.getElementById('bookAuthor').textContent = `Autor: ${bookData.author}`;
-  document.getElementById('bookDescription').textContent = bookData.description;
+export async function initModal(bookId) {
 
-  // Wypełnienie linków do sklepów
+  const {data: book} = await getBookByID(bookId)
+  
+  bookIMG.src.value = book.book_image;
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = `Autor: ${book.author}`;
+  bookDescription.textContent = book.description;
+
   const buyLinksContainer = document.getElementById('buyLinks');
-  buyLinksContainer.innerHTML = ''; // Wyczyść obecne linki
-  bookData.buy_links.forEach(link => {
-    const a = document.createElement('a');
-    a.href = link.url;
-    a.textContent = link.name;
-    a.target = '_blank';
-    buyLinksContainer.appendChild(a);
+  buyLinksContainer.innerHTML = '';
+  book.buy_links.forEach(link => {
+    if (link.name === 'Amazon' || link.name ==='Apple Books' || link.name ==='Barnes and Noble') {
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.textContent = link.name;
+      a.target = '_blank';
+      buyLinksContainer.appendChild(a);
+      
+    }
+   
   });
 
   // Obsługa przycisku dodawania do listy zakupów
   const toggleButton = document.getElementById('toggleShoppingList');
-  const isBookInList = localStorage.getItem(bookData.primary_isbn13);
+  const isBookInList = localStorage.getItem(book.primary_isbn13);
   toggleButton.textContent = isBookInList ? 'USUŃ Z LISTY ZAKUPÓW' : 'DODAJ DO LISTY ZAKUPÓW';
   toggleButton.onclick = () => {
     if (isBookInList) {
-      localStorage.removeItem(bookData.primary_isbn13);
+      localStorage.removeItem(book.primary_isbn13);
       toggleButton.textContent = 'DODAJ DO LISTY ZAKUPÓW';
     } else {
-      localStorage.setItem(bookData.primary_isbn13, JSON.stringify(bookData));
+      localStorage.setItem(book.primary_isbn13, JSON.stringify(book));
       toggleButton.textContent = 'USUŃ Z LISTY ZAKUPÓW';
     }
   };
 }
 
 // Funkcja wyświetlająca modal
-function showModal() {
+export function showModal() {
   document.getElementById('myModal').style.display = 'block';
 }
 
@@ -61,18 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeButton.onclick = () => hideModal();
   window.onclick = (event) => {
-    if (event.target == modal) {
+    if (event.target === modal) {
       hideModal();
     }
   };
 });
 
-// Przykład użycia
-api.getTopBooks().then(response => {
-  const topBooks = response.data;
-  if (topBooks.length > 0) {
-    // Załaduj dane pierwszej książki z listy najlepszych książek
-    initModal(topBooks[0]);
-    showModal();
-  }
-}).catch(error => console.error(error));

@@ -7,6 +7,7 @@ import { initModal, showModal } from '../modal-window';
 import { scrollToTop } from '../scrollTop';
 
 
+
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
 
@@ -30,7 +31,6 @@ async function init() {
 
 const onCategoryClick = async function (e) {
   e.preventDefault();
-  scrollToTop()
 
   if (e.target.classList.contains('category-item')) {
     refBooks.innerHTML = '';
@@ -60,8 +60,6 @@ const onCategoryClick = async function (e) {
 };
 const onSeeMoreClick = async function (e) {
   e.preventDefault();
-  scrollToTop()
-
   const currentEl = e.target.closest('.books__item')
   if (currentEl) {
     const bookId = currentEl.attributes.id.value
@@ -73,6 +71,7 @@ const onSeeMoreClick = async function (e) {
   const refsAllCategoriesBtn = e.target.classList.contains('all-categories__btn');
   const clickedCategory = e.target.dataset.js;
   if (refsSeeMoreBtn) {
+    scrollToTop()
     refBooks.innerHTML = '';
     try {
       const { data } = await getOneCategory(clickedCategory);
@@ -80,6 +79,7 @@ const onSeeMoreClick = async function (e) {
       currentCategoryToggle(clickedCategory);
     } catch (error) {}
   } else if (refsAllCategoriesBtn) {
+    scrollToTop()
     refBooks.innerHTML = '';
     try {
       refBooks.insertAdjacentHTML(
@@ -91,7 +91,6 @@ const onSeeMoreClick = async function (e) {
       currentCategoryToggle(clickedCategory);
     } catch (error) {}
   }
-
 };
 
 refCategory.addEventListener('click', onCategoryClick);

@@ -24,9 +24,9 @@ const swiperOptions = {
 const swiper = new Swiper('.swiper', swiperOptions);
 
 
-  const nextBtn= document.querySelector('.swiper-button-next');
-  const list= document.querySelector('.swiper-wrapper');
-  const btn= document.querySelector('.supporters-button');
+const nextBtn= document.querySelector('.swiper-button-next');
+const list= document.querySelector('.swiper-wrapper');
+const btn= document.querySelector('.supporters-button');
 
   
 

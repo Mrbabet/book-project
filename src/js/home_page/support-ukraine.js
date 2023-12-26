@@ -12,10 +12,11 @@ const swiperOptions = {
   rewind: true,
   allowTouchMove: false,
   spaceBetween: 20,
-  slidesPerView: 'auto',
+  slidesPerView: 4,
   slidesPerGroup: 4,
   breakpoints: {
     768: {
+      slidesPerView: 6,
       slidesPerGroup: 6,
     },
   },
@@ -30,12 +31,12 @@ const swiper = new Swiper('.swiper', swiperOptions);
 const markup = supporters
   .map(
     (el, index) =>
-      `<div class ="supporters__item swiper-slide">
+      `<li class ="supporters__item swiper-slide">
         <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
         <a href = "${el.url}" title = "${el.title}" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
           <img src = "${el.img}" class="supporters__img" alt = "${el.title} logo"/>
         </a>
-      </div>`
+      </li>`
   )
   .join('');
 

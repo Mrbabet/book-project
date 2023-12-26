@@ -6,3 +6,5 @@ import './js/home_page/support-ukraine.js';
 import './js/fundation_api.js'
 import './js/home_page/dark-mode.js'
 import './js/modal-window.js';
+// Import Swiper styles
+

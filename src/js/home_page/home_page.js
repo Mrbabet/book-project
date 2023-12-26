@@ -4,6 +4,7 @@ import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
 import { getCategoryList, getOneCategory, getTopBooks } from './fetch';
 import { initModal, showModal } from '../modal-window';
+import { scrollToTop } from '../scrollTop';
 
 
 const refBooks = document.querySelector('.books-container');
@@ -29,6 +30,7 @@ async function init() {
 
 const onCategoryClick = async function (e) {
   e.preventDefault();
+  scrollToTop()
 
   if (e.target.classList.contains('category-item')) {
     refBooks.innerHTML = '';
@@ -58,6 +60,7 @@ const onCategoryClick = async function (e) {
 };
 const onSeeMoreClick = async function (e) {
   e.preventDefault();
+  scrollToTop()
 
   const currentEl = e.target.closest('.books__item')
   if (currentEl) {
@@ -88,6 +91,7 @@ const onSeeMoreClick = async function (e) {
       currentCategoryToggle(clickedCategory);
     } catch (error) {}
   }
+
 };
 
 refCategory.addEventListener('click', onCategoryClick);

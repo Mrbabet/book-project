@@ -22,7 +22,7 @@ export async function renderBooksItems(data) {
 }
 function addMediaWidth() {
   const screenSize = window.screen.width;
-  console.log(screenSize)
+  
 
   if (screenSize < 768) {
     return 'mobile';

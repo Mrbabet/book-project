@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
 import 'swiper/swiper.css';
-import { supporters } from '../fundation_api';
+import { supportersArray } from '../fundation_api';
 
 
 
@@ -28,17 +28,17 @@ const swiper = new Swiper('.swiper', swiperOptions);
   const list= document.querySelector('.swiper-wrapper');
   const btn= document.querySelector('.supporters-button');
 
-const markup = supporters
-  .map(
-    (el, index) =>
-      `<li class ="supporters__item swiper-slide">
-        <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
-        <a href = "${el.url}" title = "${el.title}" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
-          <img src = "${el.img}" class="supporters__img" alt = "${el.title} logo"/>
-        </a>
-      </li>`
-  )
-  .join('');
+  
+
+const markup = supportersArray.map((el, index) => {
+  return `<li class="supporters__item swiper-slide">
+            <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
+            <a href="${el.url}" title="${el.title}" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
+              <img src="${el.img}" class="supporters__img" alt="${el.title} logo"/>
+            </a>
+          </li>`;
+}).join('');
+
 
 list.innerHTML = markup;
 

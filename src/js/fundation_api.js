@@ -1,4 +1,4 @@
-export const supporters = [
+export const supportersArray = [
   {
     title: 'Save the Children',
     url: 'https://www.savethechildren.net/what-we-do/emergencies/ukraine-crisis',

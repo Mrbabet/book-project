@@ -34,17 +34,22 @@
               <div class="switcher">
                   <input type="checkbox" id="darkModeToggle">
                   <label for="darkModeToggle" class="theme-toggler"></label>
-              </div>                
-                <button
-                class="btn-burger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="mobile-menu">
-
-                <svg  class="burger-icon" width="28" height="28">
-                    <use xlink:href="./icons/symbol-defs.svg#icon-align-left"></use>
-                </svg>
-                </button>
+              </div>  
+                            
+                    <button
+                    class="btn-burger"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <svg  class="burger-icon" width="28" height="28">
+                        <use xlink:href="./icons/symbol-defs.svg#icon-align-left"></use>
+                    </svg>
+                    </button>
+                    <button class="btn-close" type="button" aria-expanded="false" aria-controls="mobile-menu" style="display: none">
+                        <svg class="close-icon" width="28" height="28">
+                            <use xlink:href="./icons/symbol-defs.svg#icon-x-close"></use>
+                        </svg>
+                    </button>
                 <div class="button-container">
                     <button class="sign-up"
                     type="button"
@@ -62,3 +67,30 @@
     </div>
   </div>
 </header>
+
+<!-- Modal -->
+<div id="burgerModal" class="burger-modal">
+    <!-- Modal content -->
+    <div class="burger-modal-content">
+        <div class="in-modal-menu" >
+            <button class="button-home" 
+            type="button"
+            aria-expanded="false"
+            aria-controls="tablet-home">
+               <a href="./"><p class="home-p" >Home</p></a> 
+            </button>
+           <button class="modal-button-shopping-list"
+            type="button"
+            aria-expanded="false"
+            aria-controls="tablet-shopping">
+            <p class="shopping-p">shopping list</p>
+            <svg  width="20px" height="20px">
+                <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
+            </svg>
+           </button>
+
+        </div>
+    </div>
+</div>
+  </div>
+  

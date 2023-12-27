@@ -63,7 +63,6 @@ const onSeeMoreClick = async function (e) {
   const currentEl = e.target.closest('.books__item')
   if (currentEl) {
     const bookId = currentEl.attributes.id.value
-    console.log(bookId)
     initModal(bookId)    
     showModal()
   }

@@ -28,7 +28,7 @@ body.dark-mode {
   color: var(--main-text-color-dark-theme);
 }
 
- .container {
+.container {
   width: 100%;
   max-width: 375px;
   margin: 0 auto;
@@ -43,7 +43,7 @@ body.dark-mode {
 @media screen and (min-width: 1280px) {
   .container {
     width: 100%;
-    max-width: 100%;
+    max-width: 1280px;
     padding: 0 24px;
   }
 }

@@ -32,12 +32,6 @@ export async function initModal(bookId) {
     isBookInList = shoppingList.indexOf(bookId) !== -1;
   }
 
-  // if (isBookInList) {
-  //   toggleButton.textContent = 'Add to the shopping list';
-  // } else {
-  //   toggleButton.textContent = 'Remove from the shopping list';
-  // }
-
   toggleButton.textContent = isBookInList
     ? 'Remove from the shopping list'
     : 'Add to the shopping list';
@@ -89,4 +83,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 });
-

@@ -1,12 +1,10 @@
-import { makeCategoryPage} from './func';
+import { makeCategoryPage } from './func';
 import { renderCategoryList } from './func';
 import { renderBooksItems } from './func';
 import { currentCategoryToggle } from './func';
 import { getCategoryList, getOneCategory, getTopBooks } from './fetch';
 import { initModal, showModal } from '../modal-window';
 import { scrollToTop } from '../scrollTop';
-
-
 
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
@@ -27,7 +25,6 @@ async function init() {
     refBooks.insertAdjacentHTML('beforeend', (await renderBooksItems(resp.data)).join(''));
   } catch (error) {}
 }
-
 
 const onCategoryClick = async function (e) {
   e.preventDefault();
@@ -60,17 +57,17 @@ const onCategoryClick = async function (e) {
 };
 const onSeeMoreClick = async function (e) {
   e.preventDefault();
-  const currentEl = e.target.closest('.books__item')
+  const currentEl = e.target.closest('.books__item');
   if (currentEl) {
-    const bookId = currentEl.attributes.id.value
-    initModal(bookId)    
-    showModal()
+    const bookId = currentEl.attributes.id.value;
+    initModal(bookId);
+    showModal();
   }
   const refsSeeMoreBtn = e.target.classList.contains('see-more');
   const refsAllCategoriesBtn = e.target.classList.contains('all-categories__btn');
   const clickedCategory = e.target.dataset.js;
   if (refsSeeMoreBtn) {
-    scrollToTop()
+    scrollToTop();
     refBooks.innerHTML = '';
     try {
       const { data } = await getOneCategory(clickedCategory);
@@ -78,7 +75,7 @@ const onSeeMoreClick = async function (e) {
       currentCategoryToggle(clickedCategory);
     } catch (error) {}
   } else if (refsAllCategoriesBtn) {
-    scrollToTop()
+    scrollToTop();
     refBooks.innerHTML = '';
     try {
       refBooks.insertAdjacentHTML(

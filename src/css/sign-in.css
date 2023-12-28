@@ -1,21 +1,44 @@
 .form-wrapper {
   width: 100vw;
-  height: auto;
-  position: relative;
+  min-height: 100%;
+  position: fixed;
   /* docelowo powinno byc absolute ale nie bylo by widać innych rzeczy w projekcie */
   top: 0;
   left: 0;
   display: flex;
+  z-index: 10;
   justify-content: center;
   background-color: var(--accent-color);
 }
 .form-container {
+  position: relative;
   display: block;
   margin: 214px auto;
   background-color: var(--main-bg-color);
   border-radius: 18px;
   border: 2px solid #111;
   padding: 40px 20px;
+  animation: 1s show ease-in-out;
+}
+@keyframes show {
+  0% {
+    scale: 0;
+  }
+  70% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+.svg-close {
+  stroke: #111;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 }
 .sign-in-form {
   display: flex;

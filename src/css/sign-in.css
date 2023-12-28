@@ -1,19 +1,150 @@
 .form-wrapper {
   width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
+  height: auto;
   position: relative;
-  display: block;
-  z-index: 10000;
-  background-color: white;
+  /* docelowo powinno byc absolute ale nie bylo by widać innych rzeczy w projekcie */
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--accent-color);
 }
-.form-item {
+.form-container {
   display: block;
-  height: 50px;
-  width: auto;
-  border: 1px solid black;
+  margin: 214px auto;
+  background-color: var(--main-bg-color);
+  border-radius: 18px;
+  border: 2px solid #111;
+  padding: 40px 20px;
 }
 .sign-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 14px;
+  z-index: 1050;
+}
+.form-item {
+  height: auto;
+  width: auto;
+  border: 1px solid black;
+  display: flex;
+
+  align-items: center;
+  border-radius: 40px;
+  border: 2px solid var(--main-text-color-light-theme);
+}
+.form-item input {
   display: block;
+  width: 100%;
+  height: 100%;
+  padding: 16px 140px 16px 24px;
+  box-shadow: none;
+  margin: 0;
+}
+.form-item input::placeholder {
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 112.5% */
+  letter-spacing: -0.16px;
+  color: var(--main-text-color-light-theme);
+  text-transform: uppercase;
+}
+.sign-form-bttn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 40px;
+  color: var(--main-text-color-dark-theme);
+  background: var(--main-bg-color-dark-theme);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.form-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.form-footer a:visited,
+.form-footer a {
+  color: rgba(17, 17, 17, 0.5);
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.form-footer a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+.blur {
+  display: none;
+  /*tu też coć do zmiany żeby nie przykrywało formularza*/
+  width: 935px;
+  height: 935px;
+  flex-shrink: 0;
+  border-radius: 935px;
+  background: rgba(204, 236, 231, 0.5);
+  filter: blur(539.7910766601562px);
+  position: fixed;
+  top: -638px;
+  left: -666px;
+}
+@media screen and (min-width: 768px) {
+  .form-wrapper {
+    width: 100vw;
+    padding: 0 32px;
+  }
+  .form-container {
+    width: 579px;
+    margin: 127px auto;
+    padding: 80px 40px 84px 40px;
+  }
+  .sign-in-form {
+    gap: 28px;
+  }
+  .sign-in-form input {
+    font-size: 18px;
+    padding: 20px 140px 20px 40px;
+  }
+  .sign-in-form input::placeholder {
+    font-size: 18px;
+  }
+  .sign-form-bttn {
+    margin-top: 12px;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .form-footer a {
+    font-size: 18px;
+  }
+  .blur {
+    width: 1421px;
+    height: 1421px;
+    flex-shrink: 0;
+    border-radius: 1421px;
+    top: -918px;
+    left: -846px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .form-wrapper {
+    width: 100vw;
+    max-width: 100%;
+    padding: 0 24px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .form-wrapper {
+    width: 100vw;
+  }
 }

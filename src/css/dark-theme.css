@@ -1,0 +1,28 @@
+.logo.dark-theme {
+  display: none;
+}
+
+html.dark-theme .logo.dark-theme {
+  display: block;
+}
+
+html:not(.dark-theme) .logo.light-theme {
+  display: block;
+}
+
+.logo.light-theme {
+  display: none;
+}
+
+html.dark-theme .button-shopping-list {
+  color: #fff;
+  fill: #fff;
+}
+
+html.dark-theme .burger-icon {
+  stroke: #fff;
+  fill: #fff;
+}
+html.dark-theme body {
+  background-color: var(--main-bg-color-dark-theme);
+}

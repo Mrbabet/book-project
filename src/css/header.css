@@ -243,32 +243,6 @@ input:checked + .theme-toggler::before {
   }
 }
 
-.logo.dark-mode {
-  display: none;
-}
-
-body.dark-mode .logo.dark-mode {
-  display: block;
-}
-
-body:not(.dark-mode) .logo.light-mode {
-  display: block;
-}
-
-.logo.light-mode {
-  display: none;
-}
-
-body.dark-mode .button-shopping-list {
-  color: #fff;
-  fill: #fff;
-}
-
-body.dark-mode .burger-icon {
-  stroke: #fff;
-  fill: #fff;
-}
-
 /*     BURGER MODAL   */
 
 .burger-modal-content {

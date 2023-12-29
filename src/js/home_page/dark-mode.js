@@ -1,11 +1,20 @@
-const checkbox = document.getElementById('darkModeToggle');
-const header = document.getElementById('header'); 
-checkbox.addEventListener('change', function() {
+const themeSwitcher = document.getElementById('darkModeToggle');
+const html = document.querySelector('html');
+
+if (localStorage.getItem('theme') === 'dark') {
+  html.classList.add('dark-theme');
+  themeSwitcher.checked = true;
+}
+
+
+themeSwitcher.addEventListener('change', function() {
   if (this.checked) {
-    document.body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+    html.classList.add('dark-theme');
     
   } else {
-    document.body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+    html.classList.remove('dark-theme');
     
   }
 });

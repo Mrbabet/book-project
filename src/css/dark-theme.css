@@ -1,17 +1,5 @@
-.logo.dark-theme {
-  display: none;
-}
-
-html.dark-theme .logo.dark-theme {
-  display: block;
-}
-
-html:not(.dark-theme) .logo.light-theme {
-  display: block;
-}
-
-.logo.light-theme {
-  display: none;
+html.dark-theme .logo-text svg path {
+  fill: white;
 }
 
 html.dark-theme .button-shopping-list {

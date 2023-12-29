@@ -16,7 +16,7 @@ const makeListOfShoppingListBooks = async function(data){
   return shoppingList.innerHTML = data.map(({ author, book_image, title, description, _id, buy_links,list_name }) => 
 
   `
-  <li class="books__item" id=${_id}>
+  <li class="shopping-lisg__item" id=${_id}>
     <div class="books__wrapper">
       <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
     </div>

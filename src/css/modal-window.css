@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content */
@@ -20,7 +20,7 @@
   border: 1px solid #888;
   width: 80%;
   max-width: 600px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: animatetop 0.4s;
 }
 
@@ -40,13 +40,49 @@
 }
 
 .book-cover {
-  width: 100px;
-  height: auto;
+  width: 192px;
+  height: 281px;
+  top: 40px;
+  left: 40px;
+  border-radius: 8px;
+  position: relative;
 }
 
 #buyLinks a {
   display: block;
   margin-top: 5px;
+}
+
+.book-title {
+  width: 192px;
+  height: 28px;
+}
+.book-author {
+  width: 92px;
+  height: 18px;
+  color: #b4afaf;
+  text-wrap: nowrap;
+}
+.toggle-shopping-list {
+  color: black;
+  cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #4f2ee8;
+  border-radius: 25px;
+  margin-top: 20px;
+  padding: 20px 173px 20px 173px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.book-description {
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  left: 50%;
+  position: relative;
+  top: -245px;
 }
 
 /* Add more styles as needed */

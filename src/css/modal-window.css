@@ -89,6 +89,10 @@
   font-weight: 700;
   line-height: 18px;
   display: flex;
+  width: 100%;
+}
+.modal-content .store-img {
+  filter: grayscale();
 }
 @media screen and (min-width: 768px) {
   .modal-content {

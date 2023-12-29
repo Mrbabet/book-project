@@ -6,7 +6,7 @@ const bookAuthor = document.getElementById('bookAuthor');
 const bookDescription = document.getElementById('bookDescription');
 const linkAmazon = document.querySelector('.link-amazon');
 const linkBook = document.querySelector('.link-apple');
-const linkBookShop = document.querySelector('.link-book-shop');
+
 
 // Funkcja inicjująca modal z danymi książki
 export async function initModal(bookId) {
@@ -15,10 +15,12 @@ export async function initModal(bookId) {
   bookIMG.attributes.src.value = book.book_image;
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
-  bookDescription.textContent = book.description;
+  bookDescription.insertAdjacentHTML('beforeend', book.description) 
+  console.log(book.description)
+  
 
   linkAmazon.attributes.href.value = book.buy_links[0].url;
- linkBook.attributes.href.value = book.buy_links[1].url;
+  linkBook.attributes.href.value = book.buy_links[1].url;
   
  
 

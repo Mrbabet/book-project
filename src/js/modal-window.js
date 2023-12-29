@@ -14,15 +14,13 @@ export async function initModal(bookId) {
 
   bookIMG.attributes.src.value = book.book_image;
   bookTitle.textContent = book.title;
-  bookAuthor.textContent = `Autor: ${book.author}`;
+  bookAuthor.textContent = book.author;
   bookDescription.textContent = book.description;
 
   linkAmazon.attributes.href.value = book.buy_links[0].url;
-  linkAmazon.innerHTML = book.buy_links[0].name;
-  linkBook.attributes.href.value = book.buy_links[1].url;
-  linkBook.innerHTML = book.buy_links[1].name;
-  linkBookShop.attributes.href.value = book.buy_links[4].url;
-  linkBookShop.innerHTML = book.buy_links[4].name;
+ linkBook.attributes.href.value = book.buy_links[1].url;
+  
+ 
 
   // Obsługa przycisku dodawania do listy zakupów
   const toggleButton = document.getElementById('toggleShoppingList');
@@ -63,7 +61,7 @@ export async function initModal(bookId) {
 
 // Funkcja wyświetlająca modal
 export function showModal() {
-  document.getElementById('myModal').style.display = 'block';
+  document.getElementById('myModal').style.display = 'flex';
 }
 
 // Funkcja ukrywająca modal

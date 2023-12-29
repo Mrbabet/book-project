@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import 'swiper/swiper.css';
+
 import { supportersArray } from '../fundation_api';
 
 const swiperOptions = {
@@ -29,10 +29,9 @@ const markup = supportersArray
   .map((el, index) => {
     return `<li class="supporters__item swiper-slide">
             <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
-            <a href="${el.url}" title="${
-      el.title
+            <a href="${el.url}" 
     }" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
-              <img src="${el.img}" class="supporters__img" alt="${el.title} logo"/>
+              <img class="supporters__img" src="${el.img}" alt="${el.title} logo"/>
             </a>
           </li>`;
   })

@@ -180,6 +180,26 @@
   transform: rotateX(180deg);
 }
 
+.swiper .supporters__item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.swiper .supporters__img {
+  object-fit: contain;
+  object-position: left;
+  height: 32px;
+  width: 100%;
+  filter: brightness(0) invert();
+
+  aspect-ratio: 159 / 32;
+}
+.swiper .supporters__number {
+  font-style: normal;
+  font-weight: 400;
+  color: white;
+}
+
 .see-more {
   width: 124px;
   height: 46px;

@@ -7,7 +7,25 @@ const closeModalButton = document.querySelector('.au-modal-close');
 const userName = document.querySelector('#name');
 const userEmail = document.querySelector('input[type="email"]');
 const userPassword = document.querySelector('input[type="password"]');
-console.log(submitBtn.textContent)
+const signInBtn = document.querySelector('.sign-in-btn')
+const signUpBtn = document.querySelector('.sign-up-btn')
+const userNameContainer = document.querySelector('.form-item-render')
+const inputName = document.getElementById('name')
+
+
+
+
+
+const onSignUpBtnClick = function(){    
+    submitBtn.textContent = 'Sign up'
+    userNameContainer.style.display = 'block'
+}
+const onSignInBtnClick = function(){
+    submitBtn.textContent = 'Sign in'
+    userNameContainer.style.display = 'none'
+    inputName.removeAttribute('required')
+}
+
 
 signUpForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -15,20 +33,29 @@ signUpForm.addEventListener('submit', e => {
     if (submitBtn.textContent = 'Sign up') {
        
         const { value: username } = userName;
-      const { value: email } = userEmail
-      const { value: password } = userPassword;
+        const { value: email } = userEmail
+        const { value: password } = userPassword;
       
   
       if (email !== '' && password !== '' && username !== '') {
         userSignUp(username,email,password);
       }
-    } else {
-      const { value: email } = userEmail
-      const { value: password } = userPassword
+    } 
+    if (submitBtn.textContent = 'Sign in') {
+        const { value: username } = userName;
+        const { value: email } = userEmail
+        const { value: password } = userPassword
   
       if (email !== '' && password !== '') {
         userSignIn(email, password);
       }
+        
     }
+    signUpForm.reset()
+    onSignUpBtnClick()
   });
+  signInBtn.addEventListener('click', onSignInBtnClick)
+  signUpBtn.addEventListener('click', onSignUpBtnClick)
+  
+  
   

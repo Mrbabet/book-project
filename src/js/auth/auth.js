@@ -5,6 +5,8 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut } fr
 import { onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, set, ref, update } from 'firebase/database';
 
+const signOutBtn = document.querySelector('.sign-out-btn')
+const SignOutBtnContainer = document.querySelector('.sign-out-container') 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -29,8 +31,6 @@ try {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-     
-      console.log(user)
       alert(`Your account: ${username} has been created`)
     })
 } 
@@ -44,12 +44,12 @@ catch (error) {
 
 export const userSignIn = async function(email,password){
   try {
-      const userCredential = await signInWithEmailAndPassword(auth,email,password) 
+    signInWithEmailAndPassword(auth,email,password).then((userCredential)=>{
       const user = userCredential.user
+      alert(`Your logged in successfully`)
+    })
 
-
-
-    alert(`Your logged in successfully`)
+   
     
   } catch (error) {
       const errorCode = error.code;
@@ -58,8 +58,9 @@ export const userSignIn = async function(email,password){
   }
   
 
+
 }
-export const userSignOut = function(){
+const userSignOut = function(){
   signOut(auth).then(() => {
     // Sign-out successful.
   }).catch((error) => {
@@ -68,17 +69,16 @@ export const userSignOut = function(){
 }
 
 
-// signIn('test@test.com','test1234')
-
+signOutBtn.addEventListener('click', userSignOut)
 
 
 // Use onAuthStateChanged to detect the user's login state
 onAuthStateChanged(auth, (user) => {
     if (user) {
-  
+      SignOutBtnContainer.style.display = 'flex'
         console.log('User is signed in:', user);
     } else {
-        // User is signed out
+       SignOutBtnContainer.style.display = 'none'
         console.log('User is signed out');
     }
 });

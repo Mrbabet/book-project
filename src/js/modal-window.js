@@ -61,25 +61,42 @@ export async function initModal(bookId) {
   };
 }
 
-// Funkcja wyświetlająca modal
+
 export function showModal() {
-  document.getElementById('myModal').style.display = 'flex';
+  const backdrop = document.querySelector('[data-modal]');
+  backdrop.classList.add('is-active');
+  document.body.classList.add('no-scroll');
+  backdrop.addEventListener('click', closeModalByClicking);
+  document.body.addEventListener('keyup', closeModalByKey);
 }
 
-// Funkcja ukrywająca modal
-function hideModal() {
-  document.getElementById('myModal').style.display = 'none';
+function closeModalByClicking(e) {
+  const backdrop = document.querySelector('[data-modal]');
+  const modalWindow = document.querySelector('[data-modal-window]');
+  const closeBtn = document.querySelector('[data-modal-close]');
+ 
+
+  if (
+    e.target.closest('[data-modal-close]') === closeBtn
+  ) {
+    backdrop.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
+
+    backdrop.removeEventListener('click', closeModalByClicking);
+    document.body.removeEventListener('keyup', closeModalByKey);
+  }
 }
 
-// Obsługa zdarzeń dla przycisku zamykania i kliknięcia poza modalem
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('myModal');
-  const closeButton = document.querySelector('.close');
+function closeModalByKey(e) {
+  const backdrop = document.querySelector('[data-modal]');
 
-  closeButton.onclick = () => hideModal();
-  window.onclick = event => {
-    if (event.target === modal) {
-      hideModal();
-    }
-  };
-});
+  const key = e.keyCode;
+  if (key == 27) {
+    backdrop.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
+
+    backdrop.removeEventListener('click', closeModalByClicking);
+    document.body.removeEventListener('keyup', closeModalByKey);
+  }
+}
+

@@ -32,15 +32,16 @@ html.dark-theme .all-categories__btn {
   color: var(--main-text-color-dark-theme);
   background-color: var(--main-bg-color-dark-theme);
 }
-html.dark-theme .modal-content {
+html.dark-theme .modal {
   background-color: var(--main-bg-color-dark-theme);
+  border: 1px solid white;
 }
-html.dark-theme .modal-content .book-title {
+html.dark-theme .modal .book-title {
   color: var(--main-text-color-dark-theme);
 }
-html.dark-theme .modal-content .toggle-shopping-list {
+html.dark-theme .modal .toggle-shopping-list {
   color: var(--main-text-color-dark-theme);
 }
-html.dark-theme .modal-content .book-desc {
+html.dark-theme .modal .book-desc {
   color: var(--main-text-color-dark-theme);
 }

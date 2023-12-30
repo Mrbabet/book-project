@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
-
-import { supportersArray } from '../fundation_api';
+import 'swiper/swiper.css';
+import { supportersArray } from './fundation_api';
 
 const swiperOptions = {
   direction: 'vertical',

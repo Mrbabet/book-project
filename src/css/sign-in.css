@@ -1,13 +1,11 @@
 .form-wrapper {
-  width: 100vw;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  /* docelowo powinno byc absolute ale nie bylo by widać innych rzeczy w projekcie */
   top: 0;
   left: 0;
   display: flex;
   z-index: 10;
-  justify-content: center;
   background-color: var(--accent-color);
 }
 .form-container {
@@ -108,19 +106,7 @@
   color: var(--accent-color);
   text-decoration: underline;
 }
-.blur {
-  display: none;
-  /*tu też coć do zmiany żeby nie przykrywało formularza*/
-  width: 935px;
-  height: 935px;
-  flex-shrink: 0;
-  border-radius: 935px;
-  background: rgba(204, 236, 231, 0.5);
-  filter: blur(539.7910766601562px);
-  position: fixed;
-  top: -638px;
-  left: -666px;
-}
+
 @media screen and (min-width: 768px) {
   .form-wrapper {
     width: 100vw;
@@ -149,14 +135,6 @@
   }
   .form-footer a {
     font-size: 18px;
-  }
-  .blur {
-    width: 1421px;
-    height: 1421px;
-    flex-shrink: 0;
-    border-radius: 1421px;
-    top: -918px;
-    left: -846px;
   }
 }
 @media screen and (min-width: 1280px) {

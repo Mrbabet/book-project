@@ -1,9 +1,10 @@
 import '../../main.css';
 import '../home_page/fetch.js';
-import '../home_page/support-ukraine.js';
+import '../support-ukraine.js';
 import '../fundation_api.js';
-import '../home_page/dark-mode.js';
+import '../dark-mode.js';
 import '../buger-modal.js';
+
 import { getBookByID } from '../home_page/fetch.js';
 
 const shoppingList = document.querySelector('.shopping-list');

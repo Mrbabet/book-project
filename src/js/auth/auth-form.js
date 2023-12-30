@@ -11,6 +11,8 @@ const signInBtn = document.querySelector('.sign-in-btn')
 const signUpBtn = document.querySelector('.sign-up-btn')
 const userNameContainer = document.querySelector('.form-item-render')
 const inputName = document.getElementById('name')
+const signOutBtn = document.querySelector('.sign-out-btn')
+export const SignOutBtnContainer = document.querySelector('.sign-out-container') 
 
 
 
@@ -42,7 +44,6 @@ signUpForm.addEventListener('submit', e => {
       }
     } 
     if (submitBtn.textContent = 'Sign in') {
-        const { value: username } = userName;
         const { value: email } = userEmail
         const { value: password } = userPassword
   
@@ -54,8 +55,10 @@ signUpForm.addEventListener('submit', e => {
     signUpForm.reset()
     onSignUpBtnClick()
   });
+  signOutBtn.addEventListener('click', userSignOut)
   signInBtn.addEventListener('click', onSignInBtnClick)
   signUpBtn.addEventListener('click', onSignUpBtnClick)
+  
   
   
   

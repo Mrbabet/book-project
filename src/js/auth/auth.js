@@ -3,10 +3,10 @@ import {getAuth} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut } from "firebase/auth";
 import { onAuthStateChanged } from 'firebase/auth';
+import { SignOutBtnContainer } from "./auth-form";
 import { getDatabase, set, ref, update } from 'firebase/database';
 
-const signOutBtn = document.querySelector('.sign-out-btn')
-const SignOutBtnContainer = document.querySelector('.sign-out-container') 
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -60,7 +60,7 @@ export const userSignIn = async function(email,password){
 
 
 }
-const userSignOut = function(){
+export function userSignOut(){
   signOut(auth).then(() => {
     // Sign-out successful.
   }).catch((error) => {
@@ -69,7 +69,7 @@ const userSignOut = function(){
 }
 
 
-signOutBtn.addEventListener('click', userSignOut)
+
 
 
 // Use onAuthStateChanged to detect the user's login state

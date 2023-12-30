@@ -1,18 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut } from "firebase/auth";
 import { onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, set, ref, update } from 'firebase/database';
-
-
-const authorizationModal = document.querySelector('.form-wrapper');
-const signInButton = document.querySelector('.sign-up');
-const closeModalButton = document.querySelector('.au-modal-close');
-const userName = document.querySelector('#name');
-const userEmail = document.querySelector('input[type="email"]');
-const userPassword = document.querySelector('input[type="password"]');
-
 
 
 // Your web app's Firebase configuration
@@ -28,50 +19,63 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth();
+const auth = getAuth(app);
 
 
 
-const signUp = async function(username,email,password){
-  try {
-      const userCredential = await createUserWithEmailAndPassword(auth,email,password) 
-      const user = userCredential.user
-      set(ref(db, '/users/' + user.uid), {
-        username: username,
-        email: email,
-      });
-      console.log(`Account: ${username} was created`)
-  } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-  }
 
-}
-signUp('test1','test@test.com','test123')
-
+export const userSignUp = async function(username,email,password){
+try {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+     
+      console.log(user)
+      alert(`Your account: ${username} has been created`)
+    })
+} 
+catch (error) {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+}}
 
 
-const signIn = async function(email,password){
+
+
+export const userSignIn = async function(email,password){
   try {
       const userCredential = await signInWithEmailAndPassword(auth,email,password) 
       const user = userCredential.user
 
-      console.log(user)
+
+
+    alert(`Your logged in successfully`)
     
   } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorCode,errorMessage)
   }
   
 
 }
+export const userSignOut = function(){
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+}
+
+
+// signIn('test@test.com','test1234')
 
 
 
 // Use onAuthStateChanged to detect the user's login state
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in
+  
         console.log('User is signed in:', user);
     } else {
         // User is signed out

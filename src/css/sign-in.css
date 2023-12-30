@@ -38,7 +38,7 @@
   height: 28px;
   cursor: pointer;
 }
-.sign-in-form {
+.sign-up-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -73,7 +73,7 @@
   color: var(--main-text-color-light-theme);
   text-transform: uppercase;
 }
-.sign-form-bttn {
+.submit-btn {
   width: 100%;
   height: auto;
   display: flex;

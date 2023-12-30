@@ -1,15 +1,13 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth';
-import {getFirestore} from 'firebase/firestore';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut } from "firebase/auth";
 import { onAuthStateChanged } from 'firebase/auth';
 import { SignOutBtnContainer } from "./auth-form";
-import { getDatabase, set, ref, update } from 'firebase/database';
-
+import { getFirestore, collection,addDoc, doc, setDoc , updateDoc, getDoc} from 'firebase/firestore';
 
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDIt6ClvCkB36kNCs8suIEnlzg23Or1UqU",
   authDomain: "book-project-8a976.firebaseapp.com",
   projectId: "book-project-8a976",
@@ -20,17 +18,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-
-
+export const db = getFirestore(app);
+export const auth = getAuth();
 
 export const userSignUp = async function(username,email,password){
 try {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+    .then(async(userCredential) => {
+      const user = userCredential.user
+      const userDocRef = doc(db, 'users', user.uid);
+
+      console.log(userCredential)
+      await setDoc(userDocRef, {
+        username: username,
+        email: email,
+        shoppingListArray: [],
+        userId: userCredential.user.uid
+      });
+      
       alert(`Your account: ${username} has been created`)
     })
 } 
@@ -44,8 +49,19 @@ catch (error) {
 
 export const userSignIn = async function(email,password){
   try {
-    signInWithEmailAndPassword(auth,email,password).then((userCredential)=>{
+    signInWithEmailAndPassword(auth,email,password).then(async (userCredential)=>{
       const user = userCredential.user
+
+      const lastLoginDate = new Date();
+      const userDocRef = addDoc(collection(db, 'users'), user.uid);
+
+      // Use the updateDoc function to update specific fields in the Firestore document
+      await updateDoc(userDocRef, {
+        last_login: lastLoginDate,
+      });
+      readShoppingList()
+
+
       alert(`Your logged in successfully`)
     })
 
@@ -70,15 +86,15 @@ export function userSignOut(){
 
 
 
-
-
 // Use onAuthStateChanged to detect the user's login state
 onAuthStateChanged(auth, (user) => {
     if (user) {
       SignOutBtnContainer.style.display = 'flex'
+      console.log(db)
         console.log('User is signed in:', user);
     } else {
        SignOutBtnContainer.style.display = 'none'
         console.log('User is signed out');
     }
 });
+

@@ -7,10 +7,9 @@ import '../buger-modal.js';
 
 import { getBookByID } from '../home_page/fetch.js';
 
+
 const shoppingList = document.querySelector('.shopping-list');
 const shoppingListBlock = document.querySelector('.shopping-list-block');
-
-
 
 const makeListOfShoppingListBooks = async function(data){
   console.log(data)
@@ -58,4 +57,18 @@ const shoppingElements = await Promise.all(arrayOfPromises);
 makeListOfShoppingListBooks(shoppingElements)
 };
 
-fetchShoppingElements();
+
+window.addEventListener('load', ()=>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      fetchShoppingElements();
+    
+    } else {
+       alert('Nothing to display. Log in if you want to see book list')
+    }
+  });
+})
+
+
+
+

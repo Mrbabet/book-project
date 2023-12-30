@@ -15,9 +15,6 @@ const signOutBtn = document.querySelector('.sign-out-btn')
 export const SignOutBtnContainer = document.querySelector('.sign-out-container') 
 
 
-
-
-
 const onSignUpBtnClick = function(){    
     submitBtn.textContent = 'Sign up'
     userNameContainer.style.display = 'block'

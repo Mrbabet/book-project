@@ -194,7 +194,8 @@ input:checked + .theme-toggler::before {
     margin: 0px;
   }
 
-  .sign-up {
+  .sign-up,
+  .logged-in {
     width: 184px;
     height: 48px;
     flex-shrink: 0;

@@ -4,12 +4,13 @@ import '../support-ukraine.js';
 import '../fundation_api.js';
 import '../dark-mode.js';
 import '../buger-modal.js';
+import '../auth/auth.js'
+import '../auth/auth-form.js'
 
 import { getBookByID } from '../home_page/fetch.js';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDIt6ClvCkB36kNCs8suIEnlzg23Or1UqU",

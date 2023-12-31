@@ -1,9 +1,11 @@
 import { initializeApp } from "firebase/app";
-import {getAuth} from 'firebase/auth';
+import {getAuth, updateProfile} from 'firebase/auth';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut } from "firebase/auth";
 import { onAuthStateChanged } from 'firebase/auth';
-import { SignOutBtnContainer } from "./auth-form";
+
 import { getFirestore, collection,addDoc, doc, setDoc , updateDoc, getDoc} from 'firebase/firestore';
+
+
 
 
 // Your web app's Firebase configuration
@@ -28,12 +30,21 @@ try {
       const user = userCredential.user
       const userDocRef = doc(db, 'users', user.uid);
 
+      updateProfile(user,{
+        displayName: username
+      }).then(()=>{
+
+      }).catch((error)=>{
+        
+      })
+
       await setDoc(userDocRef, {
         username: username,
         email: email,
         shoppingListArray: [],
         userId: userCredential.user.uid
       });
+      
       
       alert(`Your account: ${username} has been created`)
     })
@@ -81,13 +92,9 @@ export function userSignOut(){
   });
 }
 
-
-
-// Use onAuthStateChanged to detect the user's login state
 onAuthStateChanged(auth, (user) => {
     if (user) {
       SignOutBtnContainer.style.display = 'flex'
-      console.log(db)
         console.log('User is signed in:', user);
     } else {
        SignOutBtnContainer.style.display = 'none'

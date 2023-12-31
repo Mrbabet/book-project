@@ -6,15 +6,32 @@ import '../dark-mode.js';
 import '../buger-modal.js';
 
 import { getBookByID } from '../home_page/fetch.js';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDIt6ClvCkB36kNCs8suIEnlzg23Or1UqU",
+  authDomain: "book-project-8a976.firebaseapp.com",
+  projectId: "book-project-8a976",
+  storageBucket: "book-project-8a976.appspot.com",
+  messagingSenderId: "595782127929",
+  appId: "1:595782127929:web:e819e67d1654c476ec98e8"
+};
+
+// Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+ const db = getFirestore(app);
+ const auth = getAuth();
+
 
 
 const shoppingList = document.querySelector('.shopping-list');
 const shoppingListBlock = document.querySelector('.shopping-list-block');
 
 const makeListOfShoppingListBooks = async function(data){
-  console.log(data)
   return shoppingList.innerHTML = data.map(({ author, book_image, title, description, _id, buy_links,list_name }) => 
-
   `
   <li class="shopping-lisg__item" id=${_id}>
     <div class="books__wrapper">
@@ -62,9 +79,11 @@ window.addEventListener('load', ()=>{
   onAuthStateChanged(auth, (user) => {
     if (user) {
       fetchShoppingElements();
+      console.log('User is signed in:', user);
     
     } else {
        alert('Nothing to display. Log in if you want to see book list')
+       console("Signed out")
     }
   });
 })

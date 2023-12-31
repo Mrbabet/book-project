@@ -96,8 +96,19 @@
   display: flex;
   width: 100%;
 }
+.toggle-shopping-list:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: gray;
+}
 .modal .store-img {
   filter: grayscale();
+}
+.toggle-shopping-list_anonymous-user-content {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 14px;
 }
 @media screen and (min-width: 768px) {
   .modal {

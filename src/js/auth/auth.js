@@ -17,7 +17,7 @@ export const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth();
 
@@ -28,7 +28,6 @@ try {
       const user = userCredential.user
       const userDocRef = doc(db, 'users', user.uid);
 
-      console.log(userCredential)
       await setDoc(userDocRef, {
         username: username,
         email: email,
@@ -53,14 +52,12 @@ export const userSignIn = async function(email,password){
       const user = userCredential.user
 
       const lastLoginDate = new Date();
-      const userDocRef = addDoc(collection(db, 'users'), user.uid);
+      const userDocRef = doc(collection(db, 'users'), user.uid);
 
       // Use the updateDoc function to update specific fields in the Firestore document
       await updateDoc(userDocRef, {
         last_login: lastLoginDate,
-      });
-      readShoppingList()
-
+      })
 
       alert(`Your logged in successfully`)
     })

@@ -1,4 +1,9 @@
 import { getBookByID } from './home_page/fetch';
+import { onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import {auth, app, firebaseConfig } from './auth/auth';
+
+
 
 const bookIMG = document.getElementById('bookImage');
 const bookTitle = document.getElementById('bookTitle');
@@ -6,7 +11,8 @@ const bookAuthor = document.getElementById('bookAuthor');
 const bookDescription = document.getElementById('bookDescription');
 const linkAmazon = document.querySelector('.link-amazon');
 const linkBook = document.querySelector('.link-apple');
-
+const toggleButton = document.getElementById('toggleShoppingList');
+const anonymousUser = document.querySelector('.toggle-shopping-list_anonymous-user-content')
 
 // Funkcja inicjująca modal z danymi książki
 export async function initModal(bookId) {
@@ -16,16 +22,32 @@ export async function initModal(bookId) {
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookDescription.insertAdjacentHTML('beforeend', book.description) 
-  console.log(book.description)
+
   
 
   linkAmazon.attributes.href.value = book.buy_links[0].url;
   linkBook.attributes.href.value = book.buy_links[1].url;
   
- 
+  
 
-  // Obsługa przycisku dodawania do listy zakupów
-  const toggleButton = document.getElementById('toggleShoppingList');
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+  
+     toggleButton.disabled = false
+     anonymousUser.style.display = 'none'
+    } else {
+
+    toggleButton.disabled = true
+    anonymousUser.style.display = 'block'
+      
+    }
+  });
+
+
+ 
+  
+
+ 
   let shoppingList = JSON.parse(localStorage.getItem('shoppingListArray'));
   let isBookInList = false;
   if (shoppingList) {
@@ -36,6 +58,7 @@ export async function initModal(bookId) {
     ? 'Remove from the shopping list'
     : 'Add to the shopping list';
   toggleButton.onclick = () => {
+    
     if (!shoppingList) {
       toggleButton.textContent = 'Remove from the shopping list';
       shoppingList = [];

@@ -1,0 +1,35 @@
+.shopping-list-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 14px;
+}
+
+.shopping-list-page-previous {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 8px;
+}
+
+.shopping-list-page-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 8px;
+}
+
+.shopping-list-page-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 8px;
+}
+
+.page-number-element[data-highlight='true'] {
+  font-weight: 800;
+}

@@ -6,15 +6,12 @@ if (localStorage.getItem('theme') === 'dark') {
   themeSwitcher.checked = true;
 }
 
-
-themeSwitcher.addEventListener('change', function() {
+themeSwitcher.addEventListener('change', function () {
   if (this.checked) {
     localStorage.setItem('theme', 'dark');
     html.classList.add('dark-theme');
-    
   } else {
     localStorage.setItem('theme', 'light');
     html.classList.remove('dark-theme');
-    
   }
 });

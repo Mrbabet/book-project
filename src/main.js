@@ -8,6 +8,6 @@ import './js/modal-window.js';
 import './js/buger-modal.js';
 import './js/sign-form.js';
 import './main.css';
-import './js/auth/auth.js'
-import './js/auth/auth-form.js'
-
+import './js/auth/auth.js';
+import './js/auth/auth-form.js';
+import './js/loader.js';

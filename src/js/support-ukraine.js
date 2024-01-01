@@ -31,7 +31,9 @@ const markup = supportersArray
             <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
             <a href="${el.url}" 
     }" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
-              <img class="supporters__img" src="${el.img}" srcset="${el.imgRetinaTwo} 2x, ${el.imgRetinaThree} 3x"  alt="${el.title} logo"/>
+              <img class="supporters__img" src="${el.img}" srcset="${el.imgRetinaTwo} 2x, ${
+      el.imgRetinaThree
+    } 3x"  alt="${el.title} logo"/>
             </a>
           </li>`;
   })

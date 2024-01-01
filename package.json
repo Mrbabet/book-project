@@ -28,6 +28,7 @@
     "axios": "^1.6.2",
     "firebase": "^10.7.1",
     "modern-normalize": "^2.0.0",
+    "notiflix": "^3.2.6",
     "swiper": "^11.0.5"
   }
 }

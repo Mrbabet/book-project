@@ -21,7 +21,8 @@ const pageNumberMoreLabel = document.querySelector('.page-number-more');
 let currentPage = parseInt(localStorage.getItem('shoppingListPage'));
 let elementsPerPage = 3;
 let pageAmount = 1;
-let numberOfPageElements = 2;
+let numberOfPageElements = 3;
+let previousPage = 0;
 
 if (!currentPage) {
   currentPage = 1;
@@ -109,7 +110,7 @@ const prevPage = _ => {
   --currentPage;
 
   shoppingListUpdate();
-  updatePageView();
+  updatePageView(false);
 };
 
 const nextPage = _ => {
@@ -140,89 +141,102 @@ const pageNumberResetHighlight = _ => {
   pageNumberThirdLabel.dataset.highlight = false;
 };
 
-const updatePageView = _ => {
+const updatePageView = (direction = true) => {
   pageNumberFirstLabel.hidden = false;
   pageNumberSecondLabel.hidden = false;
   pageNumberThirdLabel.hidden = false;
   pageNumberMoreLabel.hidden = true;
 
-  console.log('NUmbr of page elements: ' + numberOfPageElements);
-
-  if (pageAmount > currentPage + numberOfPageElements - 1) {
-    pageNumberMoreLabel.hidden = false;
-  }
-
-  // if (currentPage < 2) {
-  //   pageNumberSecondLabel.hidden = true;
-  //   pageNumberThirdLabel.hidden = true;
-  // } else if (currentPage < 3) {
-  //   pageNumberThirdLabel.hidden = true;
-  // }
-
   if (numberOfPageElements === 2) {
-    console.log('Page amount: ' + pageAmount);
-    pageNumberFirstLabel.textContent = currentPage;
-
     pageNumberResetHighlight();
-    pageNumberFirstLabel.dataset.highlight = true;
 
     if (pageAmount < numberOfPageElements) {
       pageNumberSecondLabel.hidden = true;
       pageNumberThirdLabel.hidden = true;
     }
 
-    if (currentPage >= 1) {
-      pageNumberSecondLabel.textContent = currentPage + 1;
+    if (direction === true) {
+      pageNumberFirstLabel.textContent = currentPage;
+      pageNumberFirstLabel.dataset.highlight = true;
+
+      if (currentPage >= 1) {
+        pageNumberSecondLabel.textContent = currentPage + 1;
+      }
+    } else {
+      if (currentPage >= 2) {
+        pageNumberSecondLabel.textContent = currentPage;
+        pageNumberSecondLabel.dataset.highlight = true;
+        pageNumberFirstLabel.textContent = currentPage - 1;
+      } else {
+        pageNumberFirstLabel.textContent = currentPage;
+        pageNumberFirstLabel.dataset.highlight = true;
+        pageNumberSecondLabel.textContent = currentPage + 1;
+      }
+
+      if (pageAmount > currentPage + numberOfPageElements - 1) {
+        pageNumberMoreLabel.hidden = false;
+      }
     }
 
     if (numberOfPageElements - 1 < currentPage && currentPage === pageAmount) {
       pageNumberFirstLabel.textContent = currentPage - (numberOfPageElements - 1);
       pageNumberSecondLabel.textContent = currentPage;
-      console.log('Second label value: ' + pageNumberSecondLabel.textContent);
       pageNumberResetHighlight();
       pageNumberSecondLabel.dataset.highlight = true;
     }
-
-    // if (currentPage >= pageAmount) {
-    //   pageNumberSecondLabel.hidden = true;
-    //   pageNumberThirdLabel.hidden = true;
-    // } else {
-    //   pageNumberSecondLabel.textContent = currentPage + 1;
-    // }
   } else if (numberOfPageElements === 3) {
-    pageNumberSecondLabel.textContent = currentPage;
+    if (pageAmount > currentPage + numberOfPageElements - 2) {
+      pageNumberMoreLabel.hidden = false;
+    }
+
     pageNumberResetHighlight();
-    pageNumberSecondLabel.dataset.highlight = true;
 
     if (pageAmount < numberOfPageElements) {
       pageNumberThirdLabel.hidden = true;
     }
 
-    // if (pageAmount === 1) {
-    //   pageNumberFirstLabel.textContent = currentPage;
-    //   pageNumberSecondLabel.hidden = true;
-    //   pageNumberResetHighlight();
-    //   pageNumberFirstLabel.dataset.highlight = true;
-    // }
+    if (direction === true) {
+      pageNumberFirstLabel.textContent = currentPage - 1;
+      pageNumberSecondLabel.textContent = currentPage;
+      pageNumberSecondLabel.dataset.highlight = true;
 
-    if (currentPage >= 1) {
-      pageNumberSecondLabel.textContent = currentPage + 1;
-      pageNumberThirdLabel.textContent = currentPage + 2;
+      if (currentPage >= 1) {
+        pageNumberSecondLabel.textContent = currentPage;
+        pageNumberThirdLabel.textContent = currentPage + 1;
+      }
+    } else {
+      if (currentPage >= 1) {
+        pageNumberSecondLabel.textContent = currentPage;
+        pageNumberSecondLabel.dataset.highlight = true;
+        pageNumberFirstLabel.textContent = currentPage - 1;
+        pageNumberThirdLabel.textContent = currentPage + 1;
+      } else {
+        pageNumberFirstLabel.textContent = currentPage;
+        pageNumberFirstLabel.dataset.highlight = true;
+        pageNumberSecondLabel.textContent = currentPage + 1;
+        pageNumberThirdLabel.textContent = currentPage + 2;
+      }
     }
 
-    if (numberOfPageElements - 1 < currentPage === pageAmount) {
+    if (numberOfPageElements - 1 < currentPage && currentPage === pageAmount) {
       pageNumberFirstLabel.textContent = currentPage - (numberOfPageElements - 1);
-      pageNumberSecondLabel.textContent = currentPage - 1;
+      pageNumberSecondLabel.textContent = currentPage - (numberOfPageElements - 2);
       pageNumberThirdLabel.textContent = currentPage;
       pageNumberResetHighlight();
       pageNumberThirdLabel.dataset.highlight = true;
     }
 
-    // if (currentPage > pageAmount) {
-    //   pageNumberThirdLabel.textContent = currentPage + 1;
-    // } else {
-    //   pageNumberThirdLabel.hidden = true;
-    // }
+    if (pageAmount > currentPage + numberOfPageElements) {
+      pageNumberMoreLabel.hidden = false;
+    }
+
+    if (currentPage === 1) {
+      pageNumberResetHighlight();
+      pageNumberFirstLabel.textContent = currentPage;
+      pageNumberFirstLabel.dataset.highlight = true;
+      pageNumberSecondLabel.textContent = currentPage + 1;
+      pageNumberThirdLabel.textContent = currentPage + 2;
+    }
   }
 };
 
@@ -243,6 +257,5 @@ lastPageBtn.addEventListener('click', lastPage);
 document.addEventListener('click', event => {
   if (event.target.classList.contains('page-number-element')) {
     setPage(parseInt(event.target.textContent));
-    console.log('VADSFDSFSF');
   }
 });

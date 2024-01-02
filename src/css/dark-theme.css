@@ -11,6 +11,10 @@ html.dark-theme .burger-icon {
   stroke: #fff;
   fill: #fff;
 }
+html.dark-theme .close-icon {
+  stroke: #fff;
+  fill: #fff;
+}
 html.dark-theme body {
   background-color: var(--main-bg-color-dark-theme);
 }

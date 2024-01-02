@@ -1,4 +1,7 @@
 import { getBookByID } from './home_page/fetch';
+import { onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { auth, app, firebaseConfig } from './auth/auth';
 
 const bookIMG = document.getElementById('bookImage');
 const bookTitle = document.getElementById('bookTitle');
@@ -6,7 +9,8 @@ const bookAuthor = document.getElementById('bookAuthor');
 const bookDescription = document.getElementById('bookDescription');
 const linkAmazon = document.querySelector('.link-amazon');
 const linkBook = document.querySelector('.link-apple');
-const linkBookShop = document.querySelector('.link-book-shop');
+const toggleButton = document.getElementById('toggleShoppingList');
+const anonymousUser = document.querySelector('.toggle-shopping-list_anonymous-user-content');
 
 // Funkcja inicjująca modal z danymi książki
 export async function initModal(bookId) {
@@ -14,29 +18,27 @@ export async function initModal(bookId) {
 
   bookIMG.attributes.src.value = book.book_image;
   bookTitle.textContent = book.title;
-  bookAuthor.textContent = `Autor: ${book.author}`;
-  bookDescription.textContent = book.description;
+  bookAuthor.textContent = book.author;
+  bookDescription.insertAdjacentHTML('beforeend', book.description);
 
   linkAmazon.attributes.href.value = book.buy_links[0].url;
-  linkAmazon.innerHTML = book.buy_links[0].name;
   linkBook.attributes.href.value = book.buy_links[1].url;
-  linkBook.innerHTML = book.buy_links[1].name;
-  linkBookShop.attributes.href.value = book.buy_links[4].url;
-  linkBookShop.innerHTML = book.buy_links[4].name;
 
-  // Obsługa przycisku dodawania do listy zakupów
-  const toggleButton = document.getElementById('toggleShoppingList');
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      toggleButton.disabled = false;
+      anonymousUser.style.display = 'none';
+    } else {
+      toggleButton.disabled = true;
+      anonymousUser.style.display = 'block';
+    }
+  });
+
   let shoppingList = JSON.parse(localStorage.getItem('shoppingListArray'));
   let isBookInList = false;
   if (shoppingList) {
     isBookInList = shoppingList.indexOf(bookId) !== -1;
   }
-
-  // if (isBookInList) {
-  //   toggleButton.textContent = 'Add to the shopping list';
-  // } else {
-  //   toggleButton.textContent = 'Remove from the shopping list';
-  // }
 
   toggleButton.textContent = isBookInList
     ? 'Remove from the shopping list'
@@ -67,26 +69,37 @@ export async function initModal(bookId) {
   };
 }
 
-// Funkcja wyświetlająca modal
 export function showModal() {
-  document.getElementById('myModal').style.display = 'block';
+  const backdrop = document.querySelector('[data-modal]');
+  backdrop.classList.add('is-active');
+  document.body.classList.add('no-scroll');
+  backdrop.addEventListener('click', closeModalByClicking);
+  document.body.addEventListener('keyup', closeModalByKey);
 }
 
-// Funkcja ukrywająca modal
-function hideModal() {
-  document.getElementById('myModal').style.display = 'none';
+function closeModalByClicking(e) {
+  const backdrop = document.querySelector('[data-modal]');
+  const modalWindow = document.querySelector('[data-modal-window]');
+  const closeBtn = document.querySelector('[data-modal-close]');
+
+  if (e.target.closest('[data-modal-close]') === closeBtn) {
+    backdrop.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
+
+    backdrop.removeEventListener('click', closeModalByClicking);
+    document.body.removeEventListener('keyup', closeModalByKey);
+  }
 }
 
-// Obsługa zdarzeń dla przycisku zamykania i kliknięcia poza modalem
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('myModal');
-  const closeButton = document.querySelector('.close');
+function closeModalByKey(e) {
+  const backdrop = document.querySelector('[data-modal]');
 
-  closeButton.onclick = () => hideModal();
-  window.onclick = event => {
-    if (event.target === modal) {
-      hideModal();
-    }
-  };
-});
+  const key = e.keyCode;
+  if (key == 27) {
+    backdrop.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
 
+    backdrop.removeEventListener('click', closeModalByClicking);
+    document.body.removeEventListener('keyup', closeModalByKey);
+  }
+}

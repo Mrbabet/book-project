@@ -22,16 +22,27 @@ export async function renderBooksItems(data) {
 }
 function addMediaWidth() {
   const screenSize = window.screen.width;
-  
+
+  addEventListener('resize', () => {
+    if (
+      (window.innerWidth > 767 && screenSize < 768) ||
+      (window.innerWidth > 1279 && screenSize < 1280) ||
+      (window.innerWidth < 1279 && screenSize > 1280) ||
+      (window.innerWidth > 1439 && screenSize < 1440) ||
+      (window.innerWidth < 1439 && screenSize > 1440)
+    ) {
+      location.reload();
+    }
+  });
 
   if (screenSize < 768) {
     return 'mobile';
   } else if (screenSize < 1280) {
     return 'tablet';
-  } else if( screenSize <1440) {
+  } else if (screenSize < 1440) {
     return 'desktop';
-  } else{
-    return 'desktopXl'
+  } else {
+    return 'desktopXl';
   }
 }
 
@@ -40,10 +51,9 @@ export const ShowLessData = async function (data) {
     return makeListOfBooks(data.slice(0, 1));
   } else if (addMediaWidth() === 'tablet') {
     return makeListOfBooks(data.slice(0, 3));
-  } else if(addMediaWidth()=== 'desktop') 
-  return makeListOfBooks(data.slice(0,4));
-  else{
-    return makeListOfBooks(data)
+  } else if (addMediaWidth() === 'desktop') return makeListOfBooks(data.slice(0, 4));
+  else {
+    return makeListOfBooks(data);
   }
 };
 
@@ -62,7 +72,8 @@ export async function makeCategoryPage(category, data) {
 
 export async function makeListOfBooks(data) {
   return data
-    .map(({ author, book_image, title, description, _id }) => `
+    .map(
+      ({ author, book_image, title, description, _id }) => `
     <li class="books__item" id=${_id}>
       <div class="books__wrapper">
         <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
@@ -75,7 +86,7 @@ export async function makeListOfBooks(data) {
         <p class="books__info-author">${author}</p>
       </div>
     </li>
-    `
+    `,
     )
     .join('');
 }

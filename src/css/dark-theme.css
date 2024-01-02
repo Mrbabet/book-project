@@ -1,0 +1,47 @@
+html.dark-theme .logo-text svg path {
+  fill: white;
+}
+
+html.dark-theme .button-shopping-list {
+  color: #fff;
+  fill: #fff;
+}
+
+html.dark-theme .burger-icon {
+  stroke: #fff;
+  fill: #fff;
+}
+html.dark-theme body {
+  background-color: var(--main-bg-color-dark-theme);
+}
+html.dark-theme .category-item {
+  color: var(--main-text-color-dark-theme);
+}
+
+html.dark-theme .js-current-category {
+  color: #eac645;
+}
+html.dark-theme .books-title {
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .books__info-title {
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .see-more,
+html.dark-theme .all-categories__btn {
+  color: var(--main-text-color-dark-theme);
+  background-color: var(--main-bg-color-dark-theme);
+}
+html.dark-theme .modal {
+  background-color: var(--main-bg-color-dark-theme);
+  border: 1px solid white;
+}
+html.dark-theme .modal .book-title {
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .modal .toggle-shopping-list {
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .modal .book-desc {
+  color: var(--main-text-color-dark-theme);
+}

@@ -1,8 +1,6 @@
 import Swiper from 'swiper';
 import 'swiper/swiper.css';
-import { supportersArray } from '../fundation_api';
-
-
+import { supportersArray } from './fundation_api';
 
 const swiperOptions = {
   direction: 'vertical',
@@ -20,25 +18,26 @@ const swiperOptions = {
       slidesPerGroup: 6,
     },
   },
-}
+};
 const swiper = new Swiper('.swiper', swiperOptions);
 
+const nextBtn = document.querySelector('.swiper-button-next');
+const list = document.querySelector('.swiper-wrapper');
+const btn = document.querySelector('.supporters-button');
 
-const nextBtn= document.querySelector('.swiper-button-next');
-const list= document.querySelector('.swiper-wrapper');
-const btn= document.querySelector('.supporters-button');
-
-  
-
-const markup = supportersArray.map((el, index) => {
-  return `<li class="supporters__item swiper-slide">
+const markup = supportersArray
+  .map((el, index) => {
+    return `<li class="supporters__item swiper-slide">
             <span class="supporters__number">${(index + 1).toString().padStart(2, '0')}</span>
-            <a href="${el.url}" title="${el.title}" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
-              <img src="${el.img}" class="supporters__img" alt="${el.title} logo"/>
+            <a href="${el.url}" 
+    }" target='_blank' rel="noopener noreferrer nofollow" aria-label="Link to support fond">
+              <img class="supporters__img" src="${el.img}" srcset="${el.imgRetinaTwo} 2x, ${
+      el.imgRetinaThree
+    } 3x"  alt="${el.title} logo"/>
             </a>
           </li>`;
-}).join('');
-
+  })
+  .join('');
 
 list.innerHTML = markup;
 
@@ -53,4 +52,4 @@ function rotateBtn() {
   btn.classList.toggle('supporters__btn--up');
 }
 
-nextBtn.addEventListener('click',onBtnClick)
+nextBtn.addEventListener('click', onBtnClick);

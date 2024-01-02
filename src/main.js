@@ -1,9 +1,13 @@
-import './main.css';
 import './js/home_page/fetch.js';
 import './js/home_page/func.js';
 import './js/home_page/home_page.js';
-import './js/home_page/support-ukraine.js';
-import './js/fundation_api.js'
-import './js/home_page/dark-mode.js'
+import './js/support-ukraine.js';
+import './js/fundation_api.js';
+import './js/dark-mode.js';
 import './js/modal-window.js';
 import './js/buger-modal.js';
+import './js/sign-form.js';
+import './main.css';
+import './js/auth/auth.js';
+import './js/auth/auth-form.js';
+import './js/loader.js';

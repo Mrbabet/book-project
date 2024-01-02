@@ -1,17 +1,31 @@
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img id="bookImage" src="#" alt="Book cover" class="book-cover" />
-    <h1 id="bookTitle"></h1>
-    <p id="bookAuthor"></p>
-    <p id="bookDescription"></p>
-    <ul id="buyLinks">
-      <li><a class="link-amazon" href=""></a></li>
-      <li><a class="link-apple" href=""></a></li>
-      <li><a class="link-book-shop" href=""></a></li>
+<div class="backdrop" data-modal>
+  <div class="modal" data-modal-window>
+    <button class="close" data-modal-close>&times;</button>
+    <div class="rendered-content">
+      <img id="bookImage" src="#" alt="Book cover" class="book-cover" />
+      <div class="text-content">
+        <h1 class="book-title" id="bookTitle"></h1>
+        <p class="book-author" id="bookAuthor"></p>
+        <p class="book-desc" id="bookDescription"></p>
+        <ul class="book-store-list" id="buyLinks">
+          <li class="book-store-list-item">
+            <a class="link-amazon" href="">
+              <img class="store-img" src="./images/amazon.png" alt="" />
+            </a>
+          </li>
+          <li class="book-store-list-item">
+            <a class="link-apple" href=""
+              ><img class="store-img" src="./images/apple-books.png" alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <button id="toggleShoppingList">ADD TO SHOPPING LIST</button>
+    <div class="toggle-shopping-list__button-container">
+      <button class="toggle-shopping-list" id="toggleShoppingList">ADD TO SHOPPING LIST</button>
+      <p class="toggle-shopping-list_anonymous-user-content">
+        Please log in to add this book to shopping list
+      </p>
+    </div>
   </div>
 </div>

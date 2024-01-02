@@ -11,6 +11,7 @@
 
 .hero {
   margin-top: 40px;
+  position: relative;
 }
 .container__home {
   display: flex;
@@ -249,7 +250,30 @@
   flex-direction: column;
   gap: 40px;
 }
-
+.go-to-top {
+  width: 54px;
+  height: 54px;
+  background-color: #4f2ee8;
+  box-shadow: 0 0 10px 3px #4f2ee84d;
+  border-radius: 50%;
+  z-index: 8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  transition: all 500ms ease-in-out;
+}
+.go-to-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px 10px #4f2ee84d;
+}
+.svg-go-to-top {
+  stroke: #fff;
+  width: 24px;
+  height: 24px;
+}
 @media screen and (min-width: 768px) {
   .hero__grid {
     display: flex;

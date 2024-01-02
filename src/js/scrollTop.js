@@ -9,14 +9,6 @@ function showGoToTopButton() {
   }
 }
 
-function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-
-goToTopButton.addEventListener('click', backToTop);
-window.addEventListener('scroll', showGoToTopButton);
-
 export function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -24,3 +16,6 @@ export function scrollToTop() {
     behavior: 'smooth',
   });
 }
+
+goToTopButton.addEventListener('click', scrollToTop);
+window.addEventListener('scroll', showGoToTopButton);

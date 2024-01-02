@@ -11,3 +11,4 @@ import './main.css';
 import './js/auth/auth.js';
 import './js/auth/auth-form.js';
 import './js/loader.js';
+import './js/fouc-remover.js';

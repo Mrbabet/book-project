@@ -61,6 +61,7 @@ window.addEventListener('load', () => {
       headerSignUpBtn.addEventListener('click', userSignOut);
     } else {
       hideModal();
+      menuContainer.style.visibility = 'hidden';
       menuContainer.style.display = 'none';
       headerSignUpBtn.innerHTML = `<p class="sign-up-p">Sign up</p>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

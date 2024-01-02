@@ -96,14 +96,11 @@ export const userSignIn = async function (email, password) {
     });
   } catch (error) {
     if (error.message === 'Firebase: Error (auth/wrong-password).') {
-      // Display email fail
       return Notify.failure(`Wrong password!`, notifyOptions);
     }
     if (error.message === 'Firebase: Error (auth/user-not-found).') {
-      // Display email fail
       return Notify.failure(`You should sign up before!`, notifyOptions);
     }
-    // console.log(error);
   }
 };
 export function userSignOut() {

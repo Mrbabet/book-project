@@ -22,3 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   burgerBtn.addEventListener('click', openModal);
   closeButton.addEventListener('click', closeModal);
 });
+
+window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
+  if (!e.matches) return;
+  document.getElementById('burgerModal').style.display = 'none';
+  document.querySelector('.btn-close').style.display = 'none';
+  document.querySelector('.btn-burger').style.display = 'block';
+});

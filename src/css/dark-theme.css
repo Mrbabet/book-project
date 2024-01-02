@@ -49,3 +49,6 @@ html.dark-theme .modal .toggle-shopping-list {
 html.dark-theme .modal .book-desc {
   color: var(--main-text-color-dark-theme);
 }
+html.dark-theme .menu li a {
+  color: var(--main-text-color-dark-theme);
+}

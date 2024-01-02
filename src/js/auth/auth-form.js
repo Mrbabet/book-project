@@ -1,11 +1,12 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { userSignUp, userSignIn, userSignOut, auth } from './auth';
 import '../sign-form';
+import { closeModalButton, hideModal, showModal } from '../sign-form';
+import { signInButton } from '../sign-form';
 
 const authorizationModal = document.querySelector('.form-wrapper');
 const submitBtn = document.querySelector('.submit-btn');
 const signUpForm = document.querySelector('.sign-up-form');
-const closeModalButton = document.querySelector('.au-modal-close');
 const userName = document.querySelector('#name');
 const userEmail = document.querySelector('input[type="email"]');
 const userPassword = document.querySelector('input[type="password"]');
@@ -48,6 +49,7 @@ signUpForm.addEventListener('submit', e => {
     }
   }
   signUpForm.reset();
+  hideModal();
   onSignUpBtnClick();
 });
 
@@ -55,18 +57,21 @@ window.addEventListener('load', () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log(user);
-      menuContainer.style.display = 'flex';
-      loggedInBtn.style.display = 'block';
-      loggedInBtn.textContent = user.displayName;
-      headerSignUpBtn.style.display = 'none';
+      headerSignUpBtn.textContent = user.displayName;
+      headerSignUpBtn.addEventListener('click', userSignOut);
     } else {
+      hideModal();
       menuContainer.style.display = 'none';
-      loggedInBtn.style.display = 'none';
-      headerSignUpBtn.style.display = 'flex';
+      headerSignUpBtn.innerHTML = `<p class="sign-up-p">Sign up</p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15" stroke="#EAC645" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+      if (headerSignUpBtn.textContent === 'Sign up') {
+        signInButton.addEventListener('click', showModal);
+      }
     }
   });
 });
 
 signInBtn.addEventListener('click', onSignInBtnClick);
 signUpBtn.addEventListener('click', onSignUpBtnClick);
-loggedInBtn.addEventListener('click', userSignOut);

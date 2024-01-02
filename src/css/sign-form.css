@@ -127,7 +127,9 @@
   font-weight: 700;
   cursor: pointer;
 }
-
+.form-wrapper {
+  display: none;
+}
 @media screen and (min-width: 768px) {
   .form-wrapper {
     width: 100vw;

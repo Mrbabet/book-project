@@ -79,23 +79,19 @@
         </svg>
       </span>
     </a>
-    <div class="menu">
-      <button class="button-home" type="button" aria-expanded="false" aria-controls="tablet-home">
-        <a href="./"><p class="home-p">Home</p></a>
-      </button>
-      <button
-        class="button-shopping-list"
-        type="button"
-        aria-expanded="false"
-        aria-controls="tablet-shopping"
-      >
-        <a href="./shopping-list.html">
+    <ul class="menu">
+      <li class="button-home">
+        <a href="./" aria-controls="tablet-shopping" aria-expanded="false">Home</a>
+      </li>
+      <li class="button-shopping-list">
+        <a aria-controls="tablet-home" aria-expanded="false" href="./shopping-list.html">
           <p class="shopping-p">shopping list</p>
           <svg width="20px" height="20px">
-            <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use></svg
-        ></a>
-      </button>
-    </div>
+            <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
     <div class="container-btn">
       <div class="switcher">
         <input type="checkbox" id="darkModeToggle" />
@@ -118,15 +114,12 @@
           <use xlink:href="./icons/symbol-defs.svg#icon-x-close"></use>
         </svg>
       </button>
-      <div class="button-container">
-        <button class="sign-up" type="button" aria-expanded="false" aria-controls="sign-up-button">
-          <p class="sign-up-p">Sign up</p>
-          <svg class="sign-up-icon" width="20px" height="20px">
-            <use xlink:href="./icons/symbol-defs.svg#icon-arrow-narrow-right"></use>
-          </svg>
-        </button>
-        <button class="logged-in" type="button"></button>
-      </div>
+      <button
+        class="sign-up"
+        type="button"
+        aria-expanded="false"
+        aria-controls="sign-up-button"
+      ></button>
     </div>
   </div>
 </header>
@@ -135,11 +128,13 @@
 <div id="burgerModal" class="burger-modal">
   <!-- Modal content -->
   <div class="burger-modal-content">
-
-    
-
     <div class="modal-button-container">
-      <button class="modal-sign-up" type="button" aria-expanded="false" aria-controls="sign-up-button">
+      <button
+        class="modal-sign-up"
+        type="button"
+        aria-expanded="false"
+        aria-controls="sign-up-button"
+      >
         <p class="modal-sign-up-p">Sign up</p>
         <svg class="sign-up-icon" width="20px" height="20px">
           <use xlink:href="./icons/symbol-defs.svg#icon-arrow-narrow-right"></use>
@@ -149,16 +144,16 @@
     </div>
 
     <div class="modal-background-img">
-      <img
-          src="./images/group6.png"
-          alt="books"
-          width="450.001"
-          height="439"
-        />
+      <img src="./images/group6.png" alt="books" width="450.001" height="439" />
     </div>
 
     <div class="in-modal-menu">
-      <button class="button-home-modal" type="button" aria-expanded="false" aria-controls="tablet-home">
+      <button
+        class="button-home-modal"
+        type="button"
+        aria-expanded="false"
+        aria-controls="tablet-home"
+      >
         <a href="./"><p class="home-p">Home</p></a>
       </button>
       <button
@@ -173,6 +168,5 @@
         </svg>
       </button>
     </div>
-
   </div>
 </div>

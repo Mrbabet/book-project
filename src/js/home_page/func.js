@@ -23,17 +23,17 @@ export async function renderBooksItems(data) {
 function addMediaWidth() {
   const screenSize = window.screen.width;
 
-  addEventListener('resize', () => {
-    if (
-      (window.innerWidth > 767 && screenSize < 768) ||
-      (window.innerWidth > 1279 && screenSize < 1280) ||
-      (window.innerWidth < 1279 && screenSize > 1280) ||
-      (window.innerWidth > 1439 && screenSize < 1440) ||
-      (window.innerWidth < 1439 && screenSize > 1440)
-    ) {
-      location.reload();
-    }
-  });
+  // addEventListener('resize', () => {
+  //   if (
+  //     (window.innerWidth > 767 && screenSize < 768) ||
+  //     (window.innerWidth > 1279 && screenSize < 1280) ||
+  //     (window.innerWidth < 1279 && screenSize > 1280) ||
+  //     (window.innerWidth > 1439 && screenSize < 1440) ||
+  //     (window.innerWidth < 1439 && screenSize > 1440)
+  //   ) {
+  //     location.reload();
+  //   }
+  // });
 
   if (screenSize < 768) {
     return 'mobile';

@@ -13,6 +13,7 @@ const userPassword = document.querySelector('input[type="password"]');
 const signInBtn = document.querySelector('.sign-in-btn');
 const signUpBtn = document.querySelector('.sign-up-btn');
 const headerSignUpBtn = document.querySelector('.sign-up');
+
 const userNameContainer = document.querySelector('.form-item-render');
 const inputName = document.getElementById('name');
 const menuContainer = document.querySelector('.menu');

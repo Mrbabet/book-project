@@ -148,9 +148,12 @@ input:checked + .theme-toggler::before {
   }
 
   .menu {
-    display: inline-flex;
+    display: none;
     align-items: center;
     gap: 16px;
+  }
+  .menu.is-authenticated {
+    display: inline-flex;
   }
 
   .button-home {

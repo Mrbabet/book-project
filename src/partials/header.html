@@ -79,19 +79,19 @@
         </svg>
       </span>
     </a>
-      <ul class="menu">
-        <li class="button-home">
-          <a href="./" aria-controls="tablet-shopping" aria-expanded="false">Home</a>
-        </li>
-        <li class="button-shopping-list">
-          <a aria-controls="tablet-home" aria-expanded="false" href="./shopping-list.html">
-            <p class="shopping-p">shopping list</p>
-            <svg width="20px" height="20px">
-              <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
-            </svg>
-          </a>
-        </li>
-      </ul>
+    <ul class="menu">
+      <li class="button-home">
+        <a href="./" aria-controls="tablet-shopping" aria-expanded="false">Home</a>
+      </li>
+      <li class="button-shopping-list">
+        <a aria-controls="tablet-home" aria-expanded="false" href="./shopping-list.html">
+          <p class="shopping-p">shopping list</p>
+          <svg width="20px" height="20px">
+            <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
     <div class="container-btn">
       <div class="switcher">
         <input type="checkbox" id="darkModeToggle" />
@@ -128,10 +128,10 @@
 <div id="burgerModal" class="burger-modal">
   <!-- Modal content -->
   <div class="burger-modal-content">
-    <div class="modal-button-container"> 
+    <div class="modal-button-container">
       <div class="modal-user">
-        <img class="avatar" src="./images/ellipse3.png" alt="avatar" height="37" width="37">
-        <p class="avatar-p">Stephen</p>
+        <img class="avatar" src="./images/ellipse3.png" alt="avatar" height="37" width="37" />
+        <p class="avatar-p">User</p>
       </div>
       <button
         class="modal-sign-up"
@@ -139,40 +139,46 @@
         aria-expanded="false"
         aria-controls="sign-up-button"
       >
-        <p class="modal-sign-up-p">Sign up</p>
+        Sign up
         <svg class="sign-up-icon" width="20px" height="20px">
           <use xlink:href="./icons/symbol-defs.svg#icon-arrow-narrow-right"></use>
         </svg>
       </button>
-      <button class="logged-in" type="button"></button>
-    </div>
-
-    <ul class="in-modal-menu ">
+      <ul class="mobile-modal-menu">
         <li class="button-home-menu">
-          <a  class="home-p" href="./" aria-controls="menu-tablet-shopping" aria-expanded="false">Home</a>
+          <a class="home-p" href="./" aria-controls="menu-tablet-shopping" aria-expanded="false"
+            >Home</a
+          >
         </li>
-        <li >
-          <a class="menu-button-shopping-list"  aria-controls="menu-tablet-home" aria-expanded="false" href="./shopping-list.html">
+        <li>
+          <a
+            class="menu-button-shopping-list"
+            aria-controls="menu-tablet-home"
+            aria-expanded="false"
+            href="./shopping-list.html"
+          >
             <p class="shopping-p">shopping list</p>
-            <svg  class="menu-icon" width="20px" height="20px">
+            <svg class="menu-icon" width="20px" height="20px">
               <use xlink:href="./icons/symbol-defs.svg#icon-uil_cart"></use>
             </svg>
           </a>
         </li>
       </ul>
-      <button 
+      <button
         class="menu-log-out"
         type="button"
         aria-expanded="false"
-        aria-controls="menu-log-out-button">
-        <p>Log out</p>
+        aria-controls="sign-up-button"
+      >
+        Log out
         <svg class="sign-up-icon" width="20px" height="20px">
           <use xlink:href="./icons/symbol-defs.svg#icon-arrow-narrow-right"></use>
         </svg>
       </button>
+    </div>
 
     <div class="modal-background-img">
       <img src="./images/group6.png" alt="books" width="450.001" height="439" />
-    </div> 
+    </div>
   </div>
 </div>

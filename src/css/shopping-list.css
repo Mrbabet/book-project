@@ -90,14 +90,12 @@
   color: #00000099;
 }
 .shopping-list-block-empty {
-  width: 349px;
-  height: 48px;
-  font-family: DM sans;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 18px;
   letter-spacing: -0.02em;
   text-align: center;
+  color: #00000099;
 }
 @media screen and (min-width: 768px) {
   .container {

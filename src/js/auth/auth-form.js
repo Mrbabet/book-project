@@ -63,7 +63,6 @@ signUpForm.addEventListener('submit', e => {
 window.addEventListener('load', () => {
   onAuthStateChanged(auth, user => {
     if (user) {
-      console.log(user);
       menuContainer.classList.add('is-authenticated');
       mobileSignUpBtn.classList.add('is-authenticated');
       mobileLogOutBtn.classList.add('is-authenticated');

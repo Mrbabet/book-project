@@ -1,4 +1,5 @@
 import { onAuthStateChanged } from 'firebase/auth';
+import { auth, app, db } from './auth';
 
 onAuthStateChanged(auth, user => {
   if (user) {

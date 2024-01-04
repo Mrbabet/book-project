@@ -47,8 +47,7 @@ export async function initModal(bookId) {
       }
 
       toggleButtonClickHandler = async e => {
-        console.log('listening');
-
+        e.preventDefault();
         if (e.target.textContent === 'Remove from the shopping list') {
           const updatedArray = arrayUnion(bookId);
 
@@ -62,7 +61,7 @@ export async function initModal(bookId) {
 
       const userDoc = (await getDoc(userRefDoc)).data();
       let shoppingList = userDoc.shoppingListArray || [];
-      console.log(shoppingList);
+      console.log('modal', shoppingList);
       localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
       console.log(userDoc);
 

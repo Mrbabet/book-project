@@ -153,9 +153,11 @@
   }
 
   .shopping-list-empty {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 349px;
+    height: 309px;
+    top: 304px;
+    left: 735px;
+    gap: 20px;
   }
 
   .shopping-list-items {

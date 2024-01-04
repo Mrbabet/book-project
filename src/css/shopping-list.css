@@ -68,7 +68,7 @@
 .shopping-list-list {
   color: #4f2ee8;
 }
-.shopping-list-items {
+.shopping-list-item {
   width: 335px;
   height: 170px;
   left: 20px;
@@ -133,7 +133,7 @@
     transform: translate(-50%, -50%);
   }
 
-  .shopping-list-items {
+  .shopping-list-item {
     gap: 20px;
   }
 
@@ -160,7 +160,7 @@
     gap: 20px;
   }
 
-  .shopping-list-items {
+  .shopping-list-item {
     gap: 20px;
   }
 

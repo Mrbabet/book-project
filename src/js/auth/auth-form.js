@@ -1,8 +1,11 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { userSignUp, userSignIn, userSignOut, auth } from './auth';
+import { userSignIn } from './auth_sign_in';
+import { userSignOut } from './auth_sign_out';
+import { userSignUp } from './auth_sign_up';
 import '../sign-form';
 import { closeModalButton, hideModal, showModal } from '../sign-form';
 import { signInButton } from '../sign-form';
+import { auth, app, db } from './auth';
 
 const authorizationModal = document.querySelector('.form-wrapper');
 const submitBtn = document.querySelector('.submit-btn');

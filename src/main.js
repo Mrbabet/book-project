@@ -12,3 +12,6 @@ import './js/auth/auth.js';
 import './js/auth/auth-form.js';
 import './js/loader.js';
 import './js/fouc-remover.js';
+import './js/auth/auth_sign_up.js';
+import './js/auth/auth_sign_in.js';
+import './js/auth/auth_sign_out.js';

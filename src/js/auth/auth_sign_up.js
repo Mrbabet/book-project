@@ -28,6 +28,16 @@ export const userSignUp = async function (username, email, password) {
     createUserWithEmailAndPassword(auth, email, password).then(async userCredential => {
       const user = userCredential.user;
       const userDocRef = doc(db, 'users', user.uid);
+      await setDoc(
+        userDocRef,
+        {
+          username: username,
+          email: email,
+          shoppingListArray: [],
+          userId: userCredential.user.uid,
+        },
+        { merge: true },
+      );
 
       updateProfile(user, {
         displayName: username,
@@ -35,12 +45,6 @@ export const userSignUp = async function (username, email, password) {
         .then(() => {})
         .catch(error => {});
 
-      await setDoc(userDocRef, {
-        username: username,
-        email: email,
-        shoppingListArray: [],
-        userId: userCredential.user.uid,
-      });
       Notify.success('Congratulation - you are registered!', notifyOptions);
       Notify.success(`You sign in!`, notifyOptions);
       showLoadingIndicator();

@@ -45,7 +45,12 @@
   left: 10782px;
   background: #f6f6f6;
 }
-
+.shopping-list-container {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 .shopping-list {
   width: 193px;
   height: 38px;

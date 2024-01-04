@@ -17,16 +17,9 @@ onAuthStateChanged(auth, async user => {
     const uid = user.uid;
     const userRefDoc = doc(db, 'users', uid);
     getDoc(userRefDoc).then(doc => {
-      const userData = doc.data();
-      const localStorageBookIdData = localStorage.getItem('shoppingListArray');
-      const localStorageArray = JSON.parse(localStorageBookIdData);
-      console.log(localStorageArray);
       onSnapshot(userRefDoc, docSnapshot => {
         const data = docSnapshot.data();
-
-        // const updatedArray = arrayUnion(...localStorageArray);
-        // updateDoc(userRefDoc, { shoppingListArray: updatedArray });
-        console.log(data);
+        console.log(data.shoppingListArray);
       });
     });
     console.log('User is signed in:', user);

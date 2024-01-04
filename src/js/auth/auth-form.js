@@ -1,8 +1,11 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { userSignUp, userSignIn, userSignOut, auth } from './auth';
+import { userSignIn } from './auth_sign_in';
+import { userSignOut } from './auth_sign_out';
+import { userSignUp } from './auth_sign_up';
 import '../sign-form';
 import { closeModalButton, hideModal, showModal } from '../sign-form';
 import { signInButton } from '../sign-form';
+import { auth, app, db } from './auth';
 
 const authorizationModal = document.querySelector('.form-wrapper');
 const submitBtn = document.querySelector('.submit-btn');
@@ -22,6 +25,7 @@ const mobileSignUpBtn = document.querySelector('.modal-sign-up');
 const mobileMenuUser = document.querySelector('.modal-user')
 const mobileUsername = document.querySelector('.avatar-p');
 const mobileLogOutBtn = document.querySelector('.menu-log-out ');
+const avatar = document.querySelector('.avatar');
 
 const onSignUpBtnClick = function () {
   submitBtn.textContent = 'Sign up';
@@ -61,12 +65,12 @@ signUpForm.addEventListener('submit', e => {
 window.addEventListener('load', () => {
   onAuthStateChanged(auth, user => {
     if (user) {
-      console.log(user);
       menuContainer.classList.add('is-authenticated');
       mobileSignUpBtn.classList.add('is-authenticated');
       mobileLogOutBtn.classList.add('is-authenticated');
       mobileMenuUser.classList.add('is-authenticated');
       mobileMenuContainer.classList.add('is-authenticated');
+      avatar.classList.add('is-authenticated');
       headerSignUpBtn.textContent = user.displayName;
       mobileUsername.textContent = user.displayName;
       headerSignUpBtn.addEventListener('click', userSignOut);
@@ -74,6 +78,7 @@ window.addEventListener('load', () => {
     } else {
       hideModal();
       menuContainer.classList.remove('is-authenticated');
+      avatar.classList.remove('is-authenticated');
       headerSignUpBtn.innerHTML = `<p class="sign-up-p">Sign up</p>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
       <path d="M3.33325 10H16.6666M16.6666 10L11.6666 5M16.6666 10L11.6666 15" stroke="#EAC645" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

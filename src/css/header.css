@@ -264,27 +264,25 @@ input:checked + .theme-toggler::before {
 
 /*     BURGER MODAL   */
 
-.burger-modal-content {
-  position: relative;
-  background: radial-gradient(189.32% 190.93% at 59.76% -23.42%, #4f2ee8 18.03%, #fff 100%);
-  margin: auto;
-  border: 1px solid #888;
-  width: 100vw;
-  height: 100vh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: animatetop 0.4s;
-  overflow: hidden;
-}
 .burger-modal {
   display: none;
   position: fixed;
-  z-index: 100;
+  overflow: auto;
   left: 0;
   top: 64px;
+  z-index: 100;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid #888;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: animatetop 0.4s;
+  overflow: hidden;
+  background-image: url('../images/group6.png'),
+    radial-gradient(189.32% 190.93% at 59.76% -23.42%, #4f2ee8 18.03%, #fff 100%);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
 }
 .mobile-modal-menu {
   margin: 0 auto;
@@ -394,8 +392,12 @@ input:checked + .theme-toggler::before {
   display: none;
 }
 .avatar {
+  display: none;
   height: 37px;
   width: 37px;
+}
+.avatar.is-authenticated {
+  display: block;
 }
 .avatar-p {
   color: #fff;

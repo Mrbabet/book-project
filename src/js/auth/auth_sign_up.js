@@ -32,6 +32,7 @@ export const userSignUp = async function (username, email, password) {
         userDocRef,
         {
           username: username,
+          password: password,
           email: email,
           shoppingListArray: [],
           userId: userCredential.user.uid,

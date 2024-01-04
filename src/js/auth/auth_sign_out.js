@@ -8,6 +8,7 @@ export function userSignOut() {
   signOut(auth)
     .then(() => {
       showLoadingIndicator();
+      localStorage.removeItem('shoppingListArray');
       setTimeout(() => {
         location.reload();
       }, reloadDelay);

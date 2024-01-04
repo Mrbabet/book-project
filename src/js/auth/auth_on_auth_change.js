@@ -23,9 +23,10 @@ onAuthStateChanged(auth, async user => {
       console.log(localStorageArray);
       onSnapshot(userRefDoc, docSnapshot => {
         const data = docSnapshot.data();
-        const databaseArray = data.shoppingListArray.push(localStorageArray);
+
+        // const updatedArray = arrayUnion(...localStorageArray);
+        // updateDoc(userRefDoc, { shoppingListArray: updatedArray });
         console.log(data);
-        console.log(databaseArray);
       });
     });
     console.log('User is signed in:', user);

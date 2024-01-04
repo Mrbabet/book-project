@@ -22,6 +22,7 @@ const inputName = document.getElementById('name');
 const menuContainer = document.querySelector('.menu');
 const mobileMenuContainer = document.querySelector('.mobile-modal-menu');
 const mobileSignUpBtn = document.querySelector('.modal-sign-up');
+const mobileMenuUser = document.querySelector('.modal-user')
 const mobileUsername = document.querySelector('.avatar-p');
 const mobileLogOutBtn = document.querySelector('.menu-log-out ');
 const avatar = document.querySelector('.avatar');
@@ -37,7 +38,7 @@ const onSignInBtnClick = function () {
 };
 
 signUpForm.addEventListener('submit', e => {
-  e.preventDefault();
+  e.preventDefault(); 
 
   if ((submitBtn.textContent = 'Sign up')) {
     const { value: username } = userName;
@@ -67,6 +68,7 @@ window.addEventListener('load', () => {
       menuContainer.classList.add('is-authenticated');
       mobileSignUpBtn.classList.add('is-authenticated');
       mobileLogOutBtn.classList.add('is-authenticated');
+      mobileMenuUser.classList.add('is-authenticated');
       mobileMenuContainer.classList.add('is-authenticated');
       avatar.classList.add('is-authenticated');
       headerSignUpBtn.textContent = user.displayName;

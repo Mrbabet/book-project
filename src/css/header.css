@@ -347,7 +347,8 @@ input:checked + .theme-toggler::before {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 20px;
+  margin-top: 40px;
+  margin-left: 20px;
 }
 .modal-sign-up {
   width: 184px;
@@ -367,22 +368,28 @@ input:checked + .theme-toggler::before {
   font-weight: 500;
   line-height: 18px;
   letter-spacing: -0.56px;
-  margin-top: 40px;
+  margin-bottom: 197px;
+ 
 }
 .modal-sign-up.is-authenticated {
   display: none;
 }
 
 .modal-background-img {
+  flex-shrink: 0;
   width: 100%;
   height: 100%;
-  flex-shrink: 0;
-  margin-top: 126px;
+  margin-top: 94px;
+  margin-left: -20px;
+  display: flex;
 }
-.modal-user {
+.modal-user.is-authenticated   {
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  }
+.modal-user  {
+  display: none;
 }
 .avatar {
   display: none;
@@ -412,8 +419,7 @@ input:checked + .theme-toggler::before {
   width: 118px;
   height: 48px;
   position: absolute;
-  left: 0;
-  bottom: 0;
+  bottom: 20px;
   display: none;
 }
 .menu-log-out.is-authenticated {

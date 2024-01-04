@@ -113,6 +113,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .shopping-list-item {
+    width: 704px;
+    height: 213px;
+    top: 204px;
+    left: 32px;
+    gap: 48px;
+  }
 }
 @media screen and (min-width: 1280px) {
   .container {
@@ -151,7 +158,12 @@
     top: 0;
     left: 0;
   }
-
+  .shopping-list {
+    width: 292px;
+    height: 52px;
+    top: 112px;
+    left: 32px;
+  }
   .shopping-list-empty {
     width: 349px;
     height: 309px;
@@ -161,7 +173,11 @@
   }
 
   .shopping-list-item {
-    gap: 20px;
+    width: 996px;
+    height: 213px;
+    top: 204px;
+    left: 420px;
+    gap: 48px;
   }
 
   .shopping-list-item {

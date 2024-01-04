@@ -43,9 +43,14 @@
   height: 812px;
   top: -1043px;
   left: 10782px;
-  background: #f6f6f6;
+  background: white;
 }
-
+.shopping-list-container {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 .shopping-list {
   width: 193px;
   height: 38px;
@@ -82,16 +87,15 @@
   top: 304px;
   left: 210px;
   gap: 20px;
+  color: #00000099;
 }
 .shopping-list-block-empty {
-  width: 349px;
-  height: 48px;
-  font-family: DM Sans;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 18px;
   letter-spacing: -0.02em;
   text-align: center;
+  color: #00000099;
 }
 @media screen and (min-width: 768px) {
   .container {

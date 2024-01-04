@@ -38,3 +38,128 @@
   border: red 2px solid;
   cursor: pointer;
 }
+.shopping-list-section {
+  width: 375px;
+  height: 812px;
+  top: -1043px;
+  left: 10782px;
+  background: #f6f6f6;
+}
+
+.shopping-list {
+  width: 193px;
+  height: 38px;
+  top: 104px;
+  left: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.04em;
+  text-align: left;
+}
+.shopping-list-shopping {
+  color: #111111;
+}
+.shopping-list-list {
+  color: #4f2ee8;
+}
+.shopping-list-items {
+  width: 335px;
+  height: 170px;
+  left: 20px;
+  padding: 30px 24px 30px 24px;
+  border-radius: 16px;
+  border: 2px solid #4f2ee866;
+  gap: 48px;
+  display: flex;
+  position: absolute;
+}
+.shopping-list-page {
+}
+.shopping-list-empty {
+  width: 349px;
+  height: 309px;
+  top: 304px;
+  left: 210px;
+  gap: 20px;
+}
+.shopping-list-block-empty {
+  width: 349px;
+  height: 48px;
+  font-family: DM Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+  .shopping-list-section {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .shopping-list-empty {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    padding: 0 24px;
+  }
+  .shopping-list-section {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .shopping-list-empty {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .shopping-list-items {
+    gap: 20px;
+  }
+
+  .shopping-list-item {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+  .shopping-list-section {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .shopping-list-empty {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .shopping-list-items {
+    gap: 20px;
+  }
+
+  .shopping-list-item {
+    width: 50%;
+  }
+}

@@ -33,3 +33,8 @@
 .page-number-element[data-highlight='true'] {
   font-weight: 800;
 }
+
+.trash-button {
+  border: red 2px solid;
+  cursor: pointer;
+}

@@ -25,7 +25,11 @@ const mobileSignUpBtn = document.querySelector('.modal-sign-up');
 const mobileMenuUser = document.querySelector('.modal-user')
 const mobileUsername = document.querySelector('.avatar-p');
 const mobileLogOutBtn = document.querySelector('.menu-log-out ');
+<<<<<<< HEAD
 const avatar = document.querySelector('.avatar');
+=======
+const headerLogOutBtn = document.querySelector('.button-log-out');
+>>>>>>> header
 
 const onSignUpBtnClick = function () {
   submitBtn.textContent = 'Sign up';
@@ -75,6 +79,7 @@ window.addEventListener('load', () => {
       mobileUsername.textContent = user.displayName;
       headerSignUpBtn.addEventListener('click', userSignOut);
       mobileLogOutBtn.addEventListener('click', userSignOut);
+      headerLogOutBtn.addEventListener('click', userSignOut);
     } else {
       hideModal();
       menuContainer.classList.remove('is-authenticated');

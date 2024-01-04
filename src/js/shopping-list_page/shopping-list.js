@@ -26,8 +26,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-const shoppingList = document.querySelector('.shopping-list');
-const shoppingListBlock = document.querySelector('.shopping-list-block');
+const shoppingList = document.querySelector('.shopping-list-items');
+const shoppingListEmpty = document.querySelector('.shopping-list-empty');
+const shoppingListPagination = document.querySelector('.shopping-list-pagination');
 const firstPageBtn = document.querySelector('.first-page-btn');
 const previousPageBtn = document.querySelector('.previous-page-btn');
 const nextPageBtn = document.querySelector('.next-page-btn');
@@ -37,23 +38,21 @@ const pageNumberSecondLabel = document.querySelector('.page-number-second');
 const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
 
-let currentPage = parseInt(localStorage.getItem('shoppingListPage'));
+let currentPage = 1;
 let elementsPerPage = 3;
 let pageAmount = 1;
-let numberOfPageElements = 3;
-
-if (!currentPage) {
-  currentPage = 1;
-}
+let numberOfPageElements = 2;
+let shoppingArray = [];
+let reversePageDirection = false;
 
 const makeListOfShoppingListBooks = async function (data) {
   return (shoppingList.innerHTML = data
     .map(
       ({ author, book_image, title, description, _id, buy_links, list_name }) =>
         `
-  <li class="shopping-lisg__item" id=${_id}>
+  <li class="shopping-list_item" id=${_id}>
     <div class="books__wrapper">
-      <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
+      <img class="books__image" src="${book_image}" alt="${description}" loading="lazy"  />
     </div>
     <div class="books__info">
       <p class="books__info-title">${title}</p>
@@ -63,6 +62,7 @@ const makeListOfShoppingListBooks = async function (data) {
       <p>${buy_links[1].name}</p>
       <p>${buy_links[4].name}</p>
       <p>${list_name}</p>
+      <button class="trash-button" data-elementid=${_id}>Trash</button>
     </div>
   </li>
   `,
@@ -70,31 +70,39 @@ const makeListOfShoppingListBooks = async function (data) {
     .join(''));
 };
 
-const fetchShoppingElements = async (currentPage, elementsPerPage) => {
-  shoppingListBlock.hidden = true;
+const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) => {
+  shoppingArray = JSON.parse(localStorage.getItem('shoppingListArray'));
 
-  const shoppingArray = JSON.parse(localStorage.getItem('shoppingListArray'));
-
-  if (!shoppingArray) {
-    shoppingListBlock.hidden = false;
+  if (!shoppingArray || shoppingArray.length === 0) {
+    currentPage = 0;
+    shoppingListPagination.style.display = 'none';
+    shoppingListEmpty.style.display = 'block';
+    shoppingList.innerHTML = '';
     console.log('Shopping list EMPTY!!!');
     return;
   }
 
-  const integerDivision = Math.floor(shoppingArray.length / elementsPerPage);
+  shoppingListEmpty.style.display = 'none';
 
-  if (shoppingArray.length % elementsPerPage === 0) {
+  const integerDivision = Math.floor(shoppingArray.length / elementsPerPageAmount);
+
+  if (shoppingArray.length % elementsPerPageAmount === 0) {
     pageAmount = integerDivision;
   } else {
     pageAmount = integerDivision + 1;
   }
 
+  if (currentPageNumber > pageAmount) {
+    currentPageNumber = pageAmount;
+    currentPage = pageAmount;
+  }
+
   const filteredShoppingArray = shoppingArray.slice(
-    (currentPage - 1) * elementsPerPage,
-    currentPage * elementsPerPage,
+    (currentPageNumber - 1) * elementsPerPageAmount,
+    currentPageNumber * elementsPerPageAmount,
   );
 
-  const arrayOfPromises = shoppingArray.map(async bookId => {
+  const arrayOfPromises = filteredShoppingArray.map(async bookId => {
     const response = await getBookByID(bookId);
     return response.data;
   });
@@ -104,12 +112,13 @@ const fetchShoppingElements = async (currentPage, elementsPerPage) => {
 };
 
 const shoppingListUpdate = () => {
-  localStorage.setItem('shoppingListPage', currentPage);
+  sessionStorage.setItem('shoppingListPage', currentPage);
   fetchShoppingElements(currentPage, elementsPerPage);
+  sessionStorage.setItem('shoppingListPage', currentPage);
 };
 
 const firstPage = _ => {
-  if (currentPage === 1) {
+  if (currentPage <= 1) {
     return;
   }
 
@@ -159,20 +168,25 @@ const pageNumberResetHighlight = _ => {
 };
 
 const updatePageView = (direction = true) => {
-  pageNumberFirstLabel.hidden = false;
-  pageNumberSecondLabel.hidden = false;
-  pageNumberThirdLabel.hidden = false;
-  pageNumberMoreLabel.hidden = true;
+  if (currentPage <= 0) {
+    return;
+  }
+
+  pageNumberMoreLabel.style.display = 'none';
 
   if (numberOfPageElements === 2) {
     pageNumberResetHighlight();
+    pageNumberThirdLabel.style.display = 'none';
 
-    if (pageAmount < numberOfPageElements) {
-      pageNumberSecondLabel.hidden = true;
-      pageNumberThirdLabel.hidden = true;
+    if (pageAmount > currentPage + numberOfPageElements - 1) {
+      pageNumberMoreLabel.style.display = 'block';
     }
 
-    if (direction === true) {
+    if (pageAmount < numberOfPageElements) {
+      pageNumberSecondLabel.style.display = 'none';
+    }
+
+    if (direction === true && !reversePageDirection) {
       pageNumberFirstLabel.textContent = currentPage;
       pageNumberFirstLabel.dataset.highlight = true;
 
@@ -180,18 +194,14 @@ const updatePageView = (direction = true) => {
         pageNumberSecondLabel.textContent = currentPage + 1;
       }
     } else {
-      if (currentPage >= 2) {
+      if (currentPage >= 1 || reversePageDirection) {
         pageNumberSecondLabel.textContent = currentPage;
         pageNumberSecondLabel.dataset.highlight = true;
         pageNumberFirstLabel.textContent = currentPage - 1;
-      } else {
-        pageNumberFirstLabel.textContent = currentPage;
-        pageNumberFirstLabel.dataset.highlight = true;
-        pageNumberSecondLabel.textContent = currentPage + 1;
-      }
 
-      if (pageAmount > currentPage + numberOfPageElements - 1) {
-        pageNumberMoreLabel.hidden = false;
+        if (parseInt(pageNumberSecondLabel.textContent) === pageAmount - 1) {
+          pageNumberMoreLabel.style.display = 'block';
+        }
       }
     }
 
@@ -201,15 +211,32 @@ const updatePageView = (direction = true) => {
       pageNumberResetHighlight();
       pageNumberSecondLabel.dataset.highlight = true;
     }
-  } else if (numberOfPageElements === 3) {
-    if (pageAmount > currentPage + numberOfPageElements - 2) {
-      pageNumberMoreLabel.hidden = false;
-    }
 
+    if (currentPage === 1) {
+      pageNumberMoreLabel.style.display = 'none';
+      if (pageAmount > currentPage + numberOfPageElements - 1) {
+        pageNumberMoreLabel.style.display = 'block';
+      }
+
+      pageNumberResetHighlight();
+      pageNumberFirstLabel.textContent = currentPage;
+      pageNumberFirstLabel.dataset.highlight = true;
+      pageNumberSecondLabel.textContent = currentPage + 1;
+      pageNumberThirdLabel.textContent = currentPage + 2;
+    }
+  } else if (numberOfPageElements === 3) {
     pageNumberResetHighlight();
 
+    if (pageAmount > currentPage + numberOfPageElements - 2) {
+      pageNumberMoreLabel.style.display = 'block';
+    }
+
     if (pageAmount < numberOfPageElements) {
-      pageNumberThirdLabel.hidden = true;
+      pageNumberThirdLabel.style.display = 'none';
+
+      if (pageAmount < numberOfPageElements - 1) {
+        pageNumberSecondLabel.style.display = 'none';
+      }
     }
 
     if (direction === true) {
@@ -227,11 +254,6 @@ const updatePageView = (direction = true) => {
         pageNumberSecondLabel.dataset.highlight = true;
         pageNumberFirstLabel.textContent = currentPage - 1;
         pageNumberThirdLabel.textContent = currentPage + 1;
-      } else {
-        pageNumberFirstLabel.textContent = currentPage;
-        pageNumberFirstLabel.dataset.highlight = true;
-        pageNumberSecondLabel.textContent = currentPage + 1;
-        pageNumberThirdLabel.textContent = currentPage + 2;
       }
     }
 
@@ -243,11 +265,12 @@ const updatePageView = (direction = true) => {
       pageNumberThirdLabel.dataset.highlight = true;
     }
 
-    if (pageAmount > currentPage + numberOfPageElements) {
-      pageNumberMoreLabel.hidden = false;
-    }
-
     if (currentPage === 1) {
+      pageNumberMoreLabel.style.display = 'none';
+      if (pageAmount > currentPage + numberOfPageElements - 1) {
+        pageNumberMoreLabel.style.display = 'block';
+      }
+
       pageNumberResetHighlight();
       pageNumberFirstLabel.textContent = currentPage;
       pageNumberFirstLabel.dataset.highlight = true;
@@ -258,18 +281,18 @@ const updatePageView = (direction = true) => {
 };
 
 const setPage = chosenPage => {
+  reversePageDirection = currentPage > chosenPage;
   currentPage = chosenPage;
 
   shoppingListUpdate();
   updatePageView();
+  reversePageDirection = false;
 };
-
-fetchShoppingElements(currentPage, elementsPerPage);
 
 window.addEventListener('load', () => {
   onAuthStateChanged(auth, user => {
     if (user) {
-      fetchShoppingElements(currentPage, elementsPerPage);
+      shoppingListUpdate();
       updatePageView();
       console.log('User is signed in:', user);
     } else {
@@ -286,5 +309,14 @@ lastPageBtn.addEventListener('click', lastPage);
 document.addEventListener('click', event => {
   if (event.target.classList.contains('page-number-element')) {
     setPage(parseInt(event.target.textContent));
+  }
+});
+
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('trash-button')) {
+    shoppingArray.splice(shoppingArray.indexOf(event.target.dataset.elementid), 1);
+    localStorage.setItem('shoppingListArray', JSON.stringify(shoppingArray));
+    shoppingListUpdate();
+    updatePageView();
   }
 });

@@ -11,6 +11,7 @@ import '../auth/auth_on_auth_change.js';
 import { getBookByID } from '../home_page/fetch.js';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, app, db } from '../auth/auth.js';
+import { onSnapshot } from 'firebase/firestore';
 
 const shoppingList = document.querySelector('.shopping-list-items');
 const shoppingListEmpty = document.querySelector('.shopping-list-empty');
@@ -300,7 +301,7 @@ window.addEventListener('load', () => {
       shoppingListUpdate();
       updatePageView();
     } else {
-      alert('Nothing to display. Log in if you want to see book list');
+      window.location.href = './';
     }
   });
 });

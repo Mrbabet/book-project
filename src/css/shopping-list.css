@@ -82,12 +82,11 @@
 .shopping-list-page {
 }
 .shopping-list-empty {
-  width: 349px;
-  height: 309px;
-  top: 304px;
-  left: 210px;
-  gap: 20px;
-  color: #00000099;
+  width: 265px;
+  height: 248px;
+  top: 262px;
+  left: 55px;
+  gap: 14px;
 }
 .shopping-list-block-empty {
   font-size: 14px;

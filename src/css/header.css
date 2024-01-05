@@ -329,7 +329,6 @@ input:checked + .theme-toggler::before {
 }
 
 .shopping-p {
-  color: #fff;
   font-family: DM Sans;
   font-size: 14px;
   font-style: normal;
@@ -369,7 +368,6 @@ input:checked + .theme-toggler::before {
   line-height: 18px;
   letter-spacing: -0.56px;
   margin-bottom: 197px;
- 
 }
 .modal-sign-up.is-authenticated {
   display: none;
@@ -383,12 +381,12 @@ input:checked + .theme-toggler::before {
   margin-left: -20px;
   display: flex;
 }
-.modal-user.is-authenticated   {
+.modal-user.is-authenticated {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  }
-.modal-user  {
+}
+.modal-user {
   display: none;
 }
 .avatar {

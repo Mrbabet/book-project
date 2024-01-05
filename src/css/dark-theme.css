@@ -58,3 +58,6 @@ html.dark-theme .shopping-list-shopping {
 html.dark-theme .shopping-list-section {
   background-color: var(--main-bg-color-dark-theme);
 }
+html.dark-theme .shopping-list-block-empty {
+  color: var(--main-text-color-dark-theme);
+}

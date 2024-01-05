@@ -143,7 +143,7 @@ input:checked + .theme-toggler::before {
     align-items: normal;
     gap: 0px;
   }
-    .burger-icon {
+  .burger-icon {
     display: none;
   }
 
@@ -168,6 +168,9 @@ input:checked + .theme-toggler::before {
   }
 
   .dark-header[data-page-name='home'] .button-home {
+    background: #eac645;
+  }
+  .dark-header[data-page-name='shopping-list'] .button-shopping-list {
     background: #eac645;
   }
 
@@ -196,14 +199,22 @@ input:checked + .theme-toggler::before {
   }
 
   .button-shopping-list a {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .button-shopping-list {
+    min-width: 156px;
+    height: 34px;
+    border-radius: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    background-color: transparent;
     border: none;
-    cursor: pointer;
-    margin-right: 101px;
   }
 
   .shopping-p {
@@ -220,11 +231,11 @@ input:checked + .theme-toggler::before {
     position: relative;
     padding: 20px;
   }
-  
+
   .log-out-wrapper::before {
-    content: "";
+    content: '';
     opacity: 0;
-    transition: opacity .3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     position: absolute;
     inset: -31px;
     top: -31px;
@@ -233,10 +244,10 @@ input:checked + .theme-toggler::before {
     left: 110px;
     height: 48px;
     width: 184px;
-  }  
+  }
   .log-out-wrapper:hover::before {
     opacity: 1;
-  }  
+  }
   .button-log-out {
     opacity: 0;
     cursor: pointer;
@@ -248,18 +259,18 @@ input:checked + .theme-toggler::before {
     gap: 8px;
     width: 184px;
     height: 48px;
-    transition: transform .5s linear, opacity .5s linear;
+    transition: transform 0.5s linear, opacity 0.5s linear;
     display: inline-flex;
     position: absolute;
     bottom: 0px;
     left: 110px;
     transform: translateY(10%);
   }
-    .log-out-wrapper:hover .button-log-out {
+  .log-out-wrapper:hover .button-log-out {
     opacity: 1;
-    bottom: 0; 
+    bottom: 0;
   }
-   .sign-up {
+  .sign-up {
     width: 184px;
     height: 48px;
     flex-shrink: 0;
@@ -321,9 +332,9 @@ input:checked + .theme-toggler::before {
     display: none;
   }
   .log-out-wrapper::before {
-    content: "";
+    content: '';
     opacity: 0;
-    transition: opacity .3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     position: absolute;
     inset: -31px;
     top: -31px;
@@ -332,10 +343,10 @@ input:checked + .theme-toggler::before {
     left: 1189px;
     height: 48px;
     width: 184px;
-  }  
+  }
   .log-out-wrapper:hover::before {
     opacity: 1;
-  }  
+  }
   .button-log-out {
     opacity: 0;
     cursor: pointer;
@@ -354,7 +365,6 @@ input:checked + .theme-toggler::before {
     left: 1189px;
     transform: translateY(10%);
   }
-  
 }
 
 /*     BURGER MODAL   */

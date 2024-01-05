@@ -102,7 +102,6 @@ const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) =
 
 const shoppingListUpdate = () => {
   sessionStorage.setItem('shoppingListPage', currentPage);
-  //console.log('Header id: ' + shoppingHeader.id);
   fetchShoppingElements(currentPage, elementsPerPage);
   sessionStorage.setItem('shoppingListPage', currentPage);
 };
@@ -166,8 +165,6 @@ const updatePageView = (direction = true) => {
   pageNumberSecondLabel.style.display = 'block';
   pageNumberThirdLabel.style.display = 'block';
   pageNumberMoreLabel.style.display = 'none';
-
-  console.log('updatePageView numberOfPageElements: ' + numberOfPageElements);
 
   if (numberOfPageElements === 2) {
     pageNumberResetHighlight();
@@ -331,13 +328,6 @@ document.addEventListener('DOMContentLoaded', _event => {
 
 tabletDesktopMedia.addEventListener('change', _event => {
   setShoppingElements(tabletDesktopMedia);
-  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
-  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
   shoppingListUpdate();
-  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
-  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
   updatePageView();
-  console.log(pageAmount);
-  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
-  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
 });

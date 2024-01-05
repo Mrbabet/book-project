@@ -29,7 +29,7 @@
   flex-direction: row;
   column-gap: 8px;
 }
-.sl__supporters {
+.supporters-shopping {
   margin-top: 40px;
 }
 .shopping-list-container {
@@ -243,6 +243,9 @@
   }
 }
 @media screen and (min-width: 1280px) {
+  .container__shopping {
+    display: flex;
+  }
   .shopping-list-container {
     margin-top: 40px;
     max-width: 1060px;

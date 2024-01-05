@@ -426,7 +426,6 @@ input:checked + .theme-toggler::before {
 .dark-header[data-page-name='shopping-list'] .menu-button-shopping-list {
   background: #eac645;
 }
-
 .shopping-p {
   font-family: DM Sans;
   font-size: 14px;

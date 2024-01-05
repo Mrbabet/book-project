@@ -8,6 +8,7 @@ import { scrollToTop } from '../scrollTop';
 
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
+const pageHeader = document.querySelector('.dark-header');
 
 init();
 
@@ -91,3 +92,7 @@ const onSeeMoreClick = async function (e) {
 
 refCategory.addEventListener('click', onCategoryClick);
 refBooks.addEventListener('click', onSeeMoreClick);
+
+document.addEventListener('DOMContentLoaded', _event => {
+  pageHeader.dataset.pageName = 'home';
+});

@@ -37,7 +37,6 @@ const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
 const tabletDesktopMedia = window.matchMedia('screen and (min-width: 768px)');
 const pageHeader = document.querySelector('.dark-header');
-const supportUkraine = document.querySelector('.supporters');
 
 let currentPage = 1;
 let elementsPerPage = 4;
@@ -79,7 +78,6 @@ const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) =
     shoppingListPagination.style.display = 'none';
     shoppingListEmpty.style.display = 'block';
     shoppingList.innerHTML = '';
-    console.log('Shopping list EMPTY!!!');
     return;
   }
 
@@ -353,7 +351,7 @@ window.addEventListener('load', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', _event => {
+window.addEventListener('DOMContentLoaded', _event => {
   setShoppingElements(tabletDesktopMedia);
   pageHeader.dataset.pageName = 'shopping-list';
 });

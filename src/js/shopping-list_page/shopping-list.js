@@ -331,6 +331,7 @@ tabletDesktopMedia.addEventListener('change', _event => {
   setShoppingElements(tabletDesktopMedia);
   shoppingListUpdate();
   updatePageView();
+});
 
 window.addEventListener('load', () => {
   if (screen.width < 1280) {

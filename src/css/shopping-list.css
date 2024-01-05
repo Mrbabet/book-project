@@ -173,11 +173,21 @@
     left: 735px;
     gap: 20px;
   }
+  .shopping-list-block-empty {
+    width: 349px;
+    height: 48px;
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
 
   .shopping-list-item {
     width: 996px;
     height: 213px;
-    top: 204px;
+    top: 304px;
     left: 420px;
     gap: 48px;
   }

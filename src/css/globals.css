@@ -21,6 +21,9 @@ img {
 body {
   font-family: 'DM Sans', sans-serif;
 }
+svg {
+  pointer-events: none;
+}
 
 .container {
   width: 100%;

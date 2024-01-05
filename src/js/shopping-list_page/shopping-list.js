@@ -11,7 +11,18 @@ import '../auth/auth_on_auth_change.js';
 import { getBookByID } from '../home_page/fetch.js';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, app, db } from '../auth/auth.js';
-import { onSnapshot } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  getDoc,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+} from 'firebase/firestore';
 
 const shoppingList = document.querySelector('.shopping-list-items');
 const shoppingListEmpty = document.querySelector('.shopping-list-empty');
@@ -302,12 +313,32 @@ document.addEventListener('click', event => {
   }
 });
 
-document.addEventListener('click', event => {
-  if (event.target.classList.contains('trash-button')) {
-    shoppingArray.splice(shoppingArray.indexOf(event.target.dataset.elementid), 1);
-    localStorage.setItem('shoppingListArray', JSON.stringify(shoppingArray));
-    shoppingListUpdate();
-    updatePageView();
+onAuthStateChanged(auth, async user => {
+  if (user) {
+    const uid = user.uid;
+    const userRefDoc = doc(db, 'users', uid);
+    const userData = (await getDoc(userRefDoc)).data();
+    document.addEventListener('click', async event => {
+      if (event.target.classList.contains('trash-button')) {
+        console.log('click');
+        if (
+          userData &&
+          userData.shoppingListArray &&
+          userData.shoppingListArray.includes(event.target.dataset.elementid)
+        ) {
+          await updateDoc(userRefDoc, {
+            shoppingListArray: arrayRemove(event.target.dataset.elementid),
+          });
+        }
+
+        shoppingArray.splice(shoppingArray.indexOf(event.target.dataset.elementid), 1);
+        localStorage.setItem('shoppingListArray', JSON.stringify(shoppingArray));
+        shoppingListUpdate();
+        updatePageView();
+      }
+    });
+  } else {
+    // console.log('User is signed out');
   }
 });
 

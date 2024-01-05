@@ -264,6 +264,8 @@
   }
 
   .shopping-list-items {
+    margin-top: 40px;
+    margin-left: 40px;
     gap: 20px;
   }
 

@@ -52,9 +52,27 @@ html.dark-theme .modal .book-desc {
 html.dark-theme .menu li a {
   color: var(--main-text-color-dark-theme);
 }
-html.dark-theme .shopping-list-shopping {
+html.dark-theme .form-container {
+  background-color: var(--main-bg-color-dark-theme);
+  border-color: #fff;
+}
+html.dark-theme .form-item {
+  color: var(--main-text-color-dark-theme);
+  border-color: #fff;
+}
+html.dark-theme .form-item input::placeholder {
   color: var(--main-text-color-dark-theme);
 }
-html.dark-theme .shopping-list-section {
-  background-color: var(--main-bg-color-dark-theme);
+html.dark-theme .submit-btn {
+  background-color: #fff;
+  color: var(--main-bg-color-dark-theme);
+}
+html.dark-theme .form-footer button {
+  color: #f6f6f6;
+}
+html.dark-theme .form-footer button:hover {
+  color: var(--accent-color);
+}
+html.dark-theme .form-container .svg-close {
+  stroke: #fff;
 }

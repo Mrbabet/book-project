@@ -5,13 +5,13 @@
   top: 0;
   left: 0;
   display: flex;
-  z-index: 10;
   background-color: var(--accent-color);
+  z-index: 10;
 }
 .form-container {
   position: relative;
   display: block;
-  margin: 214px auto;
+  margin: 214px 14px;
   background-color: var(--main-bg-color);
   border-radius: 18px;
   border: 2px solid #111;
@@ -87,6 +87,7 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  text-transform: uppercase;
 }
 .form-footer {
   display: flex;
@@ -94,17 +95,18 @@
   align-items: center;
   gap: 20px;
 }
-.form-footer a:visited,
-.form-footer a {
+.form-footer button {
   color: rgba(17, 17, 17, 0.5);
   font-size: 14px;
   text-decoration: none;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-.form-footer a:hover {
+.form-footer button:hover {
   color: var(--accent-color);
   text-decoration: underline;
+  cursor: pointer;
 }
 .sign-out-container {
   width: 100%;
@@ -140,23 +142,24 @@
     margin: 127px auto;
     padding: 80px 40px 84px 40px;
   }
-  .sign-in-form {
+  .sign-up-form {
     gap: 28px;
+    margin-bottom: 20px;
   }
-  .sign-in-form input {
+  .sign-up-form input {
     font-size: 18px;
     padding: 20px 140px 20px 40px;
   }
-  .sign-in-form input::placeholder {
+  .sign-up-form input::placeholder {
     font-size: 18px;
   }
-  .sign-form-bttn {
+  .submit-btn {
     margin-top: 12px;
     font-size: 18px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .form-footer a {
+  .form-footer button {
     font-size: 18px;
   }
 }

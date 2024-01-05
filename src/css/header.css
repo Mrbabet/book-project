@@ -351,7 +351,7 @@ input:checked + .theme-toggler::before {
     display: inline-flex;
     position: absolute;
     bottom: 0px;
-    left: 1189px;
+    left: 787px;
     transform: translateY(10%);
   }
 }
@@ -524,7 +524,7 @@ input:checked + .theme-toggler::before {
   width: 118px;
   height: 48px;
   position: absolute;
-  bottom: 20px;
+  bottom: -446px;
   display: none;
 }
 .menu-log-out.is-authenticated {

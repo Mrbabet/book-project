@@ -423,25 +423,10 @@ input:checked + .theme-toggler::before {
   cursor: pointer;
 }
 
-
-.shopping-p + .theme-toggler {
-  color:#111;
-  font-family: DM Sans;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 18px;
-  letter-spacing: -0.56px;
-  text-transform: uppercase;
-}
-.menu-shopping-p {
-  color: #fff;
-}
 .dark-header[data-page-name='shopping-list'] .menu-button-shopping-list {
   background: #eac645;
 }
 .shopping-p {
-
   font-family: DM Sans;
   font-size: 14px;
   font-style: normal;

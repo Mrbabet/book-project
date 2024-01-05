@@ -24,8 +24,8 @@ const pageNumberFirstLabel = document.querySelector('.page-number-first');
 const pageNumberSecondLabel = document.querySelector('.page-number-second');
 const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
-const shoppingHeader = document.querySelector('.header');
 const tabletDesktopMedia = window.matchMedia('screen and (min-width: 768px)');
+const pageHeader = document.querySelector('.dark-header');
 
 let currentPage = 1;
 let elementsPerPage = 4;
@@ -326,6 +326,7 @@ window.addEventListener('load', () => {
 
 document.addEventListener('DOMContentLoaded', _event => {
   setShoppingElements(tabletDesktopMedia);
+  pageHeader.dataset.pageName = 'shopping-list';
 });
 
 tabletDesktopMedia.addEventListener('change', _event => {

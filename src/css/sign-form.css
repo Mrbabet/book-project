@@ -5,13 +5,15 @@
   top: 0;
   left: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--accent-color);
   z-index: 10;
 }
 .signup-modal-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 14px;
+  right: 14px;
   width: 28px;
   height: 28px;
   cursor: pointer;
@@ -19,7 +21,7 @@
 .form-container {
   position: relative;
   display: block;
-  margin: 214px 14px;
+
   background-color: var(--main-bg-color);
   border-radius: 18px;
   border: 2px solid #111;
@@ -137,6 +139,14 @@
   display: none;
 }
 @media screen and (min-width: 768px) {
+  .signup-modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
   .form-wrapper {
     width: 100vw;
     padding: 0 32px;

@@ -6,7 +6,7 @@ const signUpBtnMobile = document.querySelector('.modal-sign-up');
 import { closeModal } from './buger-modal';
 
 export function showModal() {
-  authorizationModal.style.display = 'block';
+  authorizationModal.style.display = 'flex';
 }
 export function hideModal() {
   authorizationModal.style.display = 'none';

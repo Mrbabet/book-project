@@ -6,28 +6,27 @@ import '../dark-mode.js';
 import '../buger-modal.js';
 import '../auth/auth.js';
 import '../auth/auth-form.js';
+import '../auth/auth_on_auth_change.js';
 
 import { getBookByID } from '../home_page/fetch.js';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, app, db } from '../auth/auth.js';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  getDoc,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+} from 'firebase/firestore';
 
-export const firebaseConfig = {
-  apiKey: 'AIzaSyDIt6ClvCkB36kNCs8suIEnlzg23Or1UqU',
-  authDomain: 'book-project-8a976.firebaseapp.com',
-  projectId: 'book-project-8a976',
-  storageBucket: 'book-project-8a976.appspot.com',
-  messagingSenderId: '595782127929',
-  appId: '1:595782127929:web:e819e67d1654c476ec98e8',
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
-
-const shoppingList = document.querySelector('.shopping-list');
-const shoppingListBlock = document.querySelector('.shopping-list-block');
+const shoppingList = document.querySelector('.shopping-list-items');
+const shoppingListEmpty = document.querySelector('.shopping-list-empty');
+const shoppingListPagination = document.querySelector('.shopping-list-pagination');
 const firstPageBtn = document.querySelector('.first-page-btn');
 const previousPageBtn = document.querySelector('.previous-page-btn');
 const nextPageBtn = document.querySelector('.next-page-btn');
@@ -36,33 +35,34 @@ const pageNumberFirstLabel = document.querySelector('.page-number-first');
 const pageNumberSecondLabel = document.querySelector('.page-number-second');
 const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
+const tabletDesktopMedia = window.matchMedia('screen and (min-width: 768px)');
+const pageHeader = document.querySelector('.dark-header');
 
-let currentPage = parseInt(localStorage.getItem('shoppingListPage'));
-let elementsPerPage = 3;
+let currentPage = 1;
+let elementsPerPage = 4;
 let pageAmount = 1;
 let numberOfPageElements = 3;
-
-if (!currentPage) {
-  currentPage = 1;
-}
+let shoppingArray = [];
+let reversePageDirection = false;
 
 const makeListOfShoppingListBooks = async function (data) {
+  console.log(data);
   return (shoppingList.innerHTML = data
     .map(
       ({ author, book_image, title, description, _id, buy_links, list_name }) =>
         `
-  <li class="shopping-lisg__item" id=${_id}>
+  <li class="shopping-list_item" id=${_id}>
     <div class="books__wrapper">
-      <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
+      <img class="sl__books__image" src="${book_image}" alt="${description}" loading="lazy"  />
     </div>
     <div class="books__info">
-      <p class="books__info-title">${title}</p>
+      <p class="books__info-title sl__books-title">${title}</p>
+      <p class="books__listname">${list_name}</p>
+      <p class = "books__desc">${description}</p>
+      <a href ="${buy_links[0].url}"><button class ="sl__amazon"></button></a>
+      <a href ="${buy_links[1].url}"><button class ="sl__apple-books"></button></a>
       <p class="books__info-author">${author}</p>
-      <p>${description}</p>
-      <p>${buy_links[0].name}</p>
-      <p>${buy_links[1].name}</p>
-      <p>${buy_links[4].name}</p>
-      <p>${list_name}</p>
+      <button class="trash-button" data-elementid=${_id}><svg class = "books__button-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6.75 2.25H11.25M2.25 4.5H15.75M14.25 4.5L13.724 12.3895C13.6451 13.5732 13.6057 14.165 13.35 14.6138C13.1249 15.0088 12.7854 15.3265 12.3762 15.5248C11.9115 15.75 11.3183 15.75 10.132 15.75H7.86799C6.68168 15.75 6.08852 15.75 5.62375 15.5248C5.21457 15.3265 4.87507 15.0088 4.64999 14.6138C4.39433 14.165 4.35488 13.5732 4.27596 12.3895L3.75 4.5M7.5 7.875V11.625M10.5 7.875V11.625" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </li>
   `,
@@ -70,31 +70,38 @@ const makeListOfShoppingListBooks = async function (data) {
     .join(''));
 };
 
-const fetchShoppingElements = async (currentPage, elementsPerPage) => {
-  shoppingListBlock.hidden = true;
+const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) => {
+  shoppingArray = JSON.parse(localStorage.getItem('shoppingListArray'));
 
-  const shoppingArray = JSON.parse(localStorage.getItem('shoppingListArray'));
-
-  if (!shoppingArray) {
-    shoppingListBlock.hidden = false;
-    console.log('Shopping list EMPTY!!!');
+  if (!shoppingArray || shoppingArray.length === 0) {
+    currentPage = 0;
+    shoppingListPagination.style.display = 'none';
+    shoppingListEmpty.style.display = 'block';
+    shoppingList.innerHTML = '';
     return;
   }
 
-  const integerDivision = Math.floor(shoppingArray.length / elementsPerPage);
+  shoppingListEmpty.style.display = 'none';
 
-  if (shoppingArray.length % elementsPerPage === 0) {
+  const integerDivision = Math.floor(shoppingArray.length / elementsPerPageAmount);
+
+  if (shoppingArray.length % elementsPerPageAmount === 0) {
     pageAmount = integerDivision;
   } else {
     pageAmount = integerDivision + 1;
   }
 
+  if (currentPageNumber > pageAmount) {
+    currentPageNumber = pageAmount;
+    currentPage = pageAmount;
+  }
+
   const filteredShoppingArray = shoppingArray.slice(
-    (currentPage - 1) * elementsPerPage,
-    currentPage * elementsPerPage,
+    (currentPageNumber - 1) * elementsPerPageAmount,
+    currentPageNumber * elementsPerPageAmount,
   );
 
-  const arrayOfPromises = shoppingArray.map(async bookId => {
+  const arrayOfPromises = filteredShoppingArray.map(async bookId => {
     const response = await getBookByID(bookId);
     return response.data;
   });
@@ -104,12 +111,13 @@ const fetchShoppingElements = async (currentPage, elementsPerPage) => {
 };
 
 const shoppingListUpdate = () => {
-  localStorage.setItem('shoppingListPage', currentPage);
+  sessionStorage.setItem('shoppingListPage', currentPage);
   fetchShoppingElements(currentPage, elementsPerPage);
+  sessionStorage.setItem('shoppingListPage', currentPage);
 };
 
 const firstPage = _ => {
-  if (currentPage === 1) {
+  if (currentPage <= 1) {
     return;
   }
 
@@ -159,20 +167,28 @@ const pageNumberResetHighlight = _ => {
 };
 
 const updatePageView = (direction = true) => {
-  pageNumberFirstLabel.hidden = false;
-  pageNumberSecondLabel.hidden = false;
-  pageNumberThirdLabel.hidden = false;
-  pageNumberMoreLabel.hidden = true;
+  if (currentPage <= 0) {
+    return;
+  }
+
+  pageNumberFirstLabel.style.display = 'block';
+  pageNumberSecondLabel.style.display = 'block';
+  pageNumberThirdLabel.style.display = 'block';
+  pageNumberMoreLabel.style.display = 'none';
 
   if (numberOfPageElements === 2) {
     pageNumberResetHighlight();
+    pageNumberThirdLabel.style.display = 'none';
 
-    if (pageAmount < numberOfPageElements) {
-      pageNumberSecondLabel.hidden = true;
-      pageNumberThirdLabel.hidden = true;
+    if (pageAmount > currentPage + numberOfPageElements - 1) {
+      pageNumberMoreLabel.style.display = 'block';
     }
 
-    if (direction === true) {
+    if (pageAmount < numberOfPageElements) {
+      pageNumberSecondLabel.style.display = 'none';
+    }
+
+    if (direction === true && !reversePageDirection) {
       pageNumberFirstLabel.textContent = currentPage;
       pageNumberFirstLabel.dataset.highlight = true;
 
@@ -180,18 +196,14 @@ const updatePageView = (direction = true) => {
         pageNumberSecondLabel.textContent = currentPage + 1;
       }
     } else {
-      if (currentPage >= 2) {
+      if (currentPage >= 1 || reversePageDirection) {
         pageNumberSecondLabel.textContent = currentPage;
         pageNumberSecondLabel.dataset.highlight = true;
         pageNumberFirstLabel.textContent = currentPage - 1;
-      } else {
-        pageNumberFirstLabel.textContent = currentPage;
-        pageNumberFirstLabel.dataset.highlight = true;
-        pageNumberSecondLabel.textContent = currentPage + 1;
-      }
 
-      if (pageAmount > currentPage + numberOfPageElements - 1) {
-        pageNumberMoreLabel.hidden = false;
+        if (parseInt(pageNumberSecondLabel.textContent) === pageAmount - 1) {
+          pageNumberMoreLabel.style.display = 'block';
+        }
       }
     }
 
@@ -201,15 +213,32 @@ const updatePageView = (direction = true) => {
       pageNumberResetHighlight();
       pageNumberSecondLabel.dataset.highlight = true;
     }
-  } else if (numberOfPageElements === 3) {
-    if (pageAmount > currentPage + numberOfPageElements - 2) {
-      pageNumberMoreLabel.hidden = false;
-    }
 
+    if (currentPage === 1) {
+      pageNumberMoreLabel.style.display = 'none';
+      if (pageAmount > currentPage + numberOfPageElements - 1) {
+        pageNumberMoreLabel.style.display = 'block';
+      }
+
+      pageNumberResetHighlight();
+      pageNumberFirstLabel.textContent = currentPage;
+      pageNumberFirstLabel.dataset.highlight = true;
+      pageNumberSecondLabel.textContent = currentPage + 1;
+      pageNumberThirdLabel.textContent = currentPage + 2;
+    }
+  } else if (numberOfPageElements === 3) {
     pageNumberResetHighlight();
 
+    if (pageAmount > currentPage + numberOfPageElements - 2) {
+      pageNumberMoreLabel.style.display = 'block';
+    }
+
     if (pageAmount < numberOfPageElements) {
-      pageNumberThirdLabel.hidden = true;
+      pageNumberThirdLabel.style.display = 'none';
+
+      if (pageAmount < numberOfPageElements - 1) {
+        pageNumberSecondLabel.style.display = 'none';
+      }
     }
 
     if (direction === true) {
@@ -227,11 +256,6 @@ const updatePageView = (direction = true) => {
         pageNumberSecondLabel.dataset.highlight = true;
         pageNumberFirstLabel.textContent = currentPage - 1;
         pageNumberThirdLabel.textContent = currentPage + 1;
-      } else {
-        pageNumberFirstLabel.textContent = currentPage;
-        pageNumberFirstLabel.dataset.highlight = true;
-        pageNumberSecondLabel.textContent = currentPage + 1;
-        pageNumberThirdLabel.textContent = currentPage + 2;
       }
     }
 
@@ -243,11 +267,12 @@ const updatePageView = (direction = true) => {
       pageNumberThirdLabel.dataset.highlight = true;
     }
 
-    if (pageAmount > currentPage + numberOfPageElements) {
-      pageNumberMoreLabel.hidden = false;
-    }
-
     if (currentPage === 1) {
+      pageNumberMoreLabel.style.display = 'none';
+      if (pageAmount > currentPage + numberOfPageElements - 1) {
+        pageNumberMoreLabel.style.display = 'block';
+      }
+
       pageNumberResetHighlight();
       pageNumberFirstLabel.textContent = currentPage;
       pageNumberFirstLabel.dataset.highlight = true;
@@ -258,26 +283,23 @@ const updatePageView = (direction = true) => {
 };
 
 const setPage = chosenPage => {
+  reversePageDirection = currentPage > chosenPage;
   currentPage = chosenPage;
 
   shoppingListUpdate();
   updatePageView();
+  reversePageDirection = false;
 };
 
-fetchShoppingElements(currentPage, elementsPerPage);
-
-window.addEventListener('load', () => {
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      fetchShoppingElements(currentPage, elementsPerPage);
-      updatePageView();
-      console.log('User is signed in:', user);
-    } else {
-      alert('Nothing to display. Log in if you want to see book list');
-      console('Signed out');
-    }
-  });
-});
+const setShoppingElements = mediaElement => {
+  if (mediaElement.matches) {
+    elementsPerPage = 3;
+    numberOfPageElements = 3;
+  } else {
+    elementsPerPage = 4;
+    numberOfPageElements = 2;
+  }
+};
 
 firstPageBtn.addEventListener('click', firstPage);
 previousPageBtn.addEventListener('click', prevPage);
@@ -287,4 +309,55 @@ document.addEventListener('click', event => {
   if (event.target.classList.contains('page-number-element')) {
     setPage(parseInt(event.target.textContent));
   }
+});
+
+onAuthStateChanged(auth, async user => {
+  if (user) {
+    const uid = user.uid;
+    const userRefDoc = doc(db, 'users', uid);
+    const userData = (await getDoc(userRefDoc)).data();
+    document.addEventListener('click', async event => {
+      if (event.target.classList.contains('trash-button')) {
+        console.log('click');
+        if (
+          userData &&
+          userData.shoppingListArray &&
+          userData.shoppingListArray.includes(event.target.dataset.elementid)
+        ) {
+          await updateDoc(userRefDoc, {
+            shoppingListArray: arrayRemove(event.target.dataset.elementid),
+          });
+        }
+
+        shoppingArray.splice(shoppingArray.indexOf(event.target.dataset.elementid), 1);
+        localStorage.setItem('shoppingListArray', JSON.stringify(shoppingArray));
+        shoppingListUpdate();
+        updatePageView();
+      }
+    });
+  } else {
+    // console.log('User is signed out');
+  }
+});
+
+window.addEventListener('load', () => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      shoppingListUpdate();
+      updatePageView();
+    } else {
+      window.location.href = './';
+    }
+  });
+});
+
+window.addEventListener('DOMContentLoaded', _event => {
+  setShoppingElements(tabletDesktopMedia);
+  pageHeader.dataset.pageName = 'shopping-list';
+});
+
+tabletDesktopMedia.addEventListener('change', _event => {
+  setShoppingElements(tabletDesktopMedia);
+  shoppingListUpdate();
+  updatePageView();
 });

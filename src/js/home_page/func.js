@@ -2,7 +2,7 @@ export async function renderCategoryList(fetch) {
   let allCategoryMarkup = `<li class="category-item js-current-category" data-category="All Categories">All Categories</li>`;
   return (allCategoryMarkup += fetch.data
     .map(({ list_name }) => {
-      return `<li class="category-item" data-category="${list_name}">${list_name}</li>`;
+      return `<li class="category-item"  data-category="${list_name}">${list_name}</li>`;
     })
     .join(''));
 }
@@ -20,20 +20,23 @@ export async function renderBooksItems(data) {
     }),
   );
 }
+
+//Popracować nad tą funkcją !!!
+
 function addMediaWidth() {
   const screenSize = window.screen.width;
 
-  // addEventListener('resize', () => {
-  //   if (
-  //     (window.innerWidth > 767 && screenSize < 768) ||
-  //     (window.innerWidth > 1279 && screenSize < 1280) ||
-  //     (window.innerWidth < 1279 && screenSize > 1280) ||
-  //     (window.innerWidth > 1439 && screenSize < 1440) ||
-  //     (window.innerWidth < 1439 && screenSize > 1440)
-  //   ) {
-  //     location.reload();
-  //   }
-  // });
+  window.addEventListener('resize', () => {
+    if (
+      (window.innerWidth > 767 && screenSize < 768) ||
+      (window.innerWidth > 1279 && screenSize < 1280) ||
+      (window.innerWidth < 1279 && screenSize > 1280) ||
+      (window.innerWidth > 1439 && screenSize < 1440) ||
+      (window.innerWidth < 1439 && screenSize > 1440)
+    ) {
+      location.reload();
+    }
+  });
 
   if (screenSize < 768) {
     return 'mobile';
@@ -74,7 +77,7 @@ export async function makeListOfBooks(data) {
   return data
     .map(
       ({ author, book_image, title, description, _id }) => `
-    <li class="books__item" id=${_id}>
+    <li class="books__item" data-aos="zoom-in"  data-aos-easing="ease-out-cubic" id=${_id}>
       <div class="books__wrapper">
         <img class="books__image" src="${book_image}"  alt="${description}" loading="lazy"  />
         <div class="books__overlay">

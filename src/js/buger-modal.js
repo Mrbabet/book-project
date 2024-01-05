@@ -7,7 +7,7 @@ function openModal() {
 }
 
 // Funkcja zamykająca modal i przywracająca scrollowanie strony
-function closeModal() {
+export function closeModal() {
   document.getElementById('burgerModal').style.display = 'none';
   document.querySelector('.btn-burger').style.display = 'block';
   document.querySelector('.btn-close').style.display = 'none';

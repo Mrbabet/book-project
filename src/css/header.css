@@ -163,10 +163,15 @@ input:checked + .theme-toggler::before {
     align-items: flex-start;
     gap: 10px;
     border-radius: 36px;
-    background: #eac645;
+    background: transparent;
     width: 72px;
     height: 34px;
   }
+
+  .dark-header[data-page-name='home'] .button-home {
+    background: #eac645;
+  }
+
   .menu li a {
     text-decoration: none;
     color: #111;
@@ -326,6 +331,10 @@ input:checked + .theme-toggler::before {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.dark-header[data-page-name='shopping-list'] .menu-button-shopping-list {
+  background: #eac645;
 }
 
 .shopping-p {

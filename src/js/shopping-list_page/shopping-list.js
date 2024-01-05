@@ -24,12 +24,14 @@ const pageNumberFirstLabel = document.querySelector('.page-number-first');
 const pageNumberSecondLabel = document.querySelector('.page-number-second');
 const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
+const tabletDesktopMedia = window.matchMedia('screen and (min-width: 768px)');
+const pageHeader = document.querySelector('.dark-header');
 const supportUkraine = document.querySelector('.supporters');
 
 let currentPage = 1;
-let elementsPerPage = 3;
+let elementsPerPage = 4;
 let pageAmount = 1;
-let numberOfPageElements = 2;
+let numberOfPageElements = 3;
 let shoppingArray = [];
 let reversePageDirection = false;
 
@@ -160,6 +162,9 @@ const updatePageView = (direction = true) => {
     return;
   }
 
+  pageNumberFirstLabel.style.display = 'block';
+  pageNumberSecondLabel.style.display = 'block';
+  pageNumberThirdLabel.style.display = 'block';
   pageNumberMoreLabel.style.display = 'none';
 
   if (numberOfPageElements === 2) {
@@ -277,6 +282,16 @@ const setPage = chosenPage => {
   reversePageDirection = false;
 };
 
+const setShoppingElements = mediaElement => {
+  if (mediaElement.matches) {
+    elementsPerPage = 3;
+    numberOfPageElements = 3;
+  } else {
+    elementsPerPage = 4;
+    numberOfPageElements = 2;
+  }
+};
+
 firstPageBtn.addEventListener('click', firstPage);
 previousPageBtn.addEventListener('click', prevPage);
 nextPageBtn.addEventListener('click', nextPage);
@@ -306,6 +321,16 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', _event => {
+  setShoppingElements(tabletDesktopMedia);
+  pageHeader.dataset.pageName = 'shopping-list';
+});
+
+tabletDesktopMedia.addEventListener('change', _event => {
+  setShoppingElements(tabletDesktopMedia);
+  shoppingListUpdate();
+  updatePageView();
 
 window.addEventListener('load', () => {
   if (screen.width < 1280) {

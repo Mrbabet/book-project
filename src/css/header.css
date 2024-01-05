@@ -11,7 +11,6 @@
 
 .btn-burger {
   display: flex;
-
   justify-content: center;
   align-items: center;
   background-color: transparent;
@@ -302,7 +301,7 @@ input:checked + .theme-toggler::before {
   }
 }
 
-@media screen and (min-width: 1140px) {
+@media screen and (min-width: 1280px) {
   .container-logo {
     margin-right: 76px;
   }
@@ -425,6 +424,8 @@ input:checked + .theme-toggler::before {
 .dark-header[data-page-name='shopping-list'] .menu-button-shopping-list {
   background: #eac645;
 }
+[data-page-name='shopping-list'] .button-shopping-list {
+}
 .shopping-p {
   font-family: DM Sans;
   font-size: 14px;
@@ -438,11 +439,14 @@ input:checked + .theme-toggler::before {
   stroke: #fff;
   fill: #fff;
 }
-.burger-modal .modal-container {
-  margin: 20px;
-  width: 100%;
-  height: 100%;
+.modal-container {
+  display: block;
+  padding: 20px;
+  position: relative;
+
+  height: calc(100% - 64px);
 }
+
 .burger-modal-wrapper {
   width: 100%;
   height: 100%;
@@ -524,7 +528,7 @@ input:checked + .theme-toggler::before {
   width: 118px;
   height: 48px;
   position: absolute;
-  bottom: -446px;
+  bottom: 20px;
   display: none;
 }
 .menu-log-out.is-authenticated {

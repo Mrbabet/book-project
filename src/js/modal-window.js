@@ -88,6 +88,7 @@ export async function initModal(bookId) {
     } else {
       toggleButton.disabled = true;
       anonymousUser.style.display = 'block';
+      toggleButton.textContent = 'Add to the shopping list';
     }
   });
 }

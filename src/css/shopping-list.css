@@ -217,6 +217,7 @@
 @media screen and (min-width: 1280px) {
   .container__shopping {
     display: flex;
+    justify-content: center;
   }
 
   .shopping-list_item {

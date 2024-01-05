@@ -8,6 +8,14 @@
   background-color: var(--accent-color);
   z-index: 10;
 }
+.signup-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
 .form-container {
   position: relative;
   display: block;
@@ -31,12 +39,8 @@
 }
 .svg-close {
   stroke: #111;
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
 .sign-up-form {
   display: flex;

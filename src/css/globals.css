@@ -24,6 +24,10 @@ body {
 svg {
   pointer-events: none;
 }
+button,
+a {
+  cursor: pointer;
+}
 
 .container {
   width: 100%;

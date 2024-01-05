@@ -76,3 +76,9 @@ html.dark-theme .form-footer button:hover {
 html.dark-theme .form-container .svg-close {
   stroke: #fff;
 }
+html.dark-theme .shopping-list-shopping {
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .shopping-list-section {
+  background-color: var(--main-bg-color-dark-theme);
+}

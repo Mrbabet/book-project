@@ -338,7 +338,6 @@ input:checked + .theme-toggler::before {
 }
 
 .shopping-p {
-  color: #fff;
   font-family: DM Sans;
   font-size: 14px;
   font-style: normal;

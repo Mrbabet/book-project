@@ -24,11 +24,13 @@ const pageNumberFirstLabel = document.querySelector('.page-number-first');
 const pageNumberSecondLabel = document.querySelector('.page-number-second');
 const pageNumberThirdLabel = document.querySelector('.page-number-third');
 const pageNumberMoreLabel = document.querySelector('.page-number-more');
+const shoppingHeader = document.querySelector('.header');
+const tabletDesktopMedia = window.matchMedia('screen and (min-width: 768px)');
 
 let currentPage = 1;
-let elementsPerPage = 3;
+let elementsPerPage = 4;
 let pageAmount = 1;
-let numberOfPageElements = 2;
+let numberOfPageElements = 3;
 let shoppingArray = [];
 let reversePageDirection = false;
 
@@ -100,6 +102,7 @@ const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) =
 
 const shoppingListUpdate = () => {
   sessionStorage.setItem('shoppingListPage', currentPage);
+  //console.log('Header id: ' + shoppingHeader.id);
   fetchShoppingElements(currentPage, elementsPerPage);
   sessionStorage.setItem('shoppingListPage', currentPage);
 };
@@ -159,7 +162,12 @@ const updatePageView = (direction = true) => {
     return;
   }
 
+  pageNumberFirstLabel.style.display = 'block';
+  pageNumberSecondLabel.style.display = 'block';
+  pageNumberThirdLabel.style.display = 'block';
   pageNumberMoreLabel.style.display = 'none';
+
+  console.log('updatePageView numberOfPageElements: ' + numberOfPageElements);
 
   if (numberOfPageElements === 2) {
     pageNumberResetHighlight();
@@ -276,6 +284,16 @@ const setPage = chosenPage => {
   reversePageDirection = false;
 };
 
+const setShoppingElements = mediaElement => {
+  if (mediaElement.matches) {
+    elementsPerPage = 3;
+    numberOfPageElements = 3;
+  } else {
+    elementsPerPage = 4;
+    numberOfPageElements = 2;
+  }
+};
+
 firstPageBtn.addEventListener('click', firstPage);
 previousPageBtn.addEventListener('click', prevPage);
 nextPageBtn.addEventListener('click', nextPage);
@@ -304,4 +322,21 @@ window.addEventListener('load', () => {
       window.location.href = './';
     }
   });
+});
+
+document.addEventListener('DOMContentLoaded', _event => {
+  setShoppingElements(tabletDesktopMedia);
+});
+
+tabletDesktopMedia.addEventListener('change', _event => {
+  setShoppingElements(tabletDesktopMedia);
+  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
+  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
+  shoppingListUpdate();
+  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
+  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
+  updatePageView();
+  console.log(pageAmount);
+  console.log('ELEMENTS PER PAGE:' + elementsPerPage);
+  console.log('MAX_PAGE_NUMBER_ELEMENTS: ' + numberOfPageElements);
 });

@@ -48,6 +48,7 @@ export async function initModal(bookId) {
       }
 
       toggleButtonClickHandler = async e => {
+        console.log('click');
         if (userData && userData.shoppingListArray && userData.shoppingListArray.includes(bookId)) {
           await updateDoc(userRefDoc, {
             shoppingListArray: arrayRemove(bookId),

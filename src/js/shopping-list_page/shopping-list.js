@@ -332,9 +332,3 @@ tabletDesktopMedia.addEventListener('change', _event => {
   shoppingListUpdate();
   updatePageView();
 });
-
-window.addEventListener('load', () => {
-  if (screen.width < 1280) {
-    supportUkraine.style.display = 'none';
-  }
-});

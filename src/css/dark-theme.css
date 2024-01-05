@@ -53,5 +53,8 @@ html.dark-theme .menu li a {
   color: var(--main-text-color-dark-theme);
 }
 html.dark-theme .shopping-list-shopping {
-  color: #ffff;
+  color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .shopping-list-section {
+  background-color: var(--main-bg-color-dark-theme);
 }

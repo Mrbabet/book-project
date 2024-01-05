@@ -41,64 +41,46 @@ export async function initModal(bookId) {
     if (user) {
       const uid = user.uid;
       const userRefDoc = doc(db, 'users', uid);
+      const userData = (await getDoc(userRefDoc)).data();
 
       if (toggleButtonClickHandler) {
         toggleButton.removeEventListener('click', toggleButtonClickHandler);
       }
 
       toggleButtonClickHandler = async e => {
-        e.preventDefault();
-        if (e.target.textContent === 'Remove from the shopping list') {
-          const updatedArray = arrayUnion(bookId);
-
-          await updateDoc(userRefDoc, { shoppingListArray: updatedArray });
+        if (userData && userData.shoppingListArray && userData.shoppingListArray.includes(bookId)) {
+          await updateDoc(userRefDoc, {
+            shoppingListArray: arrayRemove(bookId),
+          });
+          toggleButton.textContent = 'Add to the shopping list';
         } else {
-          const updatedArray = arrayRemove(bookId);
-
-          await updateDoc(userRefDoc, { shoppingListArray: updatedArray });
+          await updateDoc(userRefDoc, {
+            shoppingListArray: arrayUnion(bookId),
+          });
+          toggleButton.textContent = 'Remove from the shopping list';
         }
       };
 
-      const userDoc = (await getDoc(userRefDoc)).data();
-      let shoppingList = userDoc.shoppingListArray || [];
+      let shoppingList = userData.shoppingListArray || [];
       console.log('modal', shoppingList);
       localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
-      console.log(userDoc);
 
       toggleButton.addEventListener('click', toggleButtonClickHandler);
 
-      let isBookInList = false;
-      if (shoppingList) {
-        isBookInList = shoppingList.indexOf(bookId) !== -1;
-      }
+      onSnapshot(userRefDoc, async docSnapshot => {
+        const updatedData = docSnapshot.data();
 
-      toggleButton.textContent = isBookInList
-        ? 'Remove from the shopping list'
-        : 'Add to the shopping list';
-      toggleButton.onclick = () => {
-        if (!shoppingList) {
-          toggleButton.textContent = 'Remove from the shopping list';
-          shoppingList = [];
-          shoppingList.push(bookId);
+        if (updatedData && updatedData.shoppingListArray) {
+          shoppingList = updatedData.shoppingListArray;
+
+          let isBookInList = shoppingList.indexOf(bookId) !== -1;
+          toggleButton.textContent = isBookInList
+            ? 'Remove from the shopping list'
+            : 'Add to the shopping list';
+
           localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
-        } else {
-          isBookInList = shoppingList.indexOf(bookId) !== -1;
-
-          if (isBookInList) {
-            shoppingList.splice(shoppingList.indexOf(bookId), 1);
-            localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
-            toggleButton.textContent = 'Add to the shopping list';
-          } else {
-            shoppingList.push(bookId);
-            localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
-            toggleButton.textContent = 'Remove from the shopping list';
-          }
-
-          if (shoppingList.length === 0) {
-            localStorage.removeItem('shoppingListArray');
-          }
         }
-      };
+      });
 
       toggleButton.disabled = false;
       anonymousUser.style.display = 'none';

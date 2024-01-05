@@ -20,10 +20,13 @@ export async function renderBooksItems(data) {
     }),
   );
 }
+
+//Popracować nad tą funkcją !!!
+
 function addMediaWidth() {
   const screenSize = window.screen.width;
 
-  // addEventListener('resize', () => {
+  // window.addEventListener('resize', () => {
   //   if (
   //     (window.innerWidth > 767 && screenSize < 768) ||
   //     (window.innerWidth > 1279 && screenSize < 1280) ||

@@ -162,6 +162,17 @@ input:checked + .theme-toggler::before {
   letter-spacing: -0.56px;
   text-transform: uppercase;
 }
+.sign-up.is-authenticated:hover {
+  position: relative;
+  background-color: #fff;
+}
+.sign-up.is-authenticated:hover:after {
+  position: absolute;
+  color: black;
+  background-color: white;
+  z-index: 10;
+  content: 'Log Out';
+}
 
 @media screen and (min-width: 768px) {
   .header-bar {

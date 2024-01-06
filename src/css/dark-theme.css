@@ -90,3 +90,6 @@ html.dark-theme .shopping-list-section {
 html.dark-theme .books__listname {
   color: var(--main-text-color-dark-theme);
 }
+html.dark-theme .sign-up.is-authenticated {
+  color: white;
+}

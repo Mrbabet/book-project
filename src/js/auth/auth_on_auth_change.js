@@ -11,6 +11,7 @@ import {
   arrayUnion,
   onSnapshot,
 } from 'firebase/firestore';
+import { signInButton } from '../sign-form';
 
 onAuthStateChanged(auth, async user => {
   if (user) {
@@ -22,9 +23,10 @@ onAuthStateChanged(auth, async user => {
       console.log('auth', shoppingList);
       localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
     });
-
+    signInButton.classList.add('is-authenticated');
     // console.log('User is signed in:', user);
   } else {
     // console.log('User is signed out');
+    signInButton.classList.remove('is-authenticated');
   }
 });

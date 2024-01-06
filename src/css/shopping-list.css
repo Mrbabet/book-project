@@ -84,6 +84,13 @@
 }
 .sl__books-title {
   max-width: 144px;
+  margin-bottom: 4px;
+}
+.books__listname {
+  margin-bottom: 14px;
+}
+.books__desc {
+  margin-bottom: 48px;
 }
 .trash-button {
   position: absolute;

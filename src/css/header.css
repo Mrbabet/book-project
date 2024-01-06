@@ -1,12 +1,28 @@
 .header-bar {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 64px;
   padding: 18px 20px;
-  align-items: flex-start;
+
   flex-shrink: 0;
   border-radius: 0px 0px 8px 8px;
   border: 1.5px solid #111;
   width: 100%;
+}
+.button-shopping {
+  display: flex;
+  gap: 4px;
+}
+.button-shopping svg {
+  fill: #111;
+}
+
+[data-page-name='home'] .button-home a {
+  background-color: #eac645;
+}
+[data-page-name='shopping-list'] .button-shopping a {
+  background-color: #eac645;
 }
 
 .btn-burger {
@@ -134,12 +150,24 @@ input:checked + .theme-toggler::before {
 .sign-up {
   display: none;
 }
+.menu li a,
+.mobile-modal-menu li a {
+  text-decoration: none;
+  color: #111;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.56px;
+  text-transform: uppercase;
+}
 
 @media screen and (min-width: 768px) {
   .header-bar {
     width: 100%;
     height: 72px;
-    align-items: normal;
+
     gap: 0px;
   }
   .burger-icon {
@@ -149,6 +177,7 @@ input:checked + .theme-toggler::before {
   .menu {
     display: none;
     align-items: center;
+    justify-content: center;
     gap: 16px;
   }
   .menu.is-authenticated {
@@ -157,29 +186,10 @@ input:checked + .theme-toggler::before {
 
   .button-home {
     display: flex;
-    padding: 8px 16px;
     align-items: flex-start;
     gap: 10px;
     border-radius: 36px;
     background: transparent;
-    width: 72px;
-    height: 34px;
-  }
-
-  .dark-header[data-page-name='home'] .button-home {
-    background: #eac645;
-  }
-
-  .menu li a {
-    text-decoration: none;
-    color: #111;
-    font-family: DM Sans;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 18px; /* 128.571% */
-    letter-spacing: -0.56px;
-    text-transform: uppercase;
   }
 
   .home-p {
@@ -394,7 +404,6 @@ input:checked + .theme-toggler::before {
   padding: 8px 16px;
   gap: 10px;
   border-radius: 36px;
-  background: #eac645;
   width: 72px;
   height: 34px;
 }
@@ -420,12 +429,10 @@ input:checked + .theme-toggler::before {
   border: none;
   cursor: pointer;
 }
+.menu-button-shopping-list {
+  color: #111;
+}
 
-.dark-header[data-page-name='shopping-list'] .menu-button-shopping-list {
-  background: #eac645;
-}
-[data-page-name='shopping-list'] .button-shopping-list {
-}
 .shopping-p {
   font-family: DM Sans;
   font-size: 14px;
@@ -434,6 +441,18 @@ input:checked + .theme-toggler::before {
   line-height: 18px;
   letter-spacing: -0.56px;
   text-transform: uppercase;
+}
+.menu-item a {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 36px;
+}
+a.is-active {
+  background-color: #eac645;
 }
 .menu-icon {
   stroke: #fff;

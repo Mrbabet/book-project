@@ -1,4 +1,4 @@
-html.dark-theme .logo-text svg path {
+html.dark-theme .container-logo svg:nth-of-type(2) path {
   fill: white;
 }
 
@@ -49,8 +49,13 @@ html.dark-theme .modal .toggle-shopping-list {
 html.dark-theme .modal .book-desc {
   color: var(--main-text-color-dark-theme);
 }
-html.dark-theme .menu li a {
+html.dark-theme .menu li a,
+html.dark-theme .button-home-menu a,
+html.dark-theme .menu-button-shopping-list {
   color: var(--main-text-color-dark-theme);
+}
+html.dark-theme .menu li a svg {
+  fill: var(--main-text-color-dark-theme);
 }
 html.dark-theme .form-container {
   background-color: var(--main-bg-color-dark-theme);
@@ -81,4 +86,7 @@ html.dark-theme .shopping-list-shopping {
 }
 html.dark-theme .shopping-list-section {
   background-color: var(--main-bg-color-dark-theme);
+}
+html.dark-theme .books__listname {
+  color: var(--main-text-color-dark-theme);
 }

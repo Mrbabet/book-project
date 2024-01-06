@@ -335,8 +335,6 @@ onAuthStateChanged(auth, async user => {
         updatePageView();
       }
     });
-  } else {
-    // console.log('User is signed out');
   }
 });
 

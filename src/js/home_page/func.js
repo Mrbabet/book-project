@@ -54,8 +54,9 @@ export const ShowLessData = async function (data) {
     return makeListOfBooks(data.slice(0, 1));
   } else if (addMediaWidth() === 'tablet') {
     return makeListOfBooks(data.slice(0, 3));
-  } else if (addMediaWidth() === 'desktop') return makeListOfBooks(data.slice(0, 4));
-  else {
+  } else if (addMediaWidth() === 'desktop') {
+    return makeListOfBooks(data.slice(0, 4));
+  } else {
     return makeListOfBooks(data);
   }
 };

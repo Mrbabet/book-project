@@ -21,7 +21,6 @@
 .form-container {
   position: relative;
   display: block;
-
   background-color: var(--main-bg-color);
   border-radius: 18px;
   border: 2px solid #111;

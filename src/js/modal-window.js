@@ -95,23 +95,23 @@ export async function initModal(bookId) {
 
 export function showModal() {
   const backdrop = document.querySelector('[data-modal]');
+  const body = document.querySelector('body');
   backdrop.classList.add('is-active');
-  document.body.classList.add('no-scroll');
+  body.classList.add('no-scroll');
   backdrop.addEventListener('click', closeModalByClicking);
-  document.body.addEventListener('keyup', closeModalByKey);
+  document.addEventListener('keyup', closeModalByKey);
 }
 
 function closeModalByClicking(e) {
   const backdrop = document.querySelector('[data-modal]');
-  const modalWindow = document.querySelector('[data-modal-window]');
   const closeBtn = document.querySelector('[data-modal-close]');
 
-  if (e.target.closest('[data-modal-close]') === closeBtn) {
+  if (e.target.closest('[data-modal-close]') === closeBtn || e.target.closest('[data-modal]')) {
     backdrop.classList.remove('is-active');
-    document.body.classList.remove('no-scroll');
+    body.classList.remove('no-scroll');
 
     backdrop.removeEventListener('click', closeModalByClicking);
-    document.body.removeEventListener('keyup', closeModalByKey);
+    body.removeEventListener('keyup', closeModalByKey);
   }
 }
 
@@ -121,9 +121,9 @@ function closeModalByKey(e) {
   const key = e.keyCode;
   if (key == 27) {
     backdrop.classList.remove('is-active');
-    document.body.classList.remove('no-scroll');
+    body.classList.remove('no-scroll');
 
     backdrop.removeEventListener('click', closeModalByClicking);
-    document.body.removeEventListener('keyup', closeModalByKey);
+    body.removeEventListener('keyup', closeModalByKey);
   }
 }

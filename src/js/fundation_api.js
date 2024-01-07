@@ -44,13 +44,6 @@ export const supportersArray = [
   {
     title: 'International Medical Corps',
     url: 'https://internationalmedicalcorps.org/country/ukraine/',
-    img: fond3,
-    imgRetinaTwo: fond3_2x,
-    imgRetinaThree: fond3_3x,
-  },
-  {
-    title: 'Medicins Sans Frontieres',
-    url: 'https://www.msf.org/ukraine',
     img: fond4,
     imgRetinaTwo: fond4_2x,
     imgRetinaThree: fond4_3x,
@@ -58,20 +51,13 @@ export const supportersArray = [
   {
     title: 'RAZOM',
     url: 'https://www.razomforukraine.org/',
-    img: fond5,
-    imgRetinaTwo: fond5_2x,
-    imgRetinaThree: fond5_3x,
-  },
-  {
-    title: 'Action against hunger',
-    url: 'https://www.actionagainsthunger.org/location/europe/ukraine/',
     img: fond6,
     imgRetinaTwo: fond6_2x,
     imgRetinaThree: fond6_3x,
   },
   {
-    title: 'World vision',
-    url: 'https://www.wvi.org/emergencies/ukraine',
+    title: 'Action against hunger',
+    url: 'https://www.actionagainsthunger.org/location/europe/ukraine/',
     img: fond7,
     imgRetinaTwo: fond7_2x,
     imgRetinaThree: fond7_3x,
@@ -79,15 +65,30 @@ export const supportersArray = [
   {
     title: 'Serhiy Prytula Charity Foundation',
     url: 'https://prytulafoundation.org/en',
+    img: fond9,
+    imgRetinaTwo: fond9_2x,
+    imgRetinaThree: fond9_3x,
+  },
+  {
+    title: 'Medicins Sans Frontieres',
+    url: 'https://www.msf.org/ukraine',
+    img: fond5,
+    imgRetinaTwo: fond5_2x,
+    imgRetinaThree: fond5_3x,
+  },
+
+  {
+    title: 'World vision',
+    url: 'https://www.wvi.org/emergencies/ukraine',
     img: fond8,
     imgRetinaTwo: fond8_2x,
-    imgRetinaThree: fond8_3x,
+    imgRetinaThree: fond7_3x,
   },
   {
     title: 'UNITED24',
     url: 'https://u24.gov.ua/uk',
-    img: fond9,
-    imgRetinaTwo: fond9_2x,
-    imgRetinaThree: fond9_3x,
+    img: fond3,
+    imgRetinaTwo: fond3_2x,
+    imgRetinaThree: fond3_3x,
   },
 ];

@@ -163,23 +163,29 @@
   line-height: 18px;
   letter-spacing: -0.56px;
 }
-.shopping-list-empty {
-  display: flex;
-  width: 349px;
-  height: 309px;
-  top: 248px;
-  left: 55px;
-  gap: 14px;
-  color: #00000099;
-}
+
 .shopping-list-block-empty {
-  position: absolute;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.02em;
   text-align: center;
   color: #00000099;
+}
+.shopping-list-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shopping-list-empty img {
+  display: block;
+  width: 322px;
+}
+.shopping-list-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 @media screen and (min-width: 768px) {
   .shopping-list_item {
@@ -232,18 +238,11 @@
     right: 24px;
     bottom: 30px;
   }
-
-  .shopping-list-empty {
-    position: absolute;
-    top: 300px;
-    left: 223px;
-    gap: 20px;
-  }
 }
 @media screen and (min-width: 1280px) {
   .container__shopping {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .shopping-list_item {
     width: 996px;
@@ -257,13 +256,6 @@
     left: 0;
   }
 
-  .shopping-list-empty {
-    position: absolute;
-    top: 300px;
-    right: 370px;
-    gap: 20px;
-  }
-
   .shopping-list-items {
     gap: 20px;
   }
@@ -273,6 +265,13 @@
   }
 }
 @media screen and (min-width: 1440px) {
+  .shopping-list-empty {
+    position: relative;
+    gap: 20px;
+  }
+  .shopping-list-container {
+    width: 996px;
+  }
   .container__shopping {
     display: flex;
     justify-content: center;
@@ -287,12 +286,6 @@
     height: 100%;
     top: 0;
     left: 0;
-  }
-
-  .shopping-list-empty {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
   .shopping-list-items {

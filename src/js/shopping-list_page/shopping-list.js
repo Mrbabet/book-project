@@ -76,7 +76,7 @@ const fetchShoppingElements = async (currentPageNumber, elementsPerPageAmount) =
   if (!shoppingArray || shoppingArray.length === 0) {
     currentPage = 0;
     shoppingListPagination.style.display = 'none';
-    shoppingListEmpty.style.display = 'block';
+    shoppingListEmpty.style.display = 'flex';
     shoppingList.innerHTML = '';
     return;
   }

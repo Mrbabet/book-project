@@ -24,9 +24,7 @@ onAuthStateChanged(auth, async user => {
       localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
     });
     signInButton.classList.add('is-authenticated');
-    // console.log('User is signed in:', user);
   } else {
-    // console.log('User is signed out');
     signInButton.classList.remove('is-authenticated');
   }
 });

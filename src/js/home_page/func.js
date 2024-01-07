@@ -13,7 +13,7 @@ export async function renderBooksItems(data) {
       return `
     <div class="book-category-container">
     <h3 class="js-book-category">${list_name}</h3>
-    <ul class='books-list'>${await ShowLessData(books)}</ul>
+    <ul class='books-list'>${await showLessData(books)}</ul>
     <button class="button see-more" data-js="${list_name}" aria-label="See more">See more</button>
     </div>
     `;
@@ -49,7 +49,7 @@ function addMediaWidth() {
   }
 }
 
-export const ShowLessData = async function (data) {
+export const showLessData = async function (data) {
   if (addMediaWidth() === 'mobile') {
     return makeListOfBooks(data.slice(0, 1));
   } else if (addMediaWidth() === 'tablet') {

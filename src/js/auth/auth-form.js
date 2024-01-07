@@ -6,8 +6,8 @@ import '../sign-form';
 import { closeModalButton, hideModal, showModal } from '../sign-form';
 import { signInButton } from '../sign-form';
 import { auth, app, db } from './auth';
+import avatarIcon from '../../images/ellipse3.png';
 
-const authorizationModal = document.querySelector('.form-wrapper');
 const submitBtn = document.querySelector('.submit-btn');
 const signUpForm = document.querySelector('.sign-up-form');
 const userName = document.querySelector('#name');
@@ -27,8 +27,6 @@ const mobileUsername = document.querySelector('.avatar-p');
 const mobileLogOutBtn = document.querySelector('.menu-log-out ');
 
 const avatar = document.querySelector('.avatar');
-
-const headerLogOutBtn = document.querySelector('.button-log-out');
 
 const onSignUpBtnClick = function () {
   submitBtn.textContent = 'Sign up';
@@ -74,8 +72,12 @@ window.addEventListener('load', () => {
       mobileMenuUser.classList.add('is-authenticated');
       mobileMenuContainer.classList.add('is-authenticated');
       avatar.classList.add('is-authenticated');
-      headerSignUpBtn.textContent = user.displayName;
+      headerSignUpBtn.innerHTML = `
+      <img src="${avatarIcon}"/>
+      ${user.displayName}`;
+
       mobileUsername.textContent = user.displayName;
+
       headerSignUpBtn.addEventListener('click', userSignOut);
       mobileLogOutBtn.addEventListener('click', userSignOut);
     } else {

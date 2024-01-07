@@ -6,6 +6,11 @@ import { getCategoryList, getOneCategory, getTopBooks } from './fetch';
 import { initModal, showModal } from '../modal-window';
 import { scrollToTop } from '../scrollTop';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
+
 const refBooks = document.querySelector('.books-container');
 const refCategory = document.querySelector('.category-list');
 const pageHeader = document.querySelector('.dark-header');

@@ -1,5 +1,4 @@
 const authorizationModal = document.querySelector('.form-wrapper');
-const body = document.querySelector('body');
 export const signInButton = document.querySelector('.sign-up');
 export const closeModalButton = document.querySelector('.signup-modal-close');
 const signUpBtnMobile = document.querySelector('.modal-sign-up');

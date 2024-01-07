@@ -162,16 +162,16 @@ input:checked + .theme-toggler::before {
   letter-spacing: -0.56px;
   text-transform: uppercase;
 }
-.sign-up.is-authenticated:hover {
-  position: relative;
-  background-color: #fff;
+.sign-up.is-authenticated {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.44px;
+  justify-content: space-around;
 }
-.sign-up.is-authenticated:hover:after {
-  position: absolute;
-  color: black;
-  background-color: white;
-  z-index: 10;
-  content: 'Log Out';
+.sign-up.is-authenticated img {
+  width: 37px;
 }
 
 @media screen and (min-width: 768px) {
@@ -291,6 +291,11 @@ input:checked + .theme-toggler::before {
     justify-content: center;
     align-items: center;
     gap: 90px;
+  }
+  .sign-up.is-authenticated {
+    padding-inline: 12px;
+    justify-content: flex-start;
+    gap: 8px;
   }
 
   .sign-up-p {

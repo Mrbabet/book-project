@@ -102,3 +102,6 @@ html.dark-theme .shopping-list_item .sl__books__desc {
 html.dark-theme .sl__books-title {
   color: var(--main-text-color-dark-theme);
 }
+html.dark-theme .toggle-shopping-list_authenticated-user-content {
+  color: white;
+}

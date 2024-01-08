@@ -55,25 +55,26 @@ export async function initModal(bookId) {
 
       toggleButtonClickHandler = async e => {
         if (userData && userData.shoppingListArray && userData.shoppingListArray.includes(bookId)) {
-          authenticatedUser.textContent= ''
+        
           await updateDoc(userRefDoc, {
             shoppingListArray: arrayRemove(bookId),
           });
           toggleButton.textContent = 'Add to the shopping list';
+          
           
         } else {
           await updateDoc(userRefDoc, {
             shoppingListArray: arrayUnion(bookId),
           });
           toggleButton.textContent = 'Remove from the shopping list';
-          authenticatedUser.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button
-          “Remove from the shopping list”.`
+        
         }
       };
 
       let shoppingList = userData.shoppingListArray || [];
-      console.log('modal', shoppingList);
+      
       localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
+      
 
       toggleButton.addEventListener('click', toggleButtonClickHandler);
 
@@ -82,11 +83,13 @@ export async function initModal(bookId) {
 
         if (updatedData && updatedData.shoppingListArray) {
           shoppingList = updatedData.shoppingListArray;
-
+          
           let isBookInList = shoppingList.indexOf(bookId) !== -1;
           toggleButton.textContent = isBookInList
             ? 'Remove from the shopping list'
             : 'Add to the shopping list';
+authenticatedUser.textContent = isBookInList ? `Сongratulations! You have added the book to the shopping list. To delete, press the button
+          “Remove from the shopping list”.` : ''
 
           localStorage.setItem('shoppingListArray', JSON.stringify(shoppingList));
         }

@@ -104,12 +104,14 @@
 .modal .store-img {
   filter: grayscale();
 }
-.toggle-shopping-list_anonymous-user-content {
+.toggle-shopping-list_anonymous-user-content,
+.toggle-shopping-list_authenticated-user-content {
   margin-top: 8px;
   text-align: center;
   font-size: 12px;
   line-height: 14px;
 }
+
 @media screen and (min-width: 768px) {
   .modal {
     width: 579px;

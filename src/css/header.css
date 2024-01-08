@@ -280,6 +280,7 @@ input:checked + .theme-toggler::before {
     bottom: 0;
   }
   .sign-up {
+    color: white;
     width: 184px;
     height: 48px;
     flex-shrink: 0;

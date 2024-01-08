@@ -163,11 +163,11 @@ Make sure you have the following installed:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/Mrbabet/bookshelf.git
+   git clone https://github.com/Mrbabet/book-project.git
    ```
 2. Navigate to the project directory
    ```sh
-    cd bookshelf
+    cd book-project
    ```
 3. Install dependencies
    ```sh

@@ -98,8 +98,8 @@
   width: 100%;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.toggle-shopping-list:hover,
-.toggle-shopping-list:focus {
+.toggle-shopping-list:hover:not([disabled]),
+.toggle-shopping-list:focus:not([disabled]) {
   background-color: #4f2ee8;
   color: white;
 }

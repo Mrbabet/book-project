@@ -97,6 +97,10 @@
   display: flex;
   width: 100%;
 }
+.toggle-shopping-list:hover,
+.toggle-shopping-list:focus {
+  background-color: #4f2ee8;
+}
 .toggle-shopping-list:disabled {
   opacity: 0.5;
   cursor: not-allowed;

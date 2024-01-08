@@ -232,6 +232,12 @@
   display: flex;
   overflow: hidden;
   cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.see-more:hover,
+.see-more:focus {
+  background-color: #4f2ee8;
+  color: white;
 }
 .all-categories__btn {
   letter-spacing: -0.01em;
@@ -249,6 +255,10 @@
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
   cursor: pointer;
+}
+.all-categories__btn:hover {
+  background-color: #4f2ee8;
+  color: white;
 }
 
 .books-list {

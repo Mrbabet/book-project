@@ -36,6 +36,13 @@ html.dark-theme .all-categories__btn {
   color: var(--main-text-color-dark-theme);
   background-color: var(--main-bg-color-dark-theme);
 }
+html.dark-theme .see-more:hover,
+html.dark-theme .see-more:focus,
+html.dark-theme .all-categories__btn:hover,
+html.dark-theme .all-categories__btn:focus {
+  background-color: #4f2ee8;
+}
+
 html.dark-theme .modal {
   background-color: var(--main-bg-color-dark-theme);
   border: 1px solid white;

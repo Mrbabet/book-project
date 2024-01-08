@@ -100,6 +100,7 @@
 .toggle-shopping-list:hover,
 .toggle-shopping-list:focus {
   background-color: #4f2ee8;
+  color: white;
 }
 .toggle-shopping-list:disabled {
   opacity: 0.5;

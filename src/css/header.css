@@ -538,11 +538,16 @@ a.is-active {
 }
 .avatar {
   display: none;
-  height: 37px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   width: 37px;
+  height: 37px;
+  border-radius: 50%;
 }
+
 .avatar.is-authenticated {
-  display: block;
+  display: flex;
 }
 .avatar-p {
   color: #fff;

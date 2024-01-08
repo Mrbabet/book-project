@@ -28,6 +28,15 @@ button,
 a {
   cursor: pointer;
 }
+.user-icon-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+}
 
 .container {
   width: 100%;

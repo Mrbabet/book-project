@@ -105,3 +105,6 @@ html.dark-theme .sl__books-title {
 html.dark-theme .toggle-shopping-list_authenticated-user-content {
   color: white;
 }
+html.dark-theme .toggle-shopping-list_anonymous-user-content {
+  color: white;
+}

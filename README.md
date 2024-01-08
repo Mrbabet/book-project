@@ -14,10 +14,10 @@
   <p>
     Discover, search, and display books effortlessly on Bookshelf's intuitive platform.
     <br />
-    <a href="https://github.com//book-project"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com//Mrbabet/book-project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://valik3201.github.io/book-project/">View Demo</a>
+    <a href="https://Mrbabet.github.io/book-project/">View Demo</a>
     ·
     <a href="https://github.com//book-project/issues">Report Bug</a>
     ·

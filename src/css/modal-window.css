@@ -115,12 +115,20 @@
     width: 579px;
     padding: 40px;
   }
-  .rendered-content {
+  /* .rendered-content {
     flex-direction: row;
     gap: 24px;
+  } */
+  .rendered-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .toggle-shopping-list__button-container {
+    grid-column: span 2;
   }
   .book-cover {
     width: 192px;
+    margin: 0;
   }
   .book-title {
     font-size: 24px;

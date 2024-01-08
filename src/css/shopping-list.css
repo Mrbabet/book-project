@@ -74,8 +74,6 @@
 }
 
 .shopping-list {
-  width: 193px;
-  height: 38px;
   font-size: 32px;
   font-weight: 700;
   line-height: 38px;
@@ -91,7 +89,7 @@
 }
 .shopping-list_item {
   height: 170px;
-  padding: 30px 24px;
+  padding: 14px;
   border-radius: 16px;
   border: 2px solid #4f2ee866;
   display: flex;
@@ -106,18 +104,29 @@
 }
 .sl__books-title {
   max-width: 144px;
+  color: #111;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 112.5% */
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
   margin-bottom: 4px;
 }
-.books__listname {
-  margin-bottom: 14px;
+.sl__books__listname {
+  color: #b4afaf;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 116.667% */
+  letter-spacing: 0.36px;
+  margin-bottom: 8px;
 }
-.books__desc {
-  margin-bottom: 48px;
-}
+
 .trash-button {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 14px;
+  right: 14px;
   background-color: #4f2ee8;
   border: none;
   width: 34px;
@@ -127,6 +136,16 @@
   justify-content: center;
   align-items: center;
   outline: none;
+}
+.sl__books__info-author {
+  color: #b4afaf;
+
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 14px; /* 116.667% */
+  letter-spacing: -0.48px;
 }
 .sl__amazon {
   width: 32px;
@@ -150,7 +169,7 @@
   right: 16px;
   cursor: pointer;
 }
-.books__desc {
+.sl__books__desc {
   width: 193px;
   overflow: hidden;
   color: #111;
@@ -162,6 +181,7 @@
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.56px;
+  margin-bottom: 16px;
 }
 
 .shopping-list-block-empty {
@@ -188,6 +208,14 @@
   transform: translate(-50%, -50%);
 }
 @media screen and (min-width: 768px) {
+  .shopping-list {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -1.92px;
+  }
+
   .shopping-list_item {
     width: 704px;
     height: 213px;
@@ -210,7 +238,7 @@
   .sl__books-title {
     overflow: visible;
   }
-  .books__listname {
+  .sl__books__listname {
     color: #b4afaf;
     font-family: DM Sans;
     font-size: 12px;

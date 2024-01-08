@@ -87,9 +87,18 @@ html.dark-theme .shopping-list-shopping {
 html.dark-theme .shopping-list-section {
   background-color: var(--main-bg-color-dark-theme);
 }
-html.dark-theme .books__listname {
+html.dark-theme .sl__books__listname {
   color: var(--main-text-color-dark-theme);
 }
 html.dark-theme .sign-up.is-authenticated {
   color: white;
+}
+html.dark-theme .shopping-list-block-empty p {
+  color: white;
+}
+html.dark-theme .shopping-list_item .sl__books__desc {
+  color: white;
+}
+html.dark-theme .sl__books-title {
+  color: var(--main-text-color-dark-theme);
 }

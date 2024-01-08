@@ -24,9 +24,9 @@ const linkAmazon = document.querySelector('.link-amazon');
 const linkBook = document.querySelector('.link-apple');
 export const toggleButton = document.getElementById('toggleShoppingList');
 export const anonymousUser = document.querySelector('.toggle-shopping-list_anonymous-user-content');
+const authenticatedUser = document.querySelector('.toggle-shopping-list_authenticated-user-content')
 const body = document.querySelector('body')
 const backdrop = document.querySelector('[data-modal]');
-const modalWindow = document.querySelector('[data-modal-window]')
 const closeBtn = document.querySelector('[data-modal-close]');
 const modalContent = document.querySelector('.rendered-content');
 let toggleButtonClickHandler;
@@ -44,6 +44,7 @@ export async function initModal(bookId) {
 
   onAuthStateChanged(auth, async user => {
     if (user) {
+     
       const uid = user.uid;
       const userRefDoc = doc(db, 'users', uid);
       const userData = (await getDoc(userRefDoc)).data();
@@ -53,17 +54,20 @@ export async function initModal(bookId) {
       }
 
       toggleButtonClickHandler = async e => {
-        console.log('click');
         if (userData && userData.shoppingListArray && userData.shoppingListArray.includes(bookId)) {
+          authenticatedUser.textContent= ''
           await updateDoc(userRefDoc, {
             shoppingListArray: arrayRemove(bookId),
           });
           toggleButton.textContent = 'Add to the shopping list';
+          
         } else {
           await updateDoc(userRefDoc, {
             shoppingListArray: arrayUnion(bookId),
           });
           toggleButton.textContent = 'Remove from the shopping list';
+          authenticatedUser.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button
+          “Remove from the shopping list”.`
         }
       };
 

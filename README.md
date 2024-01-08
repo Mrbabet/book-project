@@ -19,9 +19,9 @@
     <br />
     <a href="https://Mrbabet.github.io/book-project/">View Demo</a>
     ·
-    <a href="https://github.com//book-project/issues">Report Bug</a>
+    <a href="https://github.com/Mrbabet/book-project/issues">Report Bug</a>
     ·
-    <a href="https://github.com//book-project/issues">Request Feature</a>
+    <a href="https://github.com/Mrbabet/book-project/issues">Request Feature</a>
   </p>
 </div>
 

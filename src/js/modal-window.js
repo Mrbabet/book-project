@@ -24,6 +24,11 @@ const linkAmazon = document.querySelector('.link-amazon');
 const linkBook = document.querySelector('.link-apple');
 export const toggleButton = document.getElementById('toggleShoppingList');
 export const anonymousUser = document.querySelector('.toggle-shopping-list_anonymous-user-content');
+const body = document.querySelector('body')
+const backdrop = document.querySelector('[data-modal]');
+const modalWindow = document.querySelector('[data-modal-window]')
+const closeBtn = document.querySelector('[data-modal-close]');
+const modalContent = document.querySelector('.rendered-content');
 let toggleButtonClickHandler;
 
 export async function initModal(bookId) {
@@ -94,8 +99,6 @@ export async function initModal(bookId) {
 }
 
 export function showModal() {
-  const backdrop = document.querySelector('[data-modal]');
-  const body = document.querySelector('body');
   backdrop.classList.add('is-active');
   body.classList.add('no-scroll');
   backdrop.addEventListener('click', closeModalByClicking);
@@ -103,9 +106,6 @@ export function showModal() {
 }
 
 function closeModalByClicking(e) {
-  const backdrop = document.querySelector('[data-modal]');
-  const closeBtn = document.querySelector('[data-modal-close]');
-
   if (e.target.closest('[data-modal-close]') === closeBtn || e.target.closest('[data-modal]')) {
     backdrop.classList.remove('is-active');
     body.classList.remove('no-scroll');
@@ -116,9 +116,7 @@ function closeModalByClicking(e) {
 }
 
 function closeModalByKey(e) {
-  const backdrop = document.querySelector('[data-modal]');
-
-  const key = e.keyCode;
+ const key = e.keyCode;
   if (key == 27) {
     backdrop.classList.remove('is-active');
     body.classList.remove('no-scroll');
@@ -127,3 +125,7 @@ function closeModalByKey(e) {
     body.removeEventListener('keyup', closeModalByKey);
   }
 }
+modalContent.addEventListener('click', function (event) {
+    // Prevent the click event from propagating to the backdrop
+    event.stopPropagation();
+  });
